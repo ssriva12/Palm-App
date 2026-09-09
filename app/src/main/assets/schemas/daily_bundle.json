@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["highlights", "daily", "weekly", "monthly"],
+  "properties": {
+    "highlights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mood", "luckyNumber", "luckyColor", "focusOfDay", "oneLineAdvice"],
+      "properties": {
+        "mood": { "type": "string" },
+        "luckyNumber": { "type": "integer" },
+        "luckyColor": { "type": "string" },
+        "focusOfDay": { "type": "string" },
+        "oneLineAdvice": { "type": "string" }
+      }
+    },
+    "daily": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["overview", "rating", "love", "career", "health"],
+      "properties": {
+        "overview": { "type": "string" },
+        "rating": { "type": "integer" },
+        "love": { "type": "string" },
+        "career": { "type": "string" },
+        "health": { "type": "string" }
+      }
+    },
+    "weekly": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["overview", "rating", "love", "career", "health"],
+      "properties": {
+        "overview": { "type": "string" },
+        "rating": { "type": "integer" },
+        "love": { "type": ["string", "null"] },
+        "career": { "type": ["string", "null"] },
+        "health": { "type": ["string", "null"] }
+      }
+    },
+    "monthly": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["overview", "rating", "love", "career", "health"],
+      "properties": {
+        "overview": { "type": "string" },
+        "rating": { "type": "integer" },
+        "love": { "type": ["string", "null"] },
+        "career": { "type": ["string", "null"] },
+        "health": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

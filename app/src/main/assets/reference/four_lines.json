@@ -1,0 +1,81 @@
+{
+  "_comment": "Grounding reference for the four major palm lines (Notion spec §4). One source of truth: pasted into the Gemini prompt AND used to build local templated fallback readings. Traditional palmistry — entertainment content, not a factual claim.",
+  "lines": [
+    {
+      "id": "life",
+      "label": "Life line",
+      "position": "Curves around the base of the thumb (Mount of Venus), from between thumb and index finger down to the wrist.",
+      "governs": "Vitality, energy, major life changes, general wellbeing — not lifespan.",
+      "variations": [
+        { "match": "Long and deep", "text": "Strong vitality and resilience; you recover fast from setbacks." },
+        { "match": "Short", "text": "Life is shaped more by other people's energy than your own drive — not a sign of a short life." },
+        { "match": "Faint / shallow", "text": "Lower physical stamina; you do better with rhythm and rest than with intensity." },
+        { "match": "Wide curve", "text": "Warm, generous, physically energetic, loves travel and open spaces." },
+        { "match": "Narrow curve", "text": "Cautious with energy; prefers home, routine and a small trusted circle." },
+        { "match": "Broken", "text": "A sharp turning point — a move, career switch or major life reset." },
+        { "match": "Chained / laddered", "text": "A stretch of scattered energy and stress; needs deliberate recovery time." },
+        { "match": "Double line (sister line)", "text": "Extra protection and support; someone or something reliably backs you up." },
+        { "match": "Branches going up", "text": "Ambition and periods of clear personal growth." },
+        { "match": "Branches going down", "text": "Energy leaks into obligations; watch for burnout phases." },
+        { "match": "Forked at the end", "text": "Restlessness in later life — travel, relocation, or a second chapter." }
+      ]
+    },
+    {
+      "id": "head",
+      "label": "Head line",
+      "position": "Runs horizontally across the middle of the palm, starting near the life line's origin.",
+      "governs": "Thinking style, intellect, decision-making, focus.",
+      "variations": [
+        { "match": "Long", "text": "Thorough thinker; you turn ideas over completely before deciding." },
+        { "match": "Short", "text": "Quick, practical, decisive — you'd rather act than analyse." },
+        { "match": "Straight", "text": "Logical, structured, realistic; strong with systems and numbers." },
+        { "match": "Curved / sloping downward", "text": "Creative and imaginative; ideas arrive sideways rather than in straight lines." },
+        { "match": "Deep", "text": "Excellent focus and memory." },
+        { "match": "Faint", "text": "A wandering mind; thrives on variety, struggles with long single tasks." },
+        { "match": "Wavy", "text": "Attention shifts often; best in short bursts of deep work." },
+        { "match": "Broken", "text": "A mental turning point — a change of belief, field of study or worldview." },
+        { "match": "Forked at the end (writer's fork)", "text": "Balances logic and imagination; good at explaining complex things simply." },
+        { "match": "Joined to life line at the start", "text": "Careful and family-influenced early on; builds confidence gradually." },
+        { "match": "Separated from life line at the start", "text": "Independent and self-directed from a young age; takes risks early." }
+      ]
+    },
+    {
+      "id": "heart",
+      "label": "Heart line",
+      "position": "Uppermost horizontal line, below the fingers, from one edge toward the index/middle finger.",
+      "governs": "Emotions, relationships, attachment style.",
+      "variations": [
+        { "match": "Long, reaching the index finger", "text": "Idealistic in love; high standards and a clear picture of the right partner." },
+        { "match": "Ending under the middle finger", "text": "Follows attraction and instinct; can be self-focused in relationships." },
+        { "match": "Short", "text": "Guards feelings closely; shows love through actions rather than words." },
+        { "match": "Deep", "text": "Intense, loyal, all-in emotional attachment." },
+        { "match": "Faint", "text": "Emotionally reserved; needs time and safety before opening up." },
+        { "match": "Straight and flat", "text": "Practical about love; values stability over intensity." },
+        { "match": "Curved upward", "text": "Expressive and openly affectionate; makes the first move." },
+        { "match": "Broken", "text": "A significant heartbreak or emotional turning point." },
+        { "match": "Chained", "text": "Emotional ups and downs; several meaningful relationships." },
+        { "match": "Forked at the end", "text": "Balances head and heart well; a good and fair partner." },
+        { "match": "Many small branches upward", "text": "Warm and sociable; friendships come easily." }
+      ]
+    },
+    {
+      "id": "fate",
+      "label": "Fate line",
+      "position": "Vertical line rising from near the wrist toward the middle finger (may be absent).",
+      "governs": "Career, life direction, external influences, purpose.",
+      "variations": [
+        { "match": "Deep and unbroken", "text": "A clear sense of direction; career path set early and followed steadily." },
+        { "match": "Faint", "text": "Direction is still forming; you're free to define it yourself." },
+        { "match": "Absent", "text": "Life is self-authored rather than fixed — freedom over a set path." },
+        { "match": "Starting at the wrist", "text": "Ambition shows up early; you knew what you wanted young." },
+        { "match": "Starting from the life line", "text": "Success built on your own effort and self-reliance." },
+        { "match": "Starting from the mount below the little finger", "text": "Other people — family, mentors, partners — shape your path strongly." },
+        { "match": "Broken and restarting", "text": "A career change or reinvention, then a stronger second run." },
+        { "match": "Wavy", "text": "Several shifts of direction before settling." },
+        { "match": "Doubled", "text": "Two parallel tracks — a job plus a serious side pursuit." },
+        { "match": "Stopping at the head line", "text": "A decision around mid-life redirects the career." },
+        { "match": "Stopping at the heart line", "text": "A relationship or emotional choice reshapes the path." }
+      ]
+    }
+  ]
+}

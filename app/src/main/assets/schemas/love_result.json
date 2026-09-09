@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["score", "strengths", "challenges", "verdict"],
+  "properties": {
+    "score": { "type": "integer", "description": "0-100 compatibility" },
+    "strengths": { "type": "array", "items": { "type": "string" } },
+    "challenges": { "type": "array", "items": { "type": "string" } },
+    "verdict": { "type": "string" }
+  }
+}

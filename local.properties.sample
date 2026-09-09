@@ -1,0 +1,20 @@
+# Copy the keys you need into `local.properties` (gitignored). Every key is optional —
+# missing ones use safe defaults (AdMob test ids; OpenAI key blank = readings stay stubbed).
+
+# --- OpenAI (Phase 3) -------------------------------------------------------------------
+# The key SHIPS IN THE APK and is extractable. Set a hard monthly usage limit on it at
+# https://platform.openai.com/settings/organization/limits and rotate if it leaks.
+OPENAI_API_KEY=sk-...
+
+# Optional overrides — change model/endpoint without rebuilding logic.
+# Point OPENAI_BASE_URL at your own proxy later to move the key off the device.
+# OPENAI_BASE_URL=https://api.openai.com/v1
+# OPENAI_VISION_MODEL=gpt-5.6-luna   # used for the palm scan (needs image input)
+# OPENAI_TEXT_MODEL=gpt-5.6-luna     # daily bundle / love test / tarot
+#   -> verify current ids at https://platform.openai.com/docs/models
+
+# --- AdMob (Phase 7) -------------------------------------------------------------------
+# Real ids from https://apps.admob.com — used in RELEASE builds only (debug uses test ids).
+ADMOB_APP_ID=ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX
+ADMOB_BANNER_UNIT=ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX
+ADMOB_INTERSTITIAL_UNIT=ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX

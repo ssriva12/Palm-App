@@ -1,0 +1,171 @@
+{
+  "_comment": "Offline fallback pool (spec §3.8, decision #17): 2 EVERGREEN horoscopes per sign per locale. No day names, no 'this week', nothing datable. Served when Gemini and the Room cache both miss; rotate by dayOfYear % 2. English is drafted; the other 8 locales are TODO. Regenerate all of it once with Gemini, hand-review, commit (SETUP.md step 13). Locales: en, hi, es, pt-PT, ja, zh-Hans, fr, de, it.",
+  "aries": {
+    "en": [
+      "Your instinct to move first is an asset today; just leave a beat to check who is beside you before you charge ahead.",
+      "Energy is not the problem — aim is. Pick the one thing that matters and let the rest wait."
+    ],
+    "hi": ["TODO", "TODO"],
+    "es": ["TODO", "TODO"],
+    "pt-PT": ["TODO", "TODO"],
+    "ja": ["TODO", "TODO"],
+    "zh-Hans": ["TODO", "TODO"],
+    "fr": ["TODO", "TODO"],
+    "de": ["TODO", "TODO"],
+    "it": ["TODO", "TODO"]
+  },
+  "taurus": {
+    "en": [
+      "Steadiness is your quiet superpower; the slow, sure choice tends to outlast the flashy one.",
+      "Comfort is worth protecting, not hiding in. One small step outside the usual pays off."
+    ],
+    "hi": ["TODO", "TODO"],
+    "es": ["TODO", "TODO"],
+    "pt-PT": ["TODO", "TODO"],
+    "ja": ["TODO", "TODO"],
+    "zh-Hans": ["TODO", "TODO"],
+    "fr": ["TODO", "TODO"],
+    "de": ["TODO", "TODO"],
+    "it": ["TODO", "TODO"]
+  },
+  "gemini": {
+    "en": [
+      "Your curiosity opens doors; following one thread all the way through opens the good ones.",
+      "You can hold two ideas at once — say the clearer one out loud and watch things simplify."
+    ],
+    "hi": ["TODO", "TODO"],
+    "es": ["TODO", "TODO"],
+    "pt-PT": ["TODO", "TODO"],
+    "ja": ["TODO", "TODO"],
+    "zh-Hans": ["TODO", "TODO"],
+    "fr": ["TODO", "TODO"],
+    "de": ["TODO", "TODO"],
+    "it": ["TODO", "TODO"]
+  },
+  "cancer": {
+    "en": [
+      "Your read on how people feel is rarely wrong; trust it and act on it a little sooner.",
+      "Protecting your energy is not the same as withdrawing. Let the right person in."
+    ],
+    "hi": ["TODO", "TODO"],
+    "es": ["TODO", "TODO"],
+    "pt-PT": ["TODO", "TODO"],
+    "ja": ["TODO", "TODO"],
+    "zh-Hans": ["TODO", "TODO"],
+    "fr": ["TODO", "TODO"],
+    "de": ["TODO", "TODO"],
+    "it": ["TODO", "TODO"]
+  },
+  "leo": {
+    "en": [
+      "Warmth is your currency; spend it on people who notice, not people who only take.",
+      "You do not need the spotlight to shine. Do the work you would be proud of unwatched."
+    ],
+    "hi": ["TODO", "TODO"],
+    "es": ["TODO", "TODO"],
+    "pt-PT": ["TODO", "TODO"],
+    "ja": ["TODO", "TODO"],
+    "zh-Hans": ["TODO", "TODO"],
+    "fr": ["TODO", "TODO"],
+    "de": ["TODO", "TODO"],
+    "it": ["TODO", "TODO"]
+  },
+  "virgo": {
+    "en": [
+      "Your eye for detail is a gift; aim it at what matters and let the small imperfections go.",
+      "Done and useful beats perfect and late. Ship the good-enough version."
+    ],
+    "hi": ["TODO", "TODO"],
+    "es": ["TODO", "TODO"],
+    "pt-PT": ["TODO", "TODO"],
+    "ja": ["TODO", "TODO"],
+    "zh-Hans": ["TODO", "TODO"],
+    "fr": ["TODO", "TODO"],
+    "de": ["TODO", "TODO"],
+    "it": ["TODO", "TODO"]
+  },
+  "libra": {
+    "en": [
+      "You weigh every side well; at some point the scale has to tip. Choose, and move.",
+      "Harmony you build honestly lasts. Name the small disagreement before it grows."
+    ],
+    "hi": ["TODO", "TODO"],
+    "es": ["TODO", "TODO"],
+    "pt-PT": ["TODO", "TODO"],
+    "ja": ["TODO", "TODO"],
+    "zh-Hans": ["TODO", "TODO"],
+    "fr": ["TODO", "TODO"],
+    "de": ["TODO", "TODO"],
+    "it": ["TODO", "TODO"]
+  },
+  "scorpio": {
+    "en": [
+      "Your focus is intense and rare; pointed at the right goal, very little can stop it.",
+      "Letting someone see a little more of you is a strength, not a risk."
+    ],
+    "hi": ["TODO", "TODO"],
+    "es": ["TODO", "TODO"],
+    "pt-PT": ["TODO", "TODO"],
+    "ja": ["TODO", "TODO"],
+    "zh-Hans": ["TODO", "TODO"],
+    "fr": ["TODO", "TODO"],
+    "de": ["TODO", "TODO"],
+    "it": ["TODO", "TODO"]
+  },
+  "sagittarius": {
+    "en": [
+      "Your appetite for the bigger picture keeps you moving; finish one map before you start the next.",
+      "Freedom feels best with one or two roots. Tend the ones you have."
+    ],
+    "hi": ["TODO", "TODO"],
+    "es": ["TODO", "TODO"],
+    "pt-PT": ["TODO", "TODO"],
+    "ja": ["TODO", "TODO"],
+    "zh-Hans": ["TODO", "TODO"],
+    "fr": ["TODO", "TODO"],
+    "de": ["TODO", "TODO"],
+    "it": ["TODO", "TODO"]
+  },
+  "capricorn": {
+    "en": [
+      "You build things that hold; let yourself enjoy a finished step before reaching for the next.",
+      "Discipline is your default. Rest is the part you have to schedule on purpose."
+    ],
+    "hi": ["TODO", "TODO"],
+    "es": ["TODO", "TODO"],
+    "pt-PT": ["TODO", "TODO"],
+    "ja": ["TODO", "TODO"],
+    "zh-Hans": ["TODO", "TODO"],
+    "fr": ["TODO", "TODO"],
+    "de": ["TODO", "TODO"],
+    "it": ["TODO", "TODO"]
+  },
+  "aquarius": {
+    "en": [
+      "Your way of seeing things sideways is the point, not a flaw; share it before you edit it down.",
+      "Ideas need people to land. Bring one person along with you."
+    ],
+    "hi": ["TODO", "TODO"],
+    "es": ["TODO", "TODO"],
+    "pt-PT": ["TODO", "TODO"],
+    "ja": ["TODO", "TODO"],
+    "zh-Hans": ["TODO", "TODO"],
+    "fr": ["TODO", "TODO"],
+    "de": ["TODO", "TODO"],
+    "it": ["TODO", "TODO"]
+  },
+  "pisces": {
+    "en": [
+      "Your imagination is a real tool; give it a shape and a deadline and it will surprise you.",
+      "Feeling everything is not a weakness. Choose which currents you follow."
+    ],
+    "hi": ["TODO", "TODO"],
+    "es": ["TODO", "TODO"],
+    "pt-PT": ["TODO", "TODO"],
+    "ja": ["TODO", "TODO"],
+    "zh-Hans": ["TODO", "TODO"],
+    "fr": ["TODO", "TODO"],
+    "de": ["TODO", "TODO"],
+    "it": ["TODO", "TODO"]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["isPalm", "imageQuality", "hand", "summary", "lines", "luckyNumber", "luckyColor"],
+  "properties": {
+    "isPalm": { "type": "boolean" },
+    "imageQuality": { "type": "string", "enum": ["GOOD", "USABLE", "POOR"] },
+    "hand": { "type": "string", "enum": ["LEFT", "RIGHT"] },
+    "summary": { "type": "string" },
+    "luckyNumber": { "type": "integer" },
+    "luckyColor": { "type": "string" },
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "visible", "attributes", "path", "teaser", "reading", "confidence"],
+        "properties": {
+          "id": { "type": "string", "enum": ["LIFE", "HEAD", "HEART", "FATE"] },
+          "visible": { "type": "boolean" },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["length", "depth", "shape", "breaks", "forked", "doubled"],
+            "properties": {
+              "length": { "type": "string", "enum": ["long", "medium", "short"] },
+              "depth": { "type": "string", "enum": ["deep", "medium", "faint"] },
+              "shape": { "type": "string", "enum": ["straight", "curved", "wavy", "chained"] },
+              "breaks": { "type": "integer" },
+              "forked": { "type": "boolean" },
+              "doubled": { "type": "boolean" }
+            }
+          },
+          "path": {
+            "type": "array",
+            "description": "5-8 normalised 0-1 points tracing the line, start to end",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["x", "y"],
+              "properties": {
+                "x": { "type": "number" },
+                "y": { "type": "number" }
+              }
+            }
+          },
+          "teaser": { "type": "string" },
+          "reading": { "type": "string" },
+          "confidence": { "type": "number" }
+        }
+      }
+    }
+  }
+}

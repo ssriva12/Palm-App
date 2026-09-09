@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["past", "present", "future", "overall"],
+  "properties": {
+    "past": { "type": "string" },
+    "present": { "type": "string" },
+    "future": { "type": "string" },
+    "overall": { "type": "string" }
+  }
+}
