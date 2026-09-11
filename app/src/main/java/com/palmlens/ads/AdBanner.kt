@@ -10,16 +10,12 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.palmlens.BuildConfig
 
-// Ads cut out of the current flow (still test units). Flip back to true to re-enable.
-private const val ADS_ENABLED = false
-
 /**
  * Anchored adaptive banner for the home + text screens. Renders nothing until consent + SDK
  * init allow it (and nothing at all for premium users, once that exists).
  */
 @Composable
 fun AdBanner(modifier: Modifier = Modifier) {
-    if (!ADS_ENABLED) return
     if (!rememberAdManager().adsAllowed) return
 
     val widthDp = LocalConfiguration.current.screenWidthDp

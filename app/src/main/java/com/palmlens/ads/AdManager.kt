@@ -30,6 +30,10 @@ import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 import javax.inject.Singleton
 
+// All ads (banner + interstitial) cut out of the current flow, still test units. This is the
+// single switch for every ad surface — flip back to true to re-enable everywhere at once.
+private const val ADS_ENABLED = false
+
 /**
  * The single chokepoint for every ad in the app: UMP consent, one-time SDK init, the
  * interstitial shown on scan-result exit, and the "privacy options" hook for Settings.
@@ -47,7 +51,7 @@ class AdManager @Inject constructor(
     var ready by mutableStateOf(false)
         private set
 
-    val adsAllowed: Boolean get() = ready && !isPremium
+    val adsAllowed: Boolean get() = ADS_ENABLED && ready && !isPremium
 
     /** One-line interstitial state for the debug overlay (spec §7). */
     val interstitialStatus: String

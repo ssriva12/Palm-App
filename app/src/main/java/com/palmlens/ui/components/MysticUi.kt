@@ -145,11 +145,13 @@ fun PrimaryButton(
     )
 }
 
+/** [compact] shrinks padding/height/type for tight spots like a top app bar action. */
 @Composable
 fun SecondaryButton(
     text: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    compact: Boolean = false,
     onClick: () -> Unit,
 ) {
     ClayButton(
@@ -158,6 +160,7 @@ fun SecondaryButton(
         textColor = MaterialTheme.colorScheme.primary,
         modifier = modifier,
         enabled = enabled,
+        compact = compact,
         onClick = onClick,
     )
 }
@@ -169,13 +172,14 @@ private fun ClayButton(
     textColor: Color,
     modifier: Modifier,
     enabled: Boolean,
+    compact: Boolean = false,
     onClick: () -> Unit,
 ) {
     val interaction = remember { MutableInteractionSource() }
     val pressed by interaction.collectIsPressedAsState()
     Box(
         modifier
-            .heightIn(min = 52.dp)
+            .then(if (compact) Modifier else Modifier.heightIn(min = 52.dp))
             .alpha(if (enabled) 1f else 0.45f)
             .clay(ClayShapeSmall, fill = fill, pressed = pressed && enabled)
             .clickable(
@@ -184,10 +188,17 @@ private fun ClayButton(
                 enabled = enabled,
                 onClick = onClick,
             )
-            .padding(horizontal = Spacing.space24, vertical = Spacing.space14),
+            .padding(
+                horizontal = if (compact) Spacing.space14 else Spacing.space24,
+                vertical = if (compact) Spacing.space8 else Spacing.space14,
+            ),
         contentAlignment = Alignment.Center,
     ) {
-        Text(text, style = MaterialTheme.typography.labelLarge, color = textColor)
+        Text(
+            text,
+            style = if (compact) MaterialTheme.typography.labelMedium else MaterialTheme.typography.labelLarge,
+            color = textColor,
+        )
     }
 }
 

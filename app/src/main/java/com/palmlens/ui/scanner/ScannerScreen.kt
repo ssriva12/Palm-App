@@ -120,6 +120,15 @@ fun ScannerScreen(onBack: () -> Unit, onPaywall: () -> Unit) {
     MysticScaffold(
         title = "Palm Scanner",
         onBack = { if (vm.phase == ScanPhase.RESULT) leaveResult(back = true) else onBack() },
+        actions = {
+            if (vm.phase == ScanPhase.RESULT) {
+                SecondaryButton(
+                    text = "Scan again",
+                    compact = true,
+                    onClick = { leaveResult(back = false) },
+                )
+            }
+        },
     ) { pad ->
         Column(
             Modifier
@@ -142,7 +151,6 @@ fun ScannerScreen(onBack: () -> Unit, onPaywall: () -> Unit) {
                     ResultPhase(
                         reading = reading,
                         image = vm.capturedImage,
-                        onScanAgain = { leaveResult(back = false) },
                         onLongPress = { showDebug = true },
                     )
                 }
@@ -307,7 +315,6 @@ private fun ErrorPhase(onRetry: () -> Unit) {
 private fun ResultPhase(
     reading: PalmReading,
     image: ImageBitmap?,
-    onScanAgain: () -> Unit,
     onLongPress: () -> Unit,
 ) {
     var expanded by remember { mutableStateOf(emptySet<LineId>()) }
@@ -336,7 +343,6 @@ private fun ResultPhase(
                 modifier = Modifier.size(96.dp),
             )
         }
-        PalmLinesOverlay(reading.lines, shown = expanded, modifier = Modifier.fillMaxSize())
     }
     Spacer(Modifier.height(Spacing.space16))
     Text(
@@ -346,7 +352,7 @@ private fun ResultPhase(
     )
     Spacer(Modifier.height(Spacing.space6))
     Text(
-        "Tap a line to trace it on your palm.",
+        "Tap a line for details.",
         style = MaterialTheme.typography.labelSmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
@@ -389,9 +395,6 @@ private fun ResultPhase(
             )
         }
     }
-
-    Spacer(Modifier.height(Spacing.space16))
-    SecondaryButton("Scan again", Modifier.fillMaxWidth(), onClick = onScanAgain)
 }
 
 @OptIn(ExperimentalLayoutApi::class)
