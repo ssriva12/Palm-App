@@ -16,6 +16,11 @@ val localProps = Properties().apply {
 }
 fun secret(key: String, default: String): String = localProps.getProperty(key) ?: default
 
+// Google's public AdMob test units — https://developers.google.com/admob/android/test-ads
+val ADMOB_TEST_APP_ID = "ca-app-pub-3940256099942544~3347511713"
+val ADMOB_TEST_BANNER = "ca-app-pub-3940256099942544/9214589741"
+val ADMOB_TEST_INTERSTITIAL = "ca-app-pub-3940256099942544/1033173712"
+
 android {
     namespace = "com.palmlens"
     compileSdk {
@@ -52,25 +57,30 @@ android {
             "\"${secret("OPENAI_TEXT_MODEL", "gpt-5.6-luna")}\"",
         )
 
-        // --- AdMob (Phase 7). Missing keys fall back to Google's public test ids.
-        buildConfigField(
-            "String",
-            "ADMOB_APP_ID",
-            "\"${secret("ADMOB_APP_ID", "ca-app-pub-3940256099942544~3347511713")}\"",
-        )
+        // --- AdMob (Phase 7). local.properties ids are used in RELEASE only; debug is pinned
+        //     to Google's public test ids below (clicking a live ad on your own build is a
+        //     policy violation). Missing release keys also fall back to test ids.
+        buildConfigField("String", "ADMOB_APP_ID", "\"${secret("ADMOB_APP_ID", ADMOB_TEST_APP_ID)}\"")
         buildConfigField(
             "String",
             "ADMOB_BANNER_UNIT",
-            "\"${secret("ADMOB_BANNER_UNIT", "ca-app-pub-3940256099942544/9214589741")}\"",
+            "\"${secret("ADMOB_BANNER_UNIT", ADMOB_TEST_BANNER)}\"",
         )
         buildConfigField(
             "String",
             "ADMOB_INTERSTITIAL_UNIT",
-            "\"${secret("ADMOB_INTERSTITIAL_UNIT", "ca-app-pub-3940256099942544/1033173712")}\"",
+            "\"${secret("ADMOB_INTERSTITIAL_UNIT", ADMOB_TEST_INTERSTITIAL)}\"",
         )
+        manifestPlaceholders["admobAppId"] = secret("ADMOB_APP_ID", ADMOB_TEST_APP_ID)
     }
 
     buildTypes {
+        getByName("debug") {
+            buildConfigField("String", "ADMOB_APP_ID", "\"$ADMOB_TEST_APP_ID\"")
+            buildConfigField("String", "ADMOB_BANNER_UNIT", "\"$ADMOB_TEST_BANNER\"")
+            buildConfigField("String", "ADMOB_INTERSTITIAL_UNIT", "\"$ADMOB_TEST_INTERSTITIAL\"")
+            manifestPlaceholders["admobAppId"] = ADMOB_TEST_APP_ID
+        }
         release {
             optimization {
                 enable = false
@@ -96,6 +106,7 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
@@ -107,6 +118,13 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
+
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.androidx.hilt.work)
+    ksp(libs.androidx.hilt.compiler)
+
+    implementation(libs.play.services.ads)
+    implementation(libs.user.messaging.platform)
 
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)

@@ -29,3 +29,8 @@
 
 # --- Play Billing (Phase 6) ---
 -keep class com.android.billingclient.** { *; }
+
+# --- AdMob + UMP (Phase 7). The GMS libs ship consumer rules; this just matches the file. ---
+-keep class com.google.android.gms.ads.** { *; }
+-keep class com.google.android.ump.** { *; }
+-dontwarn com.google.android.gms.**

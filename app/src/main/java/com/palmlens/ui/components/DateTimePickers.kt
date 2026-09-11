@@ -1,12 +1,9 @@
 package com.palmlens.ui.components
 
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimeInput
@@ -18,7 +15,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
@@ -37,17 +33,18 @@ fun formatTime(t: LocalTime): String = t.format(TIME_FORMAT)
 @Composable
 fun DobPickerButton(
     value: LocalDate?,
+    label: String,
     modifier: Modifier = Modifier,
     onPicked: (LocalDate) -> Unit,
 ) {
     var open by remember { mutableStateOf(false) }
-    OutlinedButton(
+    ClayFieldButton(
+        label = label,
+        value = value?.let(::formatDate),
+        placeholder = "Pick a date",
         onClick = { open = true },
-        modifier = modifier.height(52.dp),
-        shape = RoundedCornerShape(14.dp),
-    ) {
-        Text(value?.let(::formatDate) ?: "Select date")
-    }
+        modifier = modifier,
+    )
     if (open) {
         val state = rememberDatePickerState()
         DatePickerDialog(
@@ -72,17 +69,18 @@ fun DobPickerButton(
 @Composable
 fun TimePickerButton(
     value: LocalTime?,
+    label: String,
     modifier: Modifier = Modifier,
     onPicked: (LocalTime) -> Unit,
 ) {
     var open by remember { mutableStateOf(false) }
-    OutlinedButton(
+    ClayFieldButton(
+        label = label,
+        value = value?.let(::formatTime),
+        placeholder = "Pick a time",
         onClick = { open = true },
-        modifier = modifier.height(52.dp),
-        shape = RoundedCornerShape(14.dp),
-    ) {
-        Text(value?.let(::formatTime) ?: "Select time")
-    }
+        modifier = modifier,
+    )
     if (open) {
         val state = rememberTimePickerState(
             initialHour = value?.hour ?: 12,

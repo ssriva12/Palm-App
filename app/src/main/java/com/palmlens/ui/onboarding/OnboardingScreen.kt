@@ -20,7 +20,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,6 +30,7 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.palmlens.domain.model.Gender
+import com.palmlens.ui.components.ClayTextField
 import com.palmlens.ui.components.DobPickerButton
 import com.palmlens.ui.components.MysticScaffold
 import com.palmlens.ui.components.PrimaryButton
@@ -42,6 +42,7 @@ import com.palmlens.ui.onboarding.OnboardingUiState.Companion.STEP_NAME
 import com.palmlens.ui.onboarding.OnboardingUiState.Companion.STEP_PLACE
 import com.palmlens.ui.onboarding.OnboardingUiState.Companion.STEP_TIME
 import com.palmlens.ui.onboarding.OnboardingUiState.Companion.TOTAL_STEPS
+import com.palmlens.ui.theme.Spacing
 
 @Composable
 fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
@@ -50,13 +51,13 @@ fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
 
     MysticScaffold(title = "About you", onBack = { vm.back(onExit) }) { pad ->
         Column(
-            Modifier.padding(pad).fillMaxSize().padding(20.dp),
+            Modifier.padding(pad).fillMaxSize().padding(Spacing.space20),
         ) {
             LinearProgressIndicator(
                 progress = { (ui.step + 1) / TOTAL_STEPS.toFloat() },
                 modifier = Modifier.fillMaxWidth().height(6.dp),
             )
-            Spacer(Modifier.height(4.dp))
+            Spacer(Modifier.height(Spacing.space4))
             Text(
                 "Step ${ui.step + 1} of $TOTAL_STEPS",
                 style = MaterialTheme.typography.labelSmall,
@@ -74,15 +75,15 @@ fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
                 label = "onboardingStep",
                 modifier = Modifier.weight(1f),
             ) { step ->
-                Column(Modifier.fillMaxWidth().padding(top = 28.dp)) {
+                Column(Modifier.fillMaxWidth().padding(top = Spacing.space28)) {
                     when (step) {
                         STEP_NAME -> StepShell("What should we call you?") {
-                            OutlinedTextField(
+                            ClayTextField(
                                 value = ui.name,
                                 onValueChange = vm::setName,
-                                label = { Text("Name") },
-                                singleLine = true,
-                                supportingText = { Text("${ui.name.length}/30") },
+                                label = "Name",
+                                placeholder = "Your name",
+                                supportingText = "${ui.name.length}/30",
                                 keyboardOptions = KeyboardOptions(
                                     capitalization = KeyboardCapitalization.Words,
                                     imeAction = ImeAction.Done,
@@ -92,7 +93,7 @@ fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
                         }
 
                         STEP_GENDER -> StepShell("How do you identify?") {
-                            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                            Row(horizontalArrangement = Arrangement.spacedBy(Spacing.space10)) {
                                 Gender.entries.forEach { g ->
                                     FilterChip(
                                         selected = ui.gender == g,
@@ -109,14 +110,15 @@ fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
-                            Spacer(Modifier.height(12.dp))
+                            Spacer(Modifier.height(Spacing.space12))
                             DobPickerButton(
                                 value = ui.dob,
+                                label = "Date of birth",
                                 onPicked = vm::setDob,
                                 modifier = Modifier.fillMaxWidth(),
                             )
                             if (ui.dob != null && !ui.dobValid) {
-                                Spacer(Modifier.height(8.dp))
+                                Spacer(Modifier.height(Spacing.space8))
                                 Text(
                                     "You need to be at least 13 to use Palmlens.",
                                     style = MaterialTheme.typography.bodyMedium,
@@ -131,16 +133,17 @@ fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
                                     checked = ui.birthTimeKnown,
                                     onCheckedChange = vm::setBirthTimeKnown,
                                 )
-                                Spacer(Modifier.width(12.dp))
+                                Spacer(Modifier.width(Spacing.space12))
                                 Text(
-                                    if (ui.birthTimeKnown) "Yes, I know it" else "Not sure — skip",
+                                    if (ui.birthTimeKnown) "Yes, I know it" else "Not sure, skip it",
                                     style = MaterialTheme.typography.bodyLarge,
                                 )
                             }
                             if (ui.birthTimeKnown) {
-                                Spacer(Modifier.height(12.dp))
+                                Spacer(Modifier.height(Spacing.space12))
                                 TimePickerButton(
                                     value = ui.birthTime,
+                                    label = "Time of birth",
                                     onPicked = vm::setBirthTime,
                                     modifier = Modifier.fillMaxWidth(),
                                 )
@@ -149,16 +152,16 @@ fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
 
                         STEP_PLACE -> StepShell("Where were you born?") {
                             Text(
-                                "Optional — adds context to your astro readings.",
+                                "Optional. Adds a little context to your readings.",
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
-                            Spacer(Modifier.height(12.dp))
-                            OutlinedTextField(
+                            Spacer(Modifier.height(Spacing.space12))
+                            ClayTextField(
                                 value = ui.place,
                                 onValueChange = vm::setPlace,
-                                label = { Text("City, country") },
-                                singleLine = true,
+                                label = "City, country",
+                                placeholder = "e.g. Lisbon, Portugal",
                                 keyboardOptions = KeyboardOptions(
                                     capitalization = KeyboardCapitalization.Words,
                                     imeAction = ImeAction.Done,
@@ -170,7 +173,7 @@ fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
                 }
             }
 
-            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(Spacing.space12)) {
                 SecondaryButton(
                     text = "Back",
                     modifier = Modifier.weight(1f),
@@ -195,7 +198,7 @@ private fun StepShell(question: String, content: @Composable () -> Unit) {
             style = MaterialTheme.typography.headlineSmall,
             color = MaterialTheme.colorScheme.onBackground,
         )
-        Spacer(Modifier.height(20.dp))
+        Spacer(Modifier.height(Spacing.space20))
         content()
     }
 }

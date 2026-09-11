@@ -2,29 +2,37 @@ package com.palmlens.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.palmlens.R
 
-// Serif headlines read a little editorial / mystic without shipping a custom font.
+// Retro poster slab for headlines and section titles; body and labels stay on the
+// system font so long-form text and small UI stay legible.
+val RetroDisplay = FontFamily(Font(R.font.alfa_slab_one))
+
 val Typography = Typography(
     headlineLarge = TextStyle(
-        fontFamily = FontFamily.Serif,
-        fontWeight = FontWeight.Bold,
+        fontFamily = RetroDisplay,
+        fontWeight = FontWeight.Normal,
         fontSize = 32.sp,
         lineHeight = 38.sp,
+        letterSpacing = 0.sp,
     ),
     headlineSmall = TextStyle(
-        fontFamily = FontFamily.Serif,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
+        fontFamily = RetroDisplay,
+        fontWeight = FontWeight.Normal,
+        fontSize = 21.sp,
+        lineHeight = 27.sp,
+        letterSpacing = 0.sp,
     ),
     titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 19.sp,
-        lineHeight = 24.sp,
+        fontFamily = RetroDisplay,
+        fontWeight = FontWeight.Normal,
+        fontSize = 18.sp,
+        lineHeight = 23.sp,
+        letterSpacing = 0.sp,
     ),
     titleMedium = TextStyle(
         fontFamily = FontFamily.Default,

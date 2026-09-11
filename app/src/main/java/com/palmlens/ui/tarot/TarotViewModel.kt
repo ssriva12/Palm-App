@@ -17,6 +17,9 @@ import javax.inject.Inject
 
 enum class TarotPhase { PICK, REVEALING, RESULT, ERROR }
 
+/** Cards dealt face-down to pick from (spec: 3-card spread). */
+const val DECK_SIZE = 18
+
 @HiltViewModel
 class TarotViewModel @Inject constructor(
     private val tarotRepository: TarotRepository,
@@ -40,7 +43,7 @@ class TarotViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            deck = tarotRepository.deck().shuffled()
+            deck = tarotRepository.deck().shuffled().take(DECK_SIZE)
             alreadyDrewToday = !tarotRepository.canDrawToday()
         }
     }

@@ -2,6 +2,7 @@ package com.palmlens.data.repository
 
 import com.palmlens.data.local.dao.AppStateDao
 import com.palmlens.data.local.entity.AppStateEntity
+import com.palmlens.domain.repository.DEFAULT_FREE_SCAN_CAP
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -36,17 +37,18 @@ class ScanQuotaRepositoryImplTest {
 
     @Test
     fun `canScan is true below the cap and false at or above it`() = runTest {
-        val dao = FakeAppStateDao(AppStateEntity(scansUsed = 39))
+        val cap = DEFAULT_FREE_SCAN_CAP
+        val dao = FakeAppStateDao(AppStateEntity(scansUsed = cap - 1))
         val repo = repo(dao)
 
         assertTrue(repo.canScan.first())
         assertEquals(1, repo.remaining.first())
 
-        dao.state.value = AppStateEntity(scansUsed = 40)
+        dao.state.value = AppStateEntity(scansUsed = cap)
         assertFalse(repo.canScan.first())
         assertEquals(0, repo.remaining.first())
 
-        dao.state.value = AppStateEntity(scansUsed = 41)
+        dao.state.value = AppStateEntity(scansUsed = cap + 1)
         assertFalse(repo.canScan.first())
         assertEquals(0, repo.remaining.first())
     }

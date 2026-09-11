@@ -10,26 +10,38 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.BackHand
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.outlined.NightsStay
+import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.Style
+import androidx.compose.material.icons.outlined.WbTwilight
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.palmlens.R
+import com.palmlens.ads.AdBanner
 import com.palmlens.domain.model.Zodiac
+import com.palmlens.ui.components.ClayCard
 import com.palmlens.ui.components.FeatureTile
-import com.palmlens.ui.components.GlassCard
 import com.palmlens.ui.components.MysticScaffold
 import com.palmlens.ui.components.StatTile
 import com.palmlens.ui.navigation.Screen
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
+import com.palmlens.ui.theme.Spacing
 
 @Composable
 fun HomeScreen(onOpen: (Screen) -> Unit) {
@@ -41,14 +53,27 @@ fun HomeScreen(onOpen: (Screen) -> Unit) {
     val today = remember {
         LocalDate.now().format(DateTimeFormatter.ofPattern("EEEE, d MMMM", Locale.getDefault()))
     }
+    val openSettingsLabel = stringResource(R.string.cd_open_settings)
 
-    MysticScaffold(title = "") { pad ->
+    MysticScaffold(
+        title = "",
+        bottomBar = { AdBanner() },
+        actions = {
+            IconButton(onClick = { onOpen(Screen.Settings) }) {
+                Icon(
+                    Icons.Outlined.Settings,
+                    contentDescription = openSettingsLabel,
+                    tint = MaterialTheme.colorScheme.onBackground,
+                )
+            }
+        },
+    ) { pad ->
         Column(
             Modifier
                 .padding(pad)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = 20.dp),
+                .padding(horizontal = Spacing.space20),
         ) {
             Text(
                 "Hi ${profile.name.ifBlank { "there" }}",
@@ -56,22 +81,22 @@ fun HomeScreen(onOpen: (Screen) -> Unit) {
                 color = MaterialTheme.colorScheme.onBackground,
             )
             Text(
-                "${zodiac.symbol}  ${zodiac.displayName}  ·  $today",
+                "${zodiac.displayName}, $today",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
 
-            Spacer(Modifier.height(20.dp))
+            Spacer(Modifier.height(Spacing.space20))
 
             // Today strip -> Daily Highlights
-            GlassCard(onClick = { onOpen(Screen.Highlights) }) {
+            ClayCard(onClick = { onOpen(Screen.Highlights) }) {
                 Text(
                     "TODAY",
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.Medium,
                 )
-                Spacer(Modifier.height(6.dp))
+                Spacer(Modifier.height(Spacing.space6))
                 val h = highlights
                 if (h == null) {
                     Text(
@@ -85,18 +110,18 @@ fun HomeScreen(onOpen: (Screen) -> Unit) {
                         style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.onSurface,
                     )
-                    Spacer(Modifier.height(10.dp))
-                    Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Spacer(Modifier.height(Spacing.space10))
+                    Row(horizontalArrangement = Arrangement.spacedBy(Spacing.space10)) {
                         StatTile("Lucky no.", h.luckyNumber.toString(), Modifier.weight(1f))
                         StatTile("Lucky colour", h.luckyColor, Modifier.weight(1f))
                     }
                 }
             }
 
-            Spacer(Modifier.height(20.dp))
+            Spacer(Modifier.height(Spacing.space20))
 
             FeatureTile(
-                emoji = "🖐",
+                icon = Icons.Outlined.BackHand,
                 title = "Palm Scanner",
                 subtitle = when {
                     scansRemaining <= 0 -> "You've used all your free scans"
@@ -106,33 +131,32 @@ fun HomeScreen(onOpen: (Screen) -> Unit) {
                 onClick = { onOpen(Screen.Scanner) },
             )
 
-            Spacer(Modifier.height(12.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                FeatureTile("🔮", "Horoscope", "Daily · weekly · monthly", Modifier.weight(1f)) {
+            Spacer(Modifier.height(Spacing.space12))
+            Row(horizontalArrangement = Arrangement.spacedBy(Spacing.space12)) {
+                FeatureTile(Icons.Outlined.NightsStay, "Horoscope", "Daily, weekly, monthly", Modifier.weight(1f)) {
                     onOpen(Screen.Horoscope)
                 }
-                FeatureTile("✨", "Highlights", "Mood, luck, focus", Modifier.weight(1f)) {
+                FeatureTile(Icons.Outlined.WbTwilight, "Highlights", "Mood, luck, focus", Modifier.weight(1f)) {
                     onOpen(Screen.Highlights)
                 }
             }
-            Spacer(Modifier.height(12.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                FeatureTile("❤️", "Love Test", "Check your compatibility", Modifier.weight(1f)) {
+            Spacer(Modifier.height(Spacing.space12))
+            Row(horizontalArrangement = Arrangement.spacedBy(Spacing.space12)) {
+                FeatureTile(Icons.Outlined.FavoriteBorder, "Love Test", "Check your compatibility", Modifier.weight(1f)) {
                     onOpen(Screen.Love)
                 }
-                FeatureTile("🃏", "Tarot", "Pick three cards", Modifier.weight(1f)) {
+                FeatureTile(Icons.Outlined.Style, "Tarot", "Pick three cards", Modifier.weight(1f)) {
                     onOpen(Screen.Tarot)
                 }
             }
 
-            Spacer(Modifier.height(28.dp))
+            Spacer(Modifier.height(Spacing.space28))
             Text(
-                "For entertainment purposes only.",
+                stringResource(R.string.disclaimer),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                fontSize = 11.sp,
             )
-            Spacer(Modifier.height(20.dp))
+            Spacer(Modifier.height(Spacing.space20))
         }
     }
 }

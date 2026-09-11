@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import com.palmlens.ui.theme.Spacing
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import java.util.concurrent.Executor
@@ -106,7 +107,7 @@ fun CameraCapture(
         ShutterButton(
             capturing = capturing,
             enabled = !capturing && !bindFailed,
-            modifier = Modifier.padding(bottom = 20.dp),
+            modifier = Modifier.padding(bottom = Spacing.space20),
             onClick = {
                 capturing = true
                 scope.launch {

@@ -2,8 +2,13 @@ package com.palmlens.ui.scanner
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.os.Build
+import androidx.activity.compose.BackHandler
+import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,24 +23,41 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.BackHand
+import androidx.compose.material.icons.outlined.CloudOff
+import androidx.compose.material.icons.outlined.Explore
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.outlined.KeyboardArrowDown
+import androidx.compose.material.icons.outlined.KeyboardArrowUp
+import androidx.compose.material.icons.outlined.Lightbulb
+import androidx.compose.material.icons.outlined.PhotoCamera
+import androidx.compose.material.icons.outlined.Spa
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -43,36 +65,68 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.palmlens.BuildConfig
+import com.palmlens.ads.rememberAdManager
 import com.palmlens.domain.model.Hand
+import com.palmlens.domain.model.LineId
 import com.palmlens.domain.model.PalmLine
 import com.palmlens.domain.model.PalmReading
-import com.palmlens.ui.components.GlassCard
+import com.palmlens.ui.components.ClayCard
 import com.palmlens.ui.components.MysticScaffold
 import com.palmlens.ui.components.PrimaryButton
 import com.palmlens.ui.components.SecondaryButton
 import com.palmlens.ui.scanner.camera.CameraCapture
+import com.palmlens.ui.theme.ClayShape
+import com.palmlens.ui.theme.clay
 import kotlin.math.roundToInt
+import com.palmlens.ui.theme.Spacing
 
 @Composable
 fun ScannerScreen(onBack: () -> Unit, onPaywall: () -> Unit) {
     val vm: ScannerViewModel = hiltViewModel()
     val scansRemaining by vm.scansRemaining.collectAsStateWithLifecycle()
+    val notificationPermission = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission(),
+    ) { /* granted or not, the worker fails open */ }
 
     LaunchedEffect(Unit) {
         vm.events.collect { event ->
             when (event) {
                 ScannerEvent.PaywallRequired -> onPaywall()
+                ScannerEvent.RequestNotificationPermission ->
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                    }
             }
         }
     }
 
-    MysticScaffold(title = "Palm Scanner", onBack = onBack) { pad ->
+    val adManager = rememberAdManager()
+    val activity = LocalActivity.current
+    var showDebug by remember { mutableStateOf(false) }
+
+    // Leaving the reading — via "Scan again" or Back — is where the interstitial lands.
+    fun leaveResult(back: Boolean) {
+        val proceed = { if (back) onBack() else vm.scanAgain() }
+        if (vm.showAdOnExit && activity != null) {
+            adManager.showInterstitial(activity) { proceed() }
+        } else {
+            proceed()
+        }
+    }
+
+    BackHandler(enabled = vm.phase == ScanPhase.RESULT) { leaveResult(back = true) }
+
+    MysticScaffold(
+        title = "Palm Scanner",
+        onBack = { if (vm.phase == ScanPhase.RESULT) leaveResult(back = true) else onBack() },
+    ) { pad ->
         Column(
             Modifier
                 .padding(pad)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = 20.dp),
+                .padding(horizontal = Spacing.space20),
         ) {
             when (vm.phase) {
                 ScanPhase.GUIDE -> GuidePhase(
@@ -85,13 +139,22 @@ fun ScannerScreen(onBack: () -> Unit, onPaywall: () -> Unit) {
                 ScanPhase.PROCESSING -> ProcessingPhase()
 
                 ScanPhase.RESULT -> vm.reading?.let { reading ->
-                    ResultPhase(reading = reading, onScanAgain = vm::scanAgain)
+                    ResultPhase(
+                        reading = reading,
+                        image = vm.capturedImage,
+                        onScanAgain = { leaveResult(back = false) },
+                        onLongPress = { showDebug = true },
+                    )
                 }
 
                 ScanPhase.ERROR -> ErrorPhase(onRetry = vm::scanAgain)
             }
-            Spacer(Modifier.height(24.dp))
+            Spacer(Modifier.height(Spacing.space24))
         }
+    }
+
+    if (BuildConfig.DEBUG && showDebug) {
+        DebugOverlay(vm = vm, onDismiss = { showDebug = false })
     }
 }
 
@@ -100,13 +163,11 @@ private fun PalmFrame(
     modifier: Modifier = Modifier,
     content: @Composable BoxScope.() -> Unit = {},
 ) {
-    val cs = MaterialTheme.colorScheme
     Box(
         modifier
             .fillMaxWidth()
             .aspectRatio(0.78f)
-            .clip(RoundedCornerShape(24.dp))
-            .background(Brush.verticalGradient(listOf(cs.surfaceVariant, cs.surface))),
+            .clay(ClayShape, fill = MaterialTheme.colorScheme.surfaceVariant),
         contentAlignment = Alignment.Center,
         content = content,
     )
@@ -135,15 +196,15 @@ private fun GuidePhase(
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
-    Spacer(Modifier.height(4.dp))
+    Spacer(Modifier.height(Spacing.space4))
     Text(
         if (scansRemaining > 0) "$scansRemaining free scan${if (scansRemaining == 1) "" else "s"} left" else "No free scans left",
         style = MaterialTheme.typography.labelSmall,
         color = MaterialTheme.colorScheme.primary,
     )
-    Spacer(Modifier.height(16.dp))
+    Spacer(Modifier.height(Spacing.space16))
 
-    Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+    Row(horizontalArrangement = Arrangement.spacedBy(Spacing.space10)) {
         Hand.entries.forEach { h ->
             FilterChip(
                 selected = hand == h,
@@ -153,13 +214,17 @@ private fun GuidePhase(
         }
     }
     Text(
-        if (hand == Hand.RIGHT) "Dominant hand — your present and future." else "Non-dominant — inherited traits.",
+        if (hand == Hand.RIGHT) {
+            "Dominant hand. Your present and future."
+        } else {
+            "Non-dominant hand. Inherited traits."
+        },
         style = MaterialTheme.typography.labelSmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
-        modifier = Modifier.padding(top = 6.dp),
+        modifier = Modifier.padding(top = Spacing.space6),
     )
 
-    Spacer(Modifier.height(16.dp))
+    Spacer(Modifier.height(Spacing.space16))
 
     if (hasPermission) {
         PalmFrame {
@@ -173,17 +238,22 @@ private fun GuidePhase(
         PalmFrame {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(24.dp),
+                modifier = Modifier.padding(Spacing.space24),
             ) {
-                Text("📷", fontSize = 44.sp)
-                Spacer(Modifier.height(12.dp))
+                Icon(
+                    Icons.Outlined.PhotoCamera,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(40.dp),
+                )
+                Spacer(Modifier.height(Spacing.space12))
                 Text(
                     "Palmlens needs the camera to scan your palm. The photo is sent for a reading and never saved.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
                 )
-                Spacer(Modifier.height(16.dp))
+                Spacer(Modifier.height(Spacing.space16))
                 PrimaryButton("Allow camera") {
                     permissionLauncher.launch(Manifest.permission.CAMERA)
                 }
@@ -196,8 +266,8 @@ private fun GuidePhase(
 private fun ProcessingPhase() {
     PalmFrame {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            CircularProgressIndicator()
-            Spacer(Modifier.height(16.dp))
+            CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+            Spacer(Modifier.height(Spacing.space16))
             Text(
                 "Tracing your lines…",
                 style = MaterialTheme.typography.bodyMedium,
@@ -212,43 +282,89 @@ private fun ErrorPhase(onRetry: () -> Unit) {
     PalmFrame {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(24.dp),
+            modifier = Modifier.padding(Spacing.space24),
         ) {
-            Text("🌫️", fontSize = 44.sp)
-            Spacer(Modifier.height(12.dp))
+            Icon(
+                Icons.Outlined.CloudOff,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.size(40.dp),
+            )
+            Spacer(Modifier.height(Spacing.space12))
             Text(
-                "The stars are cloudy. Try that scan again.",
+                "The sky is overcast. Try that scan again.",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
             )
         }
     }
-    Spacer(Modifier.height(16.dp))
+    Spacer(Modifier.height(Spacing.space16))
     PrimaryButton("Try again", Modifier.fillMaxWidth(), onClick = onRetry)
 }
 
 @Composable
-private fun ResultPhase(reading: PalmReading, onScanAgain: () -> Unit) {
-    PalmFrame {
-        Text("🖐", fontSize = 72.sp)
-        PalmLinesOverlay(reading.lines, Modifier.fillMaxSize())
+private fun ResultPhase(
+    reading: PalmReading,
+    image: ImageBitmap?,
+    onScanAgain: () -> Unit,
+    onLongPress: () -> Unit,
+) {
+    var expanded by remember { mutableStateOf(emptySet<LineId>()) }
+    val aspect = image?.let { it.width.toFloat() / it.height }?.coerceIn(0.5f, 1.6f) ?: 0.78f
+
+    Box(
+        Modifier
+            .fillMaxWidth()
+            .aspectRatio(aspect)
+            .clay(ClayShape, fill = Color(0xFF241F1A)) // dark so the traced lines always read
+            .pointerInput(Unit) { detectTapGestures(onLongPress = { onLongPress() }) },
+        contentAlignment = Alignment.Center,
+    ) {
+        if (image != null) {
+            Image(
+                bitmap = image,
+                contentDescription = "Your palm",
+                contentScale = ContentScale.FillBounds,
+                modifier = Modifier.fillMaxSize(),
+            )
+        } else {
+            Icon(
+                Icons.Outlined.BackHand,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
+                modifier = Modifier.size(96.dp),
+            )
+        }
+        PalmLinesOverlay(reading.lines, shown = expanded, modifier = Modifier.fillMaxSize())
     }
-    Spacer(Modifier.height(16.dp))
+    Spacer(Modifier.height(Spacing.space16))
     Text(
         reading.summary,
         style = MaterialTheme.typography.bodyLarge,
         color = MaterialTheme.colorScheme.onBackground,
     )
+    Spacer(Modifier.height(Spacing.space6))
+    Text(
+        "Tap a line to trace it on your palm.",
+        style = MaterialTheme.typography.labelSmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+    )
 
-    Spacer(Modifier.height(16.dp))
+    Spacer(Modifier.height(Spacing.space16))
     reading.lines.forEach { line ->
-        LineCard(line)
-        Spacer(Modifier.height(12.dp))
+        LineCard(
+            line = line,
+            expanded = line.id in expanded,
+            onToggle = {
+                expanded = if (line.id in expanded) expanded - line.id else expanded + line.id
+            },
+        )
+        Spacer(Modifier.height(Spacing.space12))
     }
 
-    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-        GlassCard(Modifier.weight(1f), contentPadding = 14) {
+    Row(horizontalArrangement = Arrangement.spacedBy(Spacing.space12)) {
+        ClayCard(Modifier.weight(1f), contentPadding = Spacing.space14) {
             Text(
                 "LUCKY NUMBER",
                 style = MaterialTheme.typography.labelSmall,
@@ -260,7 +376,7 @@ private fun ResultPhase(reading: PalmReading, onScanAgain: () -> Unit) {
                 color = MaterialTheme.colorScheme.onSurface,
             )
         }
-        GlassCard(Modifier.weight(1f), contentPadding = 14) {
+        ClayCard(Modifier.weight(1f), contentPadding = Spacing.space14) {
             Text(
                 "LUCKY COLOUR",
                 style = MaterialTheme.typography.labelSmall,
@@ -274,17 +390,22 @@ private fun ResultPhase(reading: PalmReading, onScanAgain: () -> Unit) {
         }
     }
 
-    Spacer(Modifier.height(16.dp))
+    Spacer(Modifier.height(Spacing.space16))
     SecondaryButton("Scan again", Modifier.fillMaxWidth(), onClick = onScanAgain)
 }
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun LineCard(line: PalmLine) {
-    GlassCard(Modifier.fillMaxWidth()) {
+private fun LineCard(line: PalmLine, expanded: Boolean, onToggle: () -> Unit) {
+    ClayCard(Modifier.fillMaxWidth(), onClick = onToggle) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(line.id.emoji, fontSize = 20.sp)
-            Spacer(Modifier.width(8.dp))
+            Icon(
+                lineIcon(line.id),
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.size(20.dp),
+            )
+            Spacer(Modifier.width(Spacing.space8))
             Text(
                 line.id.label,
                 style = MaterialTheme.typography.titleMedium,
@@ -296,18 +417,44 @@ private fun LineCard(line: PalmLine) {
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
+            Spacer(Modifier.width(Spacing.space6))
+            Icon(
+                if (expanded) Icons.Outlined.KeyboardArrowUp else Icons.Outlined.KeyboardArrowDown,
+                contentDescription = if (expanded) "Collapse" else "Expand",
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.size(20.dp),
+            )
         }
-        Spacer(Modifier.height(10.dp))
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            line.attributes.chips.forEach { Pill(it) }
+        if (!expanded) {
+            Spacer(Modifier.height(Spacing.space6))
+            Text(
+                line.teaser,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
-        Spacer(Modifier.height(10.dp))
-        Text(
-            line.reading,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
+        AnimatedVisibility(visible = expanded) {
+            Column {
+                Spacer(Modifier.height(Spacing.space12))
+                FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.space6)) {
+                    line.attributes.chips.forEach { Pill(it) }
+                }
+                Spacer(Modifier.height(Spacing.space10))
+                Text(
+                    line.reading,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
     }
+}
+
+private fun lineIcon(id: LineId): ImageVector = when (id) {
+    LineId.LIFE -> Icons.Outlined.Spa
+    LineId.HEAD -> Icons.Outlined.Lightbulb
+    LineId.HEART -> Icons.Outlined.FavoriteBorder
+    LineId.FATE -> Icons.Outlined.Explore
 }
 
 @Composable
@@ -319,6 +466,6 @@ private fun Pill(text: String) {
         modifier = Modifier
             .clip(RoundedCornerShape(8.dp))
             .background(MaterialTheme.colorScheme.surfaceVariant)
-            .padding(horizontal = 8.dp, vertical = 4.dp),
+            .padding(horizontal = Spacing.space8, vertical = Spacing.space4),
     )
 }

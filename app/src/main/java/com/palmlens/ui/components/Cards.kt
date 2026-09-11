@@ -1,58 +1,76 @@
 package com.palmlens.ui.components
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.palmlens.ui.theme.ClayShape
+import com.palmlens.ui.theme.clay
+import com.palmlens.ui.theme.Spacing
 
-/** The base surface used everywhere: rounded, subtly bordered, optionally tappable. */
+/** The base surface everywhere: a puffy matte clay slab. Deflates a touch when tapped. */
 @Composable
-fun GlassCard(
+fun ClayCard(
     modifier: Modifier = Modifier,
     onClick: (() -> Unit)? = null,
-    contentPadding: Int = 16,
-    content: @Composable androidx.compose.foundation.layout.ColumnScope.() -> Unit,
+    contentPadding: Dp = Spacing.space18,
+    content: @Composable ColumnScope.() -> Unit,
 ) {
-    val cs = MaterialTheme.colorScheme
-    val shape = RoundedCornerShape(18.dp)
+    val interaction = remember { MutableInteractionSource() }
+    val pressed by interaction.collectIsPressedAsState()
     Column(
         modifier
-            .clip(shape)
-            .background(cs.surface)
-            .border(1.dp, cs.outlineVariant, shape)
-            .then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier)
-            .padding(contentPadding.dp),
+            .clay(ClayShape, pressed = onClick != null && pressed)
+            .then(
+                if (onClick != null) {
+                    Modifier.clickable(interaction, indication = null, onClick = onClick)
+                } else {
+                    Modifier
+                },
+            )
+            .padding(contentPadding),
         content = content,
     )
 }
 
 @Composable
 fun FeatureTile(
-    emoji: String,
+    icon: ImageVector,
     title: String,
     subtitle: String,
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ) {
-    GlassCard(modifier = modifier, onClick = onClick) {
-        Text(emoji, fontSize = 30.sp)
-        Spacer(Modifier.height(10.dp))
+    ClayCard(modifier = modifier, onClick = onClick) {
+        Icon(
+            icon,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.size(28.dp),
+        )
+        Spacer(Modifier.height(Spacing.space12))
         Text(title, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurface)
         Text(
             subtitle,
@@ -64,14 +82,14 @@ fun FeatureTile(
 
 @Composable
 fun StatTile(label: String, value: String, modifier: Modifier = Modifier) {
-    GlassCard(modifier = modifier, contentPadding = 14) {
+    ClayCard(modifier = modifier, contentPadding = Spacing.space14) {
         Text(
             label.uppercase(),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
-        Spacer(Modifier.height(4.dp))
-        Text(value, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurface)
+        Spacer(Modifier.height(Spacing.space4))
+        Text(value, style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.primary)
     }
 }
 
@@ -91,13 +109,13 @@ fun LoadingState(message: String, modifier: Modifier = Modifier) {
     Box(
         modifier
             .fillMaxWidth()
-            .padding(40.dp)
+            .padding(Spacing.space40)
             .semantics { contentDescription = message },
-        contentAlignment = androidx.compose.ui.Alignment.Center,
+        contentAlignment = Alignment.Center,
     ) {
-        Column(horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally) {
-            androidx.compose.material3.CircularProgressIndicator()
-            Spacer(Modifier.height(16.dp))
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+            Spacer(Modifier.height(Spacing.space16))
             Text(
                 message,
                 style = MaterialTheme.typography.bodyMedium,

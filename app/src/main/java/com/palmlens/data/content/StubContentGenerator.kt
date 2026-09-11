@@ -2,6 +2,8 @@ package com.palmlens.data.content
 
 import com.palmlens.core.coroutines.DefaultDispatcher
 import com.palmlens.data.DummyData
+import com.palmlens.debug.DebugDiagnostics
+import com.palmlens.debug.PalmDiagnostics
 import com.palmlens.domain.content.ContentGenerator
 import com.palmlens.domain.model.DailyBundle
 import com.palmlens.domain.model.Hand
@@ -24,6 +26,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class StubContentGenerator @Inject constructor(
+    private val diagnostics: DebugDiagnostics,
     @DefaultDispatcher private val dispatcher: CoroutineDispatcher,
 ) : ContentGenerator {
 
@@ -33,6 +36,9 @@ class StubContentGenerator @Inject constructor(
         profile: UserProfile,
     ): PalmReading = withContext(dispatcher) {
         delay(2200)
+        diagnostics.recordPalm(
+            PalmDiagnostics(model = "stub", promptVersion = "stub", latencyMs = 2200, rawJson = null),
+        )
         DummyData.palmReading(hand)
     }
 

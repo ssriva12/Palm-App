@@ -18,23 +18,27 @@ import com.palmlens.domain.model.Language
 import com.palmlens.ui.components.MysticScaffold
 import com.palmlens.ui.components.PrimaryButton
 import com.palmlens.ui.components.SelectableRow
+import com.palmlens.ui.theme.Spacing
 
 @Composable
-fun LanguageScreen(onContinue: () -> Unit) {
+fun LanguageScreen(fromSettings: Boolean = false, onDone: () -> Unit) {
     val vm: LanguageViewModel = hiltViewModel()
 
-    MysticScaffold(title = "Choose your language") { pad ->
+    MysticScaffold(
+        title = "Choose your language",
+        onBack = if (fromSettings) onDone else null,
+    ) { pad ->
         Column(Modifier.padding(pad).fillMaxSize()) {
             Text(
                 "Every reading is written in the language you pick.",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
+                modifier = Modifier.padding(horizontal = Spacing.space16, vertical = Spacing.space4),
             )
             LazyColumn(
                 modifier = Modifier.weight(1f),
                 contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(10.dp),
+                verticalArrangement = Arrangement.spacedBy(Spacing.space10),
             ) {
                 items(Language.entries) { lang ->
                     SelectableRow(
@@ -46,9 +50,9 @@ fun LanguageScreen(onContinue: () -> Unit) {
                 }
             }
             PrimaryButton(
-                text = "Continue",
-                modifier = Modifier.fillMaxWidth().padding(16.dp),
-                onClick = { vm.commit(onContinue) },
+                text = if (fromSettings) "Save" else "Continue",
+                modifier = Modifier.fillMaxWidth().padding(Spacing.space16),
+                onClick = { vm.commit(onDone) },
             )
         }
     }

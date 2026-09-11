@@ -8,8 +8,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.outlined.StarBorder
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SecondaryTabRow
 import androidx.compose.material3.Tab
@@ -26,10 +31,12 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.palmlens.ads.AdBanner
 import com.palmlens.domain.model.HoroscopeEntry
-import com.palmlens.ui.components.GlassCard
+import com.palmlens.ui.components.ClayCard
 import com.palmlens.ui.components.LoadingState
 import com.palmlens.ui.components.MysticScaffold
+import com.palmlens.ui.theme.Spacing
 
 private val TABS = listOf("Daily", "Weekly", "Monthly")
 
@@ -40,7 +47,11 @@ fun HoroscopeScreen(onBack: () -> Unit) {
     val bundle by vm.bundle.collectAsStateWithLifecycle()
     val zodiac by vm.zodiac.collectAsStateWithLifecycle()
 
-    MysticScaffold(title = "${zodiac.symbol}  ${zodiac.displayName}", onBack = onBack) { pad ->
+    MysticScaffold(
+        title = "${zodiac.symbol}  ${zodiac.displayName}",
+        onBack = onBack,
+        bottomBar = { AdBanner() },
+    ) { pad ->
         Column(Modifier.padding(pad).fillMaxSize()) {
             SecondaryTabRow(selectedTabIndex = tab, containerColor = Color.Transparent) {
                 TABS.forEachIndexed { i, label ->
@@ -61,11 +72,11 @@ fun HoroscopeScreen(onBack: () -> Unit) {
                     Modifier
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
-                        .padding(20.dp),
+                        .padding(Spacing.space20),
                 ) {
                     RatingRow(entry.rating)
-                    Spacer(Modifier.height(12.dp))
-                    GlassCard(Modifier.fillMaxWidth()) {
+                    Spacer(Modifier.height(Spacing.space12))
+                    ClayCard(Modifier.fillMaxWidth()) {
                         Text(
                             entry.overview,
                             style = MaterialTheme.typography.bodyLarge,
@@ -73,14 +84,14 @@ fun HoroscopeScreen(onBack: () -> Unit) {
                         )
                     }
                     if (tab == 0) {
-                        Spacer(Modifier.height(12.dp))
+                        Spacer(Modifier.height(Spacing.space12))
                         FacetCard("Love", entry.love)
-                        Spacer(Modifier.height(10.dp))
+                        Spacer(Modifier.height(Spacing.space10))
                         FacetCard("Career", entry.career)
-                        Spacer(Modifier.height(10.dp))
+                        Spacer(Modifier.height(Spacing.space10))
                         FacetCard("Health", entry.health)
                     }
-                    Spacer(Modifier.height(24.dp))
+                    Spacer(Modifier.height(Spacing.space24))
                 }
             }
         }
@@ -90,14 +101,15 @@ fun HoroscopeScreen(onBack: () -> Unit) {
 @Composable
 private fun RatingRow(rating: Int) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(4.dp),
+        horizontalArrangement = Arrangement.spacedBy(Spacing.space4),
         modifier = Modifier.clearAndSetSemantics { contentDescription = "Rating: $rating out of 5" },
     ) {
         repeat(5) { i ->
-            Text(
-                if (i < rating) "★" else "☆",
-                color = MaterialTheme.colorScheme.secondary,
-                style = MaterialTheme.typography.titleLarge,
+            Icon(
+                if (i < rating) Icons.Filled.Star else Icons.Outlined.StarBorder,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.secondary,
+                modifier = Modifier.size(20.dp),
             )
         }
     }
@@ -106,13 +118,13 @@ private fun RatingRow(rating: Int) {
 @Composable
 private fun FacetCard(label: String, text: String?) {
     if (text == null) return
-    GlassCard(Modifier.fillMaxWidth(), contentPadding = 14) {
+    ClayCard(Modifier.fillMaxWidth(), contentPadding = Spacing.space14) {
         Text(
             label.uppercase(),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.primary,
         )
-        Spacer(Modifier.height(4.dp))
+        Spacer(Modifier.height(Spacing.space4))
         Text(text, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface)
     }
 }

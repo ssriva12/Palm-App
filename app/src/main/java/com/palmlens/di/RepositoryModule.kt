@@ -1,6 +1,7 @@
 package com.palmlens.di
 
 import com.palmlens.data.datastore.DataStoreProfileRepository
+import com.palmlens.data.datastore.DataStoreThemeRepository
 import com.palmlens.data.repository.HoroscopeRepositoryImpl
 import com.palmlens.data.repository.LoveRepositoryImpl
 import com.palmlens.data.repository.PalmRepositoryImpl
@@ -12,6 +13,7 @@ import com.palmlens.domain.repository.PalmRepository
 import com.palmlens.domain.repository.ProfileRepository
 import com.palmlens.domain.repository.ScanQuotaRepository
 import com.palmlens.domain.repository.TarotRepository
+import com.palmlens.domain.repository.ThemePreferenceRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -45,4 +47,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindScanQuotaRepository(impl: ScanQuotaRepositoryImpl): ScanQuotaRepository
+
+    @Binds
+    abstract fun bindThemePreferenceRepository(impl: DataStoreThemeRepository): ThemePreferenceRepository
 }

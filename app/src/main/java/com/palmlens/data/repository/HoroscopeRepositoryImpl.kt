@@ -1,5 +1,6 @@
 package com.palmlens.data.repository
 
+import android.util.Log
 import com.palmlens.core.coroutines.IoDispatcher
 import com.palmlens.data.local.dao.DailyContentDao
 import com.palmlens.data.local.entity.DailyContentEntity
@@ -7,6 +8,7 @@ import com.palmlens.domain.content.ContentGenerator
 import com.palmlens.domain.model.DailyBundle
 import com.palmlens.domain.model.Zodiac
 import com.palmlens.domain.repository.HoroscopeRepository
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.encodeToString
@@ -20,6 +22,7 @@ import javax.inject.Singleton
 class HoroscopeRepositoryImpl @Inject constructor(
     private val contentGenerator: ContentGenerator,
     private val dao: DailyContentDao,
+    private val fallback: FallbackHoroscope,
     private val json: Json,
     @IoDispatcher private val io: CoroutineDispatcher,
 ) : HoroscopeRepository {
@@ -40,7 +43,16 @@ class HoroscopeRepositoryImpl @Inject constructor(
         val needWeekly = previousRow?.weekIso != weekIso
         val needMonthly = previousRow?.monthIso != monthIso
 
-        val generated = contentGenerator.dailyBundle(zodiac, locale, needWeekly, needMonthly)
+        val generated = try {
+            contentGenerator.dailyBundle(zodiac, locale, needWeekly, needMonthly)
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Exception) {
+            // Offline / model failure → last real bundle for this sign, else the bundled
+            // evergreen pool. Not persisted: next open retries a fresh generation (spec §3.8).
+            Log.w("Palmlens", "daily bundle generation failed; serving fallback", e)
+            return@withContext previous?.copy(date = dateIso) ?: fallback.bundle(zodiac, locale)
+        }
         val bundle = generated.copy(
             date = dateIso,
             weekly = if (needWeekly || previous == null) generated.weekly else previous.weekly,

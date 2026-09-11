@@ -9,6 +9,8 @@ import com.palmlens.core.network.model.ContentPart
 import com.palmlens.core.network.model.ImageUrl
 import com.palmlens.core.network.model.JsonSchemaSpec
 import com.palmlens.core.network.model.ResponseFormat
+import com.palmlens.debug.DebugDiagnostics
+import com.palmlens.debug.PalmDiagnostics
 import com.palmlens.domain.content.ContentGenerator
 import com.palmlens.domain.model.DailyBundle
 import com.palmlens.domain.model.Hand
@@ -41,6 +43,7 @@ class OpenAiContentGenerator @Inject constructor(
     private val config: OpenAiConfig,
     private val prompts: PromptBuilder,
     private val json: Json,
+    private val diagnostics: DebugDiagnostics,
     @DefaultDispatcher private val cpu: CoroutineDispatcher,
 ) : ContentGenerator {
 
@@ -67,8 +70,20 @@ class OpenAiContentGenerator @Inject constructor(
             ),
             responseFormat = responseFormat("palm_reading"),
         )
-        val content = client.complete(request).content
-        return json.decodeFromString<PalmReading>(content).copy(hand = hand)
+        val result = client.complete(request)
+        diagnostics.recordPalm(
+            PalmDiagnostics(
+                model = config.visionModel,
+                promptVersion = "palm_v1",
+                latencyMs = result.latencyMs,
+                rawJson = result.content,
+                promptTokens = result.usage?.promptTokens,
+                completionTokens = result.usage?.completionTokens,
+                totalTokens = result.usage?.totalTokens,
+                finishReason = result.finishReason,
+            ),
+        )
+        return json.decodeFromString<PalmReading>(result.content).copy(hand = hand)
     }
 
     override suspend fun dailyBundle(

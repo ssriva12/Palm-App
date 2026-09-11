@@ -15,7 +15,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,26 +30,30 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.palmlens.ads.AdBanner
 import com.palmlens.domain.model.LoveResult
+import com.palmlens.ui.components.ClayCard
+import com.palmlens.ui.components.ClayTextField
 import com.palmlens.ui.components.DobPickerButton
-import com.palmlens.ui.components.GlassCard
+import com.palmlens.ui.components.ErrorState
 import com.palmlens.ui.components.LoadingState
 import com.palmlens.ui.components.MysticScaffold
 import com.palmlens.ui.components.PrimaryButton
 import com.palmlens.ui.components.SecondaryButton
+import com.palmlens.ui.theme.Spacing
 
 @Composable
 fun LoveScreen(onBack: () -> Unit) {
     val vm: LoveViewModel = hiltViewModel()
     val selfName by vm.selfName.collectAsStateWithLifecycle()
 
-    MysticScaffold(title = "Love Test", onBack = onBack) { pad ->
+    MysticScaffold(title = "Love Test", onBack = onBack, bottomBar = { AdBanner() }) { pad ->
         Column(
             Modifier
                 .padding(pad)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(20.dp),
+                .padding(Spacing.space20),
         ) {
             when (vm.phase) {
                 LovePhase.FORM -> {
@@ -59,39 +62,34 @@ fun LoveScreen(onBack: () -> Unit) {
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
-                    Spacer(Modifier.height(16.dp))
-                    OutlinedTextField(
+                    Spacer(Modifier.height(Spacing.space16))
+                    ClayTextField(
                         value = selfName,
                         onValueChange = {},
-                        label = { Text("You") },
+                        label = "You",
                         enabled = false,
                         modifier = Modifier.fillMaxWidth(),
                     )
-                    Spacer(Modifier.height(12.dp))
-                    OutlinedTextField(
+                    Spacer(Modifier.height(Spacing.space14))
+                    ClayTextField(
                         value = vm.partnerName,
                         onValueChange = vm::updatePartnerName,
-                        label = { Text("Their name") },
-                        singleLine = true,
+                        label = "Their name",
+                        placeholder = "First name",
                         keyboardOptions = KeyboardOptions(
                             capitalization = KeyboardCapitalization.Words,
                             imeAction = ImeAction.Done,
                         ),
                         modifier = Modifier.fillMaxWidth(),
                     )
-                    Spacer(Modifier.height(12.dp))
-                    Text(
-                        "Their date of birth (optional)",
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                    Spacer(Modifier.height(6.dp))
+                    Spacer(Modifier.height(Spacing.space14))
                     DobPickerButton(
                         value = vm.partnerDob,
+                        label = "Their date of birth (optional)",
                         onPicked = vm::updatePartnerDob,
                         modifier = Modifier.fillMaxWidth(),
                     )
-                    Spacer(Modifier.height(20.dp))
+                    Spacer(Modifier.height(Spacing.space20))
                     PrimaryButton(
                         "Check compatibility",
                         Modifier.fillMaxWidth(),
@@ -106,17 +104,12 @@ fun LoveScreen(onBack: () -> Unit) {
                     ResultBody(selfName, vm.partnerName, result, onReset = vm::reset)
                 }
 
-                LovePhase.ERROR -> {
-                    Text(
-                        "The stars are cloudy — couldn't read this pairing. Try again.",
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                    Spacer(Modifier.height(16.dp))
-                    PrimaryButton("Back", Modifier.fillMaxWidth(), onClick = vm::reset)
-                }
+                LovePhase.ERROR -> ErrorState(
+                    onRetry = vm::calculate,
+                    message = "The sky is overcast and this pairing wouldn't read. Try again.",
+                )
             }
-            Spacer(Modifier.height(24.dp))
+            Spacer(Modifier.height(Spacing.space24))
         }
     }
 }
@@ -126,36 +119,36 @@ private fun ResultBody(selfName: String, partnerName: String, result: LoveResult
     Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
         ScoreRing(result.score)
     }
-    Spacer(Modifier.height(6.dp))
+    Spacer(Modifier.height(Spacing.space6))
     Text(
-        "$selfName  ✦  ${partnerName.ifBlank { "Them" }}",
+        "$selfName  and  ${partnerName.ifBlank { "them" }}",
         style = MaterialTheme.typography.titleMedium,
         color = MaterialTheme.colorScheme.onBackground,
         modifier = Modifier.fillMaxWidth(),
     )
 
-    Spacer(Modifier.height(16.dp))
-    GlassCard(Modifier.fillMaxWidth()) {
+    Spacer(Modifier.height(Spacing.space16))
+    ClayCard(Modifier.fillMaxWidth()) {
         Text(result.verdict, style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurface)
     }
 
-    Spacer(Modifier.height(16.dp))
+    Spacer(Modifier.height(Spacing.space16))
     Text("STRENGTHS", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.primary)
-    Spacer(Modifier.height(6.dp))
+    Spacer(Modifier.height(Spacing.space6))
     result.strengths.forEach { Bullet(it) }
 
-    Spacer(Modifier.height(12.dp))
+    Spacer(Modifier.height(Spacing.space12))
     Text("WORTH WATCHING", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.secondary)
-    Spacer(Modifier.height(6.dp))
+    Spacer(Modifier.height(Spacing.space6))
     result.challenges.forEach { Bullet(it) }
 
-    Spacer(Modifier.height(20.dp))
+    Spacer(Modifier.height(Spacing.space20))
     SecondaryButton("Try another pairing", Modifier.fillMaxWidth(), onClick = onReset)
 }
 
 @Composable
 private fun Bullet(text: String) {
-    Row(Modifier.padding(vertical = 4.dp)) {
+    Row(Modifier.padding(vertical = Spacing.space4)) {
         Text("•  ", color = MaterialTheme.colorScheme.onSurfaceVariant)
         Text(text, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface)
     }
@@ -180,7 +173,7 @@ private fun ScoreRing(score: Int) {
                 style = Stroke(width = stroke, cap = StrokeCap.Round),
             )
             drawArc(
-                color = cs.primary,
+                color = cs.secondary,
                 startAngle = -90f,
                 sweepAngle = 360f * (score / 100f),
                 useCenter = false,

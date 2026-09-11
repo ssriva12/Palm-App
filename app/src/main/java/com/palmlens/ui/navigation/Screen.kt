@@ -7,11 +7,14 @@ package com.palmlens.ui.navigation
  */
 sealed interface Screen {
     data object Splash : Screen
-    data object Language : Screen
+
+    /** [fromSettings] true = changing language later (pop back), false = the onboarding step. */
+    data class Language(val fromSettings: Boolean = false) : Screen
+
     data object Onboarding : Screen
 
-    /** [fromScanner] true = opened as the hard paywall on scan 41 (pop back), false = the
-     *  skippable onboarding offer (go to Home). */
+    /** [fromScanner] true = opened as the hard paywall once free scans run out (pop back),
+     *  false = the skippable onboarding offer (go to Home). */
     data class Subscription(val fromScanner: Boolean = false) : Screen
 
     data object Home : Screen
@@ -20,4 +23,5 @@ sealed interface Screen {
     data object Horoscope : Screen
     data object Love : Screen
     data object Tarot : Screen
+    data object Settings : Screen
 }
