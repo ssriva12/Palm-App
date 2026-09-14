@@ -2,8 +2,10 @@ package com.palmlens.ui.highlights
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,9 +17,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.palmlens.R
 import com.palmlens.ads.AdBanner
 import com.palmlens.ui.components.ClayCard
 import com.palmlens.ui.components.LoadingState
@@ -32,9 +37,9 @@ fun HighlightsScreen(onBack: () -> Unit) {
     val bundle by vm.bundle.collectAsStateWithLifecycle()
     val h = bundle?.highlights
 
-    MysticScaffold(title = "Daily Highlights", onBack = onBack, bottomBar = { AdBanner() }) { pad ->
+    MysticScaffold(title = stringResource(R.string.highlights_title), onBack = onBack, bottomBar = { AdBanner() }) { pad ->
         if (h == null) {
-            Column(Modifier.padding(pad).fillMaxSize()) { LoadingState("Reading the day…") }
+            Column(Modifier.padding(pad).fillMaxSize()) { LoadingState(stringResource(R.string.highlights_loading)) }
         } else {
             Column(
                 Modifier
@@ -45,44 +50,71 @@ fun HighlightsScreen(onBack: () -> Unit) {
             ) {
                 ClayCard(Modifier.fillMaxWidth()) {
                     Text(
-                        "MOOD",
+                        stringResource(R.string.highlights_mood_label),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.primary,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth(),
                     )
                     Spacer(Modifier.height(Spacing.space4))
                     Text(
                         h.mood,
                         style = MaterialTheme.typography.headlineSmall,
                         color = MaterialTheme.colorScheme.onSurface,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth(),
                     )
                 }
 
                 Spacer(Modifier.height(Spacing.space12))
-                Row(horizontalArrangement = Arrangement.spacedBy(Spacing.space12)) {
-                    StatTile("Lucky number", h.luckyNumber.toString(), Modifier.weight(1f))
-                    StatTile("Lucky colour", h.luckyColor, Modifier.weight(1f))
+                Row(
+                    Modifier.height(IntrinsicSize.Max),
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.space12),
+                ) {
+                    StatTile(
+                        stringResource(R.string.highlights_lucky_number_label),
+                        h.luckyNumber.toString(),
+                        Modifier.weight(1f).fillMaxHeight(),
+                    )
+                    StatTile(stringResource(R.string.stat_lucky_colour), h.luckyColor, Modifier.weight(1f).fillMaxHeight())
                 }
 
                 Spacer(Modifier.height(Spacing.space12))
                 ClayCard(Modifier.fillMaxWidth(), contentPadding = Spacing.space14) {
                     Text(
-                        "FOCUS OF THE DAY",
+                        stringResource(R.string.highlights_focus_label),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.primary,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth(),
                     )
                     Spacer(Modifier.height(Spacing.space4))
-                    Text(h.focusOfDay, style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurface)
+                    Text(
+                        h.focusOfDay,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
                 }
 
                 Spacer(Modifier.height(Spacing.space12))
                 ClayCard(Modifier.fillMaxWidth(), contentPadding = Spacing.space14) {
                     Text(
-                        "ADVICE",
+                        stringResource(R.string.highlights_advice_label),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.primary,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth(),
                     )
                     Spacer(Modifier.height(Spacing.space4))
-                    Text(h.oneLineAdvice, style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurface)
+                    Text(
+                        h.oneLineAdvice,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
                 }
                 Spacer(Modifier.height(Spacing.space24))
             }

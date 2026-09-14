@@ -1,12 +1,14 @@
 package com.palmlens.di
 
+import com.palmlens.data.auth.FirebaseAuthRepository
 import com.palmlens.data.datastore.DataStoreProfileRepository
 import com.palmlens.data.datastore.DataStoreThemeRepository
+import com.palmlens.data.repository.FirestoreScanQuotaRepository
 import com.palmlens.data.repository.HoroscopeRepositoryImpl
 import com.palmlens.data.repository.LoveRepositoryImpl
 import com.palmlens.data.repository.PalmRepositoryImpl
-import com.palmlens.data.repository.ScanQuotaRepositoryImpl
 import com.palmlens.data.repository.TarotRepositoryImpl
+import com.palmlens.domain.repository.AuthRepository
 import com.palmlens.domain.repository.HoroscopeRepository
 import com.palmlens.domain.repository.LoveRepository
 import com.palmlens.domain.repository.PalmRepository
@@ -46,8 +48,11 @@ abstract class RepositoryModule {
     abstract fun bindTarotRepository(impl: TarotRepositoryImpl): TarotRepository
 
     @Binds
-    abstract fun bindScanQuotaRepository(impl: ScanQuotaRepositoryImpl): ScanQuotaRepository
+    abstract fun bindScanQuotaRepository(impl: FirestoreScanQuotaRepository): ScanQuotaRepository
 
     @Binds
     abstract fun bindThemePreferenceRepository(impl: DataStoreThemeRepository): ThemePreferenceRepository
+
+    @Binds
+    abstract fun bindAuthRepository(impl: FirebaseAuthRepository): AuthRepository
 }

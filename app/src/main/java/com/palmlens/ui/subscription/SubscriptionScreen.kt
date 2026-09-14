@@ -29,8 +29,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.palmlens.R
 import com.palmlens.ui.components.MysticScaffold
 import com.palmlens.ui.components.PrimaryButton
 import com.palmlens.ui.theme.ClayShapeSmall
@@ -39,11 +41,15 @@ import com.palmlens.ui.theme.Spacing
 
 private data class Plan(val id: String, val title: String, val price: String, val note: String?)
 
-private val PLANS = listOf(
-    Plan("weekly", "Weekly", "placeholder", "3-day free trial"),
-    Plan("monthly", "Monthly", "placeholder", null),
-    Plan("yearly", "Yearly", "placeholder", "Best value"),
-)
+@Composable
+private fun plans(): List<Plan> {
+    val placeholderPrice = stringResource(R.string.subscription_price_placeholder)
+    return listOf(
+        Plan("weekly", stringResource(R.string.subscription_plan_weekly), placeholderPrice, stringResource(R.string.subscription_trial_note)),
+        Plan("monthly", stringResource(R.string.subscription_plan_monthly), placeholderPrice, null),
+        Plan("yearly", stringResource(R.string.subscription_plan_yearly), placeholderPrice, stringResource(R.string.subscription_best_value_note)),
+    )
+}
 
 @Composable
 fun SubscriptionScreen(onSkip: () -> Unit, onSubscribed: () -> Unit) {
@@ -55,7 +61,7 @@ fun SubscriptionScreen(onSkip: () -> Unit, onSubscribed: () -> Unit) {
             IconButton(onClick = onSkip) {
                 Icon(
                     Icons.Rounded.Close,
-                    contentDescription = "Close",
+                    contentDescription = stringResource(R.string.cd_close),
                     tint = MaterialTheme.colorScheme.onBackground,
                 )
             }
@@ -76,19 +82,19 @@ fun SubscriptionScreen(onSkip: () -> Unit, onSubscribed: () -> Unit) {
             )
             Spacer(Modifier.height(Spacing.space10))
             Text(
-                "Palmlens Premium",
+                stringResource(R.string.subscription_title),
                 style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.onBackground,
             )
             Spacer(Modifier.height(Spacing.space6))
             Text(
-                "Unlimited scans, no ads, and the daily horoscope.",
+                stringResource(R.string.subscription_subtitle),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
 
             Spacer(Modifier.height(Spacing.space24))
-            PLANS.forEach { plan ->
+            plans().forEach { plan ->
                 PlanRow(
                     plan = plan,
                     selected = selected == plan.id,
@@ -99,23 +105,23 @@ fun SubscriptionScreen(onSkip: () -> Unit, onSubscribed: () -> Unit) {
 
             Spacer(Modifier.height(Spacing.space8))
             Text(
-                "Prices are placeholders in this build. The real ones come from Play Billing.",
+                stringResource(R.string.subscription_price_disclaimer),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
 
             Spacer(Modifier.height(Spacing.space20))
             PrimaryButton(
-                text = "Start free trial",
+                text = stringResource(R.string.action_start_trial),
                 modifier = Modifier.fillMaxWidth(),
                 onClick = onSubscribed,
             )
             Spacer(Modifier.height(Spacing.space4))
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-                TextButton(onClick = onSkip) { Text("Maybe later") }
+                TextButton(onClick = onSkip) { Text(stringResource(R.string.action_maybe_later)) }
             }
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-                TextButton(onClick = onSubscribed) { Text("Restore purchases") }
+                TextButton(onClick = onSubscribed) { Text(stringResource(R.string.action_restore_purchases)) }
             }
             Spacer(Modifier.height(Spacing.space16))
         }

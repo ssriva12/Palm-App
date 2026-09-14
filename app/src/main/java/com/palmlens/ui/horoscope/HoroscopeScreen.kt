@@ -26,24 +26,37 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringArrayResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.palmlens.R
 import com.palmlens.ads.AdBanner
 import com.palmlens.domain.model.HoroscopeEntry
 import com.palmlens.ui.components.ClayCard
+import com.palmlens.ui.components.FacetCard
 import com.palmlens.ui.components.LoadingState
 import com.palmlens.ui.components.MysticScaffold
 import com.palmlens.ui.theme.Spacing
 
-private val TABS = listOf("Daily", "Weekly", "Monthly")
+private const val TAB_YEARLY = 3
 
 @Composable
-fun HoroscopeScreen(onBack: () -> Unit) {
+private fun tabs(): List<String> = listOf(
+    stringResource(R.string.horoscope_tab_daily),
+    stringResource(R.string.horoscope_tab_weekly),
+    stringResource(R.string.horoscope_tab_monthly),
+    stringResource(R.string.horoscope_tab_yearly),
+)
+
+@Composable
+fun HoroscopeScreen(onBack: () -> Unit, initialTab: Int = 0) {
     val vm: HoroscopeViewModel = hiltViewModel()
-    var tab by remember { mutableIntStateOf(0) }
+    var tab by remember { mutableIntStateOf(initialTab) }
     val bundle by vm.bundle.collectAsStateWithLifecycle()
     val zodiac by vm.zodiac.collectAsStateWithLifecycle()
 
@@ -54,44 +67,70 @@ fun HoroscopeScreen(onBack: () -> Unit) {
     ) { pad ->
         Column(Modifier.padding(pad).fillMaxSize()) {
             SecondaryTabRow(selectedTabIndex = tab, containerColor = Color.Transparent) {
-                TABS.forEachIndexed { i, label ->
+                tabs().forEachIndexed { i, label ->
                     Tab(selected = tab == i, onClick = { tab = i }, text = { Text(label) })
                 }
             }
 
-            val currentBundle = bundle
-            if (currentBundle == null) {
-                LoadingState("Consulting the stars…")
-            } else {
-                val entry = when (tab) {
-                    0 -> currentBundle.daily
-                    1 -> currentBundle.weekly
-                    else -> currentBundle.monthly
-                }
+            if (tab == TAB_YEARLY) {
+                val overviews = stringArrayResource(R.array.yearly_overviews)
+                val outlook = remember(zodiac, overviews.size) { YearlyOutlook.forYear(zodiac, overviews.size) }
                 Column(
                     Modifier
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
                         .padding(Spacing.space20),
                 ) {
-                    RatingRow(entry.rating)
+                    RatingRow(outlook.rating)
                     Spacer(Modifier.height(Spacing.space12))
                     ClayCard(Modifier.fillMaxWidth()) {
                         Text(
-                            entry.overview,
+                            overviews[outlook.overviewIndex],
                             style = MaterialTheme.typography.bodyLarge,
                             color = MaterialTheme.colorScheme.onSurface,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.fillMaxWidth(),
                         )
                     }
-                    if (tab == 0) {
-                        Spacer(Modifier.height(Spacing.space12))
-                        FacetCard("Love", entry.love)
-                        Spacer(Modifier.height(Spacing.space10))
-                        FacetCard("Career", entry.career)
-                        Spacer(Modifier.height(Spacing.space10))
-                        FacetCard("Health", entry.health)
-                    }
                     Spacer(Modifier.height(Spacing.space24))
+                }
+            } else {
+                val currentBundle = bundle
+                if (currentBundle == null) {
+                    LoadingState(stringResource(R.string.horoscope_loading))
+                } else {
+                    val entry = when (tab) {
+                        0 -> currentBundle.daily
+                        1 -> currentBundle.weekly
+                        else -> currentBundle.monthly
+                    }
+                    Column(
+                        Modifier
+                            .fillMaxSize()
+                            .verticalScroll(rememberScrollState())
+                            .padding(Spacing.space20),
+                    ) {
+                        RatingRow(entry.rating)
+                        Spacer(Modifier.height(Spacing.space12))
+                        ClayCard(Modifier.fillMaxWidth()) {
+                            Text(
+                                entry.overview,
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = MaterialTheme.colorScheme.onSurface,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.fillMaxWidth(),
+                            )
+                        }
+                        if (tab == 0) {
+                            Spacer(Modifier.height(Spacing.space12))
+                            FacetCard(stringResource(R.string.horoscope_facet_love), entry.love)
+                            Spacer(Modifier.height(Spacing.space10))
+                            FacetCard(stringResource(R.string.horoscope_facet_career), entry.career)
+                            Spacer(Modifier.height(Spacing.space10))
+                            FacetCard(stringResource(R.string.horoscope_facet_health), entry.health)
+                        }
+                        Spacer(Modifier.height(Spacing.space24))
+                    }
                 }
             }
         }
@@ -100,9 +139,10 @@ fun HoroscopeScreen(onBack: () -> Unit) {
 
 @Composable
 private fun RatingRow(rating: Int) {
+    val ratingDescription = stringResource(R.string.cd_rating, rating)
     Row(
         horizontalArrangement = Arrangement.spacedBy(Spacing.space4),
-        modifier = Modifier.clearAndSetSemantics { contentDescription = "Rating: $rating out of 5" },
+        modifier = Modifier.clearAndSetSemantics { contentDescription = ratingDescription },
     ) {
         repeat(5) { i ->
             Icon(
@@ -112,19 +152,5 @@ private fun RatingRow(rating: Int) {
                 modifier = Modifier.size(20.dp),
             )
         }
-    }
-}
-
-@Composable
-private fun FacetCard(label: String, text: String?) {
-    if (text == null) return
-    ClayCard(Modifier.fillMaxWidth(), contentPadding = Spacing.space14) {
-        Text(
-            label.uppercase(),
-            style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.primary,
-        )
-        Spacer(Modifier.height(Spacing.space4))
-        Text(text, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface)
     }
 }

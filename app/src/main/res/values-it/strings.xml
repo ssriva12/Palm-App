@@ -1,0 +1,207 @@
+<resources>
+    <string name="app_name">Palmlens</string>
+
+    <string name="disclaimer">Solo a scopo di intrattenimento.</string>
+
+    <string name="settings">Impostazioni</string>
+    <string name="cd_open_settings">Apri le impostazioni</string>
+
+    <string name="settings_language">Lingua</string>
+    <string name="settings_language_desc">La lingua in cui sono scritte le tue letture</string>
+
+    <string name="settings_dark_mode">Modalità scura</string>
+    <string name="settings_dark_mode_desc">Sostituisce il tema del tuo dispositivo</string>
+
+    <string name="settings_privacy">Privacy e consenso</string>
+    <string name="settings_privacy_desc">Scopri come gli annunci possono usare i tuoi dati</string>
+
+    <string name="settings_help">Assistenza e FAQ</string>
+    <string name="settings_help_desc">Risposte alle domande più comuni</string>
+
+    <string name="settings_terms">Termini e condizioni</string>
+    <string name="settings_terms_desc">Le regole per usare Palmlens</string>
+
+    <string name="settings_privacy_policy">Informativa sulla privacy</string>
+    <string name="settings_privacy_policy_desc">Come vengono gestiti i tuoi dati</string>
+
+    <string name="settings_sign_out">Esci</string>
+    <string name="settings_sign_out_desc">Accedi di nuovo quando vuoi con la stessa email</string>
+
+    <string name="settings_delete">Elimina i miei dati</string>
+    <string name="settings_delete_desc">Cancella il tuo profilo, le letture e il numero di scansioni da questo dispositivo</string>
+    <string name="settings_delete_dialog_title">Eliminare tutto?</string>
+    <string name="settings_delete_dialog_body">Il tuo profilo, le letture salvate, i risultati di tarocchi e amore e il numero di scansioni verranno cancellati da questo telefono. Questa azione non può essere annullata.</string>
+    <string name="settings_delete_confirm">Elimina</string>
+    <string name="cancel">Annulla</string>
+
+    <string name="settings_version">Versione %1$s</string>
+    <string name="action_save">Salva</string>
+
+    <string name="action_try_again">Riprova</string>
+    <string name="action_ok">OK</string>
+    <string name="cd_navigate_back">Torna indietro</string>
+    <string name="time_of_birth_label">Ora di nascita</string>
+    <string name="error_default_message">Al momento il cielo è nuvoloso. Riprova tra un momento.</string>
+    <string name="pick_date_placeholder">Scegli una data</string>
+    <string name="pick_time_placeholder">Scegli un orario</string>
+
+    <string name="feature_palm_scanner_title">Scanner del palmo</string>
+    <string name="feature_love_title">Test dell\'amore</string>
+    <string name="feature_tarot_title">Tarocchi</string>
+    <string name="stat_lucky_colour">Colore fortunato</string>
+
+    <plurals name="free_scans_remaining">
+        <item quantity="one">Ti rimane %1$d scansione gratuita</item>
+        <item quantity="other">Ti rimangono %1$d scansioni gratuite</item>
+    </plurals>
+
+    <string name="splash_tagline">Leggi ciò che le tue mani ricordano</string>
+
+    <string name="home_greeting">Ciao %1$s</string>
+    <string name="home_default_name">tu</string>
+    <string name="home_greeting_subtitle">%1$s, %2$s</string>
+    <string name="home_today_label">OGGI</string>
+    <string name="home_loading_highlights">Sto leggendo l\'atmosfera…</string>
+    <string name="home_lucky_number_short">Numero fortunato</string>
+    <string name="home_scans_used_up">Hai usato tutte le tue scansioni gratuite</string>
+    <string name="feature_horoscope_title">Oroscopo</string>
+    <string name="feature_horoscope_subtitle">Giornaliero, settimanale, mensile</string>
+    <string name="feature_highlights_subtitle">Umore, fortuna, concentrazione</string>
+    <string name="feature_love_subtitle">Controlla la tua compatibilità</string>
+    <string name="feature_tarot_subtitle">Scegli tre carte</string>
+
+    <string name="scanner_no_scans_left">Nessuna scansione gratuita rimasta</string>
+    <string name="scanner_guide_instruction">Tieni la mano distesa, con il palmo verso la fotocamera, con luce uniforme.</string>
+    <string name="scanner_hand_label">Mano %1$s</string>
+    <string name="scanner_hand_dominant_desc">Mano dominante. Il tuo presente e futuro.</string>
+    <string name="scanner_hand_nondominant_desc">Mano non dominante. Tratti ereditati.</string>
+    <string name="scanner_camera_permission_rationale">Palmlens ha bisogno della fotocamera per scansionare il tuo palmo. La foto viene inviata per la lettura e non viene mai salvata.</string>
+    <string name="action_allow_camera">Consenti fotocamera</string>
+    <string name="scanner_processing_message">Sto tracciando le tue linee…</string>
+    <string name="scanner_error_message">Il cielo è nuvoloso. Rifai quella scansione.</string>
+    <string name="cd_your_palm">Il tuo palmo</string>
+    <string name="scanner_tap_line_hint">Tocca una linea per i dettagli.</string>
+    <string name="scanner_lucky_number_label">NUMERO FORTUNATO</string>
+    <string name="scanner_lucky_color_label">COLORE FORTUNATO</string>
+    <string name="cd_collapse">Comprimi</string>
+    <string name="cd_expand">Espandi</string>
+    <string name="scanner_confidence">%1$d%% di certezza</string>
+    <string name="action_scan_again">Scansiona di nuovo</string>
+
+    <string name="tarot_title">Tarocchi</string>
+    <string name="tarot_shuffling">Sto mescolando il mazzo…</string>
+    <string name="tarot_revealing">Sto girando le carte…</string>
+    <string name="tarot_error_message">Il cielo è nuvoloso e le carte non si sono girate. Riprova.</string>
+    <string name="tarot_already_drew">Hai già avuto la tua lettura oggi. Torna domani per una nuova stesa.</string>
+    <string name="tarot_pick_instruction">Svuota la mente e scegli tre carte. La lettura inizia da sola.</string>
+    <string name="tarot_picked_count">%1$d / 3 scelte</string>
+    <string name="tarot_spread_label">LA STESA</string>
+    <string name="action_new_reading">Nuova lettura</string>
+    <string name="tarot_shuffle_disclaimer">Le carte vengono mescolate ed estratte sul tuo dispositivo.</string>
+    <string name="tarot_card_upright">"  %1$s"</string>
+    <string name="tarot_card_reversed">"  %1$s (rovesciata)"</string>
+
+    <string name="onboarding_title">Su di te</string>
+    <string name="onboarding_step_indicator">Passaggio %1$d di %2$d</string>
+    <string name="onboarding_step_name_question">Come dobbiamo chiamarti?</string>
+    <string name="onboarding_name_label">Nome</string>
+    <string name="onboarding_name_placeholder">Il tuo nome</string>
+    <string name="onboarding_name_char_count">%1$d/30</string>
+    <string name="onboarding_step_gender_question">Come ti identifichi?</string>
+    <string name="onboarding_step_dob_question">Quando sei nato/a?</string>
+    <string name="onboarding_dob_desc">Determina il tuo segno zodiacale e influisce su ogni oroscopo.</string>
+    <string name="onboarding_dob_label">Data di nascita</string>
+    <string name="onboarding_age_error">Devi avere almeno 13 anni per usare Palmlens.</string>
+    <string name="onboarding_step_time_question">Conosci la tua ora di nascita?</string>
+    <string name="onboarding_time_known">Sì, la conosco</string>
+    <string name="onboarding_time_unknown">Non sono sicuro/a, salta</string>
+    <string name="onboarding_step_place_question">Dove sei nato/a?</string>
+    <string name="onboarding_place_desc">Facoltativo. Aggiunge un po\' di contesto alle tue letture.</string>
+    <string name="onboarding_place_label">Città, paese</string>
+    <string name="onboarding_place_placeholder">es. Lisbona, Portogallo</string>
+    <string name="action_back">Indietro</string>
+    <string name="action_finish">Fine</string>
+    <string name="action_next">Avanti</string>
+
+    <string name="language_title">Scegli la tua lingua</string>
+    <string name="language_subtitle">Ogni lettura viene scritta nella lingua che scegli.</string>
+    <string name="language_continue">Continua</string>
+
+    <string name="highlights_title">In evidenza oggi</string>
+    <string name="highlights_loading">Sto leggendo la giornata…</string>
+    <string name="highlights_mood_label">UMORE</string>
+    <string name="highlights_lucky_number_label">Numero fortunato</string>
+    <string name="highlights_focus_label">FOCUS DEL GIORNO</string>
+    <string name="highlights_advice_label">CONSIGLIO</string>
+
+    <string name="love_title">Test dell\'amore</string>
+    <string name="love_intro">Come vi trovate tu e un\'altra persona?</string>
+    <string name="love_self_label">Tu</string>
+    <string name="love_partner_name_label">Il suo nome</string>
+    <string name="love_partner_name_placeholder">Nome</string>
+    <string name="love_partner_dob_label">La sua data di nascita (facoltativa)</string>
+    <string name="action_check_compatibility">Controlla compatibilità</string>
+    <string name="love_loading">Sto leggendo tra voi due…</string>
+    <string name="love_error_message">Il cielo è nuvoloso e questa coppia non si è potuta leggere. Riprova.</string>
+    <string name="love_pairing_names">"%1$s  e  %2$s"</string>
+    <string name="love_partner_fallback">loro</string>
+    <string name="love_strengths_label">PUNTI DI FORZA</string>
+    <string name="love_challenges_label">DA TENERE D\'OCCHIO</string>
+    <string name="action_try_another_pairing">Prova un\'altra coppia</string>
+    <string name="love_bullet">"•  "</string>
+    <string name="cd_compatibility_score">Punteggio di compatibilità: %1$d per cento</string>
+
+    <string name="cd_close">Chiudi</string>
+    <string name="subscription_title">Palmlens Premium</string>
+    <string name="subscription_subtitle">Scansioni illimitate, niente pubblicità e l\'oroscopo giornaliero.</string>
+    <string name="subscription_plan_weekly">Settimanale</string>
+    <string name="subscription_plan_monthly">Mensile</string>
+    <string name="subscription_plan_yearly">Annuale</string>
+    <string name="subscription_price_placeholder">prezzo provvisorio</string>
+    <string name="subscription_trial_note">Prova gratuita di 3 giorni</string>
+    <string name="subscription_best_value_note">Il più conveniente</string>
+    <string name="subscription_price_disclaimer">I prezzi in questa build sono provvisori. Quelli reali arriveranno da Play Billing.</string>
+    <string name="action_start_trial">Avvia prova gratuita</string>
+    <string name="action_maybe_later">Forse più tardi</string>
+    <string name="action_restore_purchases">Ripristina acquisti</string>
+
+    <string name="horoscope_tab_daily">Giornaliero</string>
+    <string name="horoscope_tab_weekly">Settimanale</string>
+    <string name="horoscope_tab_monthly">Mensile</string>
+    <string name="horoscope_loading">Sto consultando le stelle…</string>
+    <string name="cd_rating">Valutazione: %1$d su 5</string>
+    <string name="horoscope_facet_love">Amore</string>
+    <string name="horoscope_facet_career">Carriera</string>
+    <string name="horoscope_facet_health">Salute</string>
+
+    <!-- Bottom nav / Today / Readings -->
+    <string name="nav_today">Oggi</string>
+    <string name="nav_readings">Letture</string>
+    <string name="nav_compatibility">Compatibilità</string>
+    <string name="today_insights_title">Spunti di oggi</string>
+    <string name="today_matches_title">Sintonie di oggi</string>
+    <string name="today_matches_friendship">Amicizia</string>
+    <string name="today_lucky_time_label">Ora fortunata</string>
+
+    <string name="horoscope_tab_yearly">Annuale</string>
+    <string-array name="yearly_overviews">
+        <item>Un anno di crescita costante: fidati del processo e lascia che lo slancio si costruisca.</item>
+        <item>Aspettati svolte importanti. Accogli il cambiamento invece di resistergli.</item>
+        <item>Le relazioni sono al centro — i legami antichi si approfondiscono, ne nascono di nuovi.</item>
+        <item>Un anno per mosse audaci. I rischi calcolati danno più frutti della prudenza.</item>
+        <item>Riposo e riequilibrio contano quanto l\'ambizione quest\'anno.</item>
+        <item>Il tuo impegno si accumula — piccole scelte costanti plasmano il quadro più grande.</item>
+    </string-array>
+
+    <!-- Auth -->
+    <string name="auth_signin_title">Bentornato</string>
+    <string name="auth_signup_title">Crea il tuo account</string>
+    <string name="auth_subtitle">Accedi per mantenere le scansioni gratuite e le letture collegate al tuo account.</string>
+    <string name="auth_email_label">Email</string>
+    <string name="auth_password_label">Password</string>
+    <string name="auth_signin_button">Accedi</string>
+    <string name="auth_signup_button">Crea account</string>
+    <string name="auth_toggle_to_signup">Non hai un account? Registrati</string>
+    <string name="auth_toggle_to_signin">Hai già un account? Accedi</string>
+    <string name="auth_loading">Accesso in corso…</string>
+</resources>

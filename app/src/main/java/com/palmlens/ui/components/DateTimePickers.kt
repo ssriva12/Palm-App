@@ -15,6 +15,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.palmlens.R
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
@@ -41,7 +43,7 @@ fun DobPickerButton(
     ClayFieldButton(
         label = label,
         value = value?.let(::formatDate),
-        placeholder = "Pick a date",
+        placeholder = stringResource(R.string.pick_date_placeholder),
         onClick = { open = true },
         modifier = modifier,
     )
@@ -56,9 +58,9 @@ fun DobPickerButton(
                         onPicked(Instant.ofEpochMilli(millis).atZone(ZoneOffset.UTC).toLocalDate())
                     }
                     open = false
-                }) { Text("OK") }
+                }) { Text(stringResource(R.string.action_ok)) }
             },
-            dismissButton = { TextButton(onClick = { open = false }) { Text("Cancel") } },
+            dismissButton = { TextButton(onClick = { open = false }) { Text(stringResource(R.string.cancel)) } },
         ) {
             DatePicker(state = state)
         }
@@ -77,7 +79,7 @@ fun TimePickerButton(
     ClayFieldButton(
         label = label,
         value = value?.let(::formatTime),
-        placeholder = "Pick a time",
+        placeholder = stringResource(R.string.pick_time_placeholder),
         onClick = { open = true },
         modifier = modifier,
     )
@@ -93,10 +95,10 @@ fun TimePickerButton(
                 TextButton(onClick = {
                     onPicked(LocalTime.of(state.hour, state.minute))
                     open = false
-                }) { Text("OK") }
+                }) { Text(stringResource(R.string.action_ok)) }
             },
-            dismissButton = { TextButton(onClick = { open = false }) { Text("Cancel") } },
-            title = { Text("Time of birth") },
+            dismissButton = { TextButton(onClick = { open = false }) { Text(stringResource(R.string.cancel)) } },
+            title = { Text(stringResource(R.string.time_of_birth_label)) },
             text = { TimeInput(state = state) },
         )
     }

@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.palmlens.ui.theme.ClayShapeSmall
 import com.palmlens.ui.theme.Spacing
@@ -44,6 +45,7 @@ fun ClayTextField(
     supportingText: String? = null,
     enabled: Boolean = true,
     singleLine: Boolean = true,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
 ) {
     val cs = MaterialTheme.colorScheme
@@ -61,6 +63,7 @@ fun ClayTextField(
             textStyle = MaterialTheme.typography.bodyLarge.copy(
                 color = if (enabled) cs.onSurface else cs.onSurfaceVariant,
             ),
+            visualTransformation = visualTransformation,
             keyboardOptions = keyboardOptions,
             cursorBrush = SolidColor(cs.primary),
             interactionSource = interaction,

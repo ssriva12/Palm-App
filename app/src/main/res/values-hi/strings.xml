@@ -1,0 +1,207 @@
+<resources>
+    <string name="app_name">Palmlens</string>
+
+    <string name="disclaimer">केवल मनोरंजन के लिए।</string>
+
+    <string name="settings">सेटिंग्स</string>
+    <string name="cd_open_settings">सेटिंग्स खोलें</string>
+
+    <string name="settings_language">भाषा</string>
+    <string name="settings_language_desc">जिस भाषा में आपकी रीडिंग लिखी जाती है</string>
+
+    <string name="settings_dark_mode">डार्क मोड</string>
+    <string name="settings_dark_mode_desc">आपकी डिवाइस थीम को ओवरराइड करता है</string>
+
+    <string name="settings_privacy">गोपनीयता &amp; सहमति</string>
+    <string name="settings_privacy_desc">विज्ञापन आपके डेटा का उपयोग कैसे कर सकते हैं, यह देखें</string>
+
+    <string name="settings_help">सहायता &amp; सामान्य प्रश्न</string>
+    <string name="settings_help_desc">सामान्य सवालों के जवाब</string>
+
+    <string name="settings_terms">नियम &amp; शर्तें</string>
+    <string name="settings_terms_desc">Palmlens का उपयोग करने के नियम</string>
+
+    <string name="settings_privacy_policy">गोपनीयता नीति</string>
+    <string name="settings_privacy_policy_desc">आपके डेटा को कैसे संभाला जाता है</string>
+
+    <string name="settings_sign_out">साइन आउट करें</string>
+    <string name="settings_sign_out_desc">उसी ईमेल से कभी भी वापस साइन इन करें</string>
+
+    <string name="settings_delete">मेरा डेटा हटाएं</string>
+    <string name="settings_delete_desc">इस डिवाइस से आपकी प्रोफ़ाइल, रीडिंग और स्कैन की गिनती मिटा दें</string>
+    <string name="settings_delete_dialog_title">सब कुछ हटाएं?</string>
+    <string name="settings_delete_dialog_body">आपकी प्रोफ़ाइल, सहेजी गई रीडिंग, टैरो और लव परिणाम, और स्कैन की गिनती इस फ़ोन से मिटा दी जाएगी। इसे पूर्ववत नहीं किया जा सकता।</string>
+    <string name="settings_delete_confirm">हटाएं</string>
+    <string name="cancel">रद्द करें</string>
+
+    <string name="settings_version">संस्करण %1$s</string>
+    <string name="action_save">सहेजें</string>
+
+    <string name="action_try_again">पुनः प्रयास करें</string>
+    <string name="action_ok">ठीक है</string>
+    <string name="cd_navigate_back">वापस जाएं</string>
+    <string name="time_of_birth_label">जन्म का समय</string>
+    <string name="error_default_message">अभी आसमान में बादल छाए हैं। थोड़ी देर में पुनः प्रयास करें।</string>
+    <string name="pick_date_placeholder">तारीख चुनें</string>
+    <string name="pick_time_placeholder">समय चुनें</string>
+
+    <string name="feature_palm_scanner_title">पाम स्कैनर</string>
+    <string name="feature_love_title">लव टेस्ट</string>
+    <string name="feature_tarot_title">टैरो</string>
+    <string name="stat_lucky_colour">भाग्यशाली रंग</string>
+
+    <plurals name="free_scans_remaining">
+        <item quantity="one">%1$d मुफ़्त स्कैन बचा है</item>
+        <item quantity="other">%1$d मुफ़्त स्कैन बचे हैं</item>
+    </plurals>
+
+    <string name="splash_tagline">जो आपके हाथ याद रखते हैं, उसे पढ़ें</string>
+
+    <string name="home_greeting">नमस्ते %1$s</string>
+    <string name="home_default_name">दोस्त</string>
+    <string name="home_greeting_subtitle">%1$s, %2$s</string>
+    <string name="home_today_label">आज</string>
+    <string name="home_loading_highlights">माहौल को समझा जा रहा है…</string>
+    <string name="home_lucky_number_short">भाग्यशाली नंबर</string>
+    <string name="home_scans_used_up">आपने अपने सभी मुफ़्त स्कैन इस्तेमाल कर लिए हैं</string>
+    <string name="feature_horoscope_title">राशिफल</string>
+    <string name="feature_horoscope_subtitle">दैनिक, साप्ताहिक, मासिक</string>
+    <string name="feature_highlights_subtitle">मूड, भाग्य, फोकस</string>
+    <string name="feature_love_subtitle">अपनी अनुकूलता जांचें</string>
+    <string name="feature_tarot_subtitle">तीन कार्ड चुनें</string>
+
+    <string name="scanner_no_scans_left">कोई मुफ़्त स्कैन शेष नहीं</string>
+    <string name="scanner_guide_instruction">अपना हाथ सीधा रखें, हथेली कैमरे की ओर, समान रोशनी में।</string>
+    <string name="scanner_hand_label">%1$s हाथ</string>
+    <string name="scanner_hand_dominant_desc">प्रमुख हाथ। आपका वर्तमान और भविष्य।</string>
+    <string name="scanner_hand_nondominant_desc">गैर-प्रमुख हाथ। विरासत में मिले गुण।</string>
+    <string name="scanner_camera_permission_rationale">Palmlens को आपकी हथेली स्कैन करने के लिए कैमरे की आवश्यकता है। फोटो रीडिंग के लिए भेजी जाती है और कभी सहेजी नहीं जाती।</string>
+    <string name="action_allow_camera">कैमरे की अनुमति दें</string>
+    <string name="scanner_processing_message">आपकी रेखाओं का पता लगाया जा रहा है…</string>
+    <string name="scanner_error_message">आसमान में बादल छाए हैं। वह स्कैन फिर से करें।</string>
+    <string name="cd_your_palm">आपकी हथेली</string>
+    <string name="scanner_tap_line_hint">विवरण के लिए किसी रेखा पर टैप करें।</string>
+    <string name="scanner_lucky_number_label">भाग्यशाली नंबर</string>
+    <string name="scanner_lucky_color_label">भाग्यशाली रंग</string>
+    <string name="cd_collapse">संक्षिप्त करें</string>
+    <string name="cd_expand">विस्तृत करें</string>
+    <string name="scanner_confidence">%1$d%% निश्चित</string>
+    <string name="action_scan_again">फिर से स्कैन करें</string>
+
+    <string name="tarot_title">टैरो</string>
+    <string name="tarot_shuffling">डेक फेंटा जा रहा है…</string>
+    <string name="tarot_revealing">कार्ड पलटे जा रहे हैं…</string>
+    <string name="tarot_error_message">आसमान में बादल छाए हैं और कार्ड नहीं पलट सके। फिर से प्रयास करें।</string>
+    <string name="tarot_already_drew">आज आपकी रीडिंग हो चुकी है। नए स्प्रेड के लिए कल वापस आएं।</string>
+    <string name="tarot_pick_instruction">अपने मन को शांत करें और तीन कार्ड चुनें। रीडिंग अपने आप शुरू हो जाएगी।</string>
+    <string name="tarot_picked_count">%1$d / 3 चुने गए</string>
+    <string name="tarot_spread_label">स्प्रेड</string>
+    <string name="action_new_reading">नई रीडिंग</string>
+    <string name="tarot_shuffle_disclaimer">कार्ड आपके डिवाइस पर फेंटे और चुने जाते हैं।</string>
+    <string name="tarot_card_upright">"  %1$s"</string>
+    <string name="tarot_card_reversed">"  %1$s (उल्टा)"</string>
+
+    <string name="onboarding_title">आपके बारे में</string>
+    <string name="onboarding_step_indicator">चरण %1$d / %2$d</string>
+    <string name="onboarding_step_name_question">हम आपको क्या कहकर बुलाएं?</string>
+    <string name="onboarding_name_label">नाम</string>
+    <string name="onboarding_name_placeholder">आपका नाम</string>
+    <string name="onboarding_name_char_count">%1$d/30</string>
+    <string name="onboarding_step_gender_question">आप खुद को कैसे पहचानते हैं?</string>
+    <string name="onboarding_step_dob_question">आपका जन्म कब हुआ था?</string>
+    <string name="onboarding_dob_desc">यह आपकी राशि तय करता है और हर राशिफल को आकार देता है।</string>
+    <string name="onboarding_dob_label">जन्म तिथि</string>
+    <string name="onboarding_age_error">Palmlens का उपयोग करने के लिए आपकी उम्र कम से कम 13 वर्ष होनी चाहिए।</string>
+    <string name="onboarding_step_time_question">क्या आपको अपने जन्म का समय पता है?</string>
+    <string name="onboarding_time_known">हां, मुझे पता है</string>
+    <string name="onboarding_time_unknown">पक्का नहीं, छोड़ दें</string>
+    <string name="onboarding_step_place_question">आपका जन्म कहां हुआ था?</string>
+    <string name="onboarding_place_desc">वैकल्पिक। आपकी रीडिंग में थोड़ा संदर्भ जोड़ता है।</string>
+    <string name="onboarding_place_label">शहर, देश</string>
+    <string name="onboarding_place_placeholder">जैसे, लिस्बन, पुर्तगाल</string>
+    <string name="action_back">वापस</string>
+    <string name="action_finish">समाप्त</string>
+    <string name="action_next">अगला</string>
+
+    <string name="language_title">अपनी भाषा चुनें</string>
+    <string name="language_subtitle">हर रीडिंग आपकी चुनी हुई भाषा में लिखी जाती है।</string>
+    <string name="language_continue">जारी रखें</string>
+
+    <string name="highlights_title">दैनिक हाइलाइट्स</string>
+    <string name="highlights_loading">दिन को समझा जा रहा है…</string>
+    <string name="highlights_mood_label">मूड</string>
+    <string name="highlights_lucky_number_label">भाग्यशाली नंबर</string>
+    <string name="highlights_focus_label">आज का फोकस</string>
+    <string name="highlights_advice_label">सलाह</string>
+
+    <string name="love_title">लव टेस्ट</string>
+    <string name="love_intro">आप और कोई कैसे मेल खाते हैं?</string>
+    <string name="love_self_label">आप</string>
+    <string name="love_partner_name_label">उनका नाम</string>
+    <string name="love_partner_name_placeholder">पहला नाम</string>
+    <string name="love_partner_dob_label">उनकी जन्म तिथि (वैकल्पिक)</string>
+    <string name="action_check_compatibility">अनुकूलता जांचें</string>
+    <string name="love_loading">आप दोनों के बीच पढ़ा जा रहा है…</string>
+    <string name="love_error_message">आसमान में बादल छाए हैं और यह जोड़ी नहीं पढ़ी जा सकी। फिर से प्रयास करें।</string>
+    <string name="love_pairing_names">"%1$s  और  %2$s"</string>
+    <string name="love_partner_fallback">उन्हें</string>
+    <string name="love_strengths_label">मजबूतियां</string>
+    <string name="love_challenges_label">ध्यान देने योग्य</string>
+    <string name="action_try_another_pairing">एक और जोड़ी आज़माएं</string>
+    <string name="love_bullet">"•  "</string>
+    <string name="cd_compatibility_score">अनुकूलता स्कोर: %1$d प्रतिशत</string>
+
+    <string name="cd_close">बंद करें</string>
+    <string name="subscription_title">Palmlens प्रीमियम</string>
+    <string name="subscription_subtitle">असीमित स्कैन, कोई विज्ञापन नहीं, और दैनिक राशिफल।</string>
+    <string name="subscription_plan_weekly">साप्ताहिक</string>
+    <string name="subscription_plan_monthly">मासिक</string>
+    <string name="subscription_plan_yearly">वार्षिक</string>
+    <string name="subscription_price_placeholder">प्लेसहोल्डर</string>
+    <string name="subscription_trial_note">3-दिन का मुफ़्त ट्रायल</string>
+    <string name="subscription_best_value_note">सर्वश्रेष्ठ मूल्य</string>
+    <string name="subscription_price_disclaimer">इस बिल्ड में कीमतें प्लेसहोल्डर हैं। असली कीमतें Play Billing से आएंगी।</string>
+    <string name="action_start_trial">मुफ़्त ट्रायल शुरू करें</string>
+    <string name="action_maybe_later">शायद बाद में</string>
+    <string name="action_restore_purchases">खरीदारी पुनर्स्थापित करें</string>
+
+    <string name="horoscope_tab_daily">दैनिक</string>
+    <string name="horoscope_tab_weekly">साप्ताहिक</string>
+    <string name="horoscope_tab_monthly">मासिक</string>
+    <string name="horoscope_loading">सितारों से सलाह ली जा रही है…</string>
+    <string name="cd_rating">रेटिंग: 5 में से %1$d</string>
+    <string name="horoscope_facet_love">प्रेम</string>
+    <string name="horoscope_facet_career">करियर</string>
+    <string name="horoscope_facet_health">स्वास्थ्य</string>
+
+    <!-- Bottom nav / Today / Readings -->
+    <string name="nav_today">आज</string>
+    <string name="nav_readings">रीडिंग्स</string>
+    <string name="nav_compatibility">अनुकूलता</string>
+    <string name="today_insights_title">आज की झलकियाँ</string>
+    <string name="today_matches_title">आज के मेल</string>
+    <string name="today_matches_friendship">दोस्ती</string>
+    <string name="today_lucky_time_label">शुभ समय</string>
+
+    <string name="horoscope_tab_yearly">वार्षिक</string>
+    <string-array name="yearly_overviews">
+        <item>स्थिर विकास का वर्ष — प्रक्रिया पर भरोसा रखें और गति बनने दें।</item>
+        <item>मोड़ आने की उम्मीद करें। बदलाव का विरोध करने के बजाय उसे अपनाएं।</item>
+        <item>रिश्ते केंद्र में रहेंगे — पुराने बंधन गहरे होंगे, नए बनेंगे।</item>
+        <item>साहसिक कदमों का वर्ष। सोच-समझकर लिया गया जोखिम सावधानी से बेहतर परिणाम देगा।</item>
+        <item>इस वर्ष आराम और पुनर्संतुलन उतना ही जरूरी है जितनी महत्वाकांक्षा।</item>
+        <item>आपकी मेहनत जुड़ती जाएगी — छोटे, निरंतर फैसले बड़ी तस्वीर गढ़ते हैं।</item>
+    </string-array>
+
+    <!-- Auth -->
+    <string name="auth_signin_title">वापसी पर स्वागत है</string>
+    <string name="auth_signup_title">अपना खाता बनाएं</string>
+    <string name="auth_subtitle">अपने मुफ़्त स्कैन और रीडिंग को अपने खाते से जोड़े रखने के लिए साइन इन करें।</string>
+    <string name="auth_email_label">ईमेल</string>
+    <string name="auth_password_label">पासवर्ड</string>
+    <string name="auth_signin_button">साइन इन करें</string>
+    <string name="auth_signup_button">खाता बनाएं</string>
+    <string name="auth_toggle_to_signup">खाता नहीं है? साइन अप करें</string>
+    <string name="auth_toggle_to_signin">पहले से खाता है? साइन इन करें</string>
+    <string name="auth_loading">साइन इन किया जा रहा है…</string>
+</resources>

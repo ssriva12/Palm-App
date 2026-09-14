@@ -16,6 +16,18 @@
     <string name="settings_privacy">Privacy &amp; consent</string>
     <string name="settings_privacy_desc">Review how ads may use your data</string>
 
+    <string name="settings_help">Help &amp; FAQ</string>
+    <string name="settings_help_desc">Answers to common questions</string>
+
+    <string name="settings_terms">Terms &amp; Conditions</string>
+    <string name="settings_terms_desc">The rules for using Palmlens</string>
+
+    <string name="settings_privacy_policy">Privacy Policy</string>
+    <string name="settings_privacy_policy_desc">How your data is handled</string>
+
+    <string name="settings_sign_out">Sign out</string>
+    <string name="settings_sign_out_desc">Sign back in anytime with the same email</string>
+
     <string name="settings_delete">Delete my data</string>
     <string name="settings_delete_desc">Erase your profile, readings and scan count from this device</string>
     <string name="settings_delete_dialog_title">Delete everything?</string>
@@ -25,4 +37,185 @@
 
     <string name="settings_version">Version %1$s</string>
     <string name="action_save">Save</string>
+
+    <!-- Shared actions/labels reused across two or more screens -->
+    <string name="action_try_again">Try again</string>
+    <string name="action_ok">OK</string>
+    <string name="cd_navigate_back">Navigate back</string>
+    <string name="time_of_birth_label">Time of birth</string>
+    <string name="error_default_message">The sky is overcast right now. Try again in a moment.</string>
+    <string name="pick_date_placeholder">Pick a date</string>
+    <string name="pick_time_placeholder">Pick a time</string>
+
+    <!-- Two exact-duplicate strings shared by Home and other screens -->
+    <string name="feature_palm_scanner_title">Palm Scanner</string>
+    <string name="feature_love_title">Love Test</string>
+    <string name="feature_tarot_title">Tarot</string>
+    <string name="stat_lucky_colour">Lucky colour</string>
+
+    <plurals name="free_scans_remaining">
+        <item quantity="one">%1$d free scan left</item>
+        <item quantity="other">%1$d free scans left</item>
+    </plurals>
+
+    <!-- Splash -->
+    <string name="splash_tagline">Read what your hands remember</string>
+
+    <!-- Home -->
+    <string name="home_greeting">Hi %1$s</string>
+    <string name="home_default_name">there</string>
+    <string name="home_greeting_subtitle">%1$s, %2$s</string>
+    <string name="home_today_label">TODAY</string>
+    <string name="home_loading_highlights">Reading the room…</string>
+    <string name="home_lucky_number_short">Lucky no.</string>
+    <string name="home_scans_used_up">You\'ve used all your free scans</string>
+    <string name="feature_horoscope_title">Horoscope</string>
+    <string name="feature_horoscope_subtitle">Daily, weekly, monthly</string>
+    <string name="feature_highlights_subtitle">Mood, luck, focus</string>
+    <string name="feature_love_subtitle">Check your compatibility</string>
+    <string name="feature_tarot_subtitle">Pick three cards</string>
+
+    <!-- Scanner -->
+    <string name="scanner_no_scans_left">No free scans left</string>
+    <string name="scanner_guide_instruction">Hold your hand flat, palm to the camera, in even light.</string>
+    <string name="scanner_hand_label">%1$s hand</string>
+    <string name="scanner_hand_dominant_desc">Dominant hand. Your present and future.</string>
+    <string name="scanner_hand_nondominant_desc">Non-dominant hand. Inherited traits.</string>
+    <string name="scanner_camera_permission_rationale">Palmlens needs the camera to scan your palm. The photo is sent for a reading and never saved.</string>
+    <string name="action_allow_camera">Allow camera</string>
+    <string name="scanner_processing_message">Tracing your lines…</string>
+    <string name="scanner_error_message">The sky is overcast. Try that scan again.</string>
+    <string name="cd_your_palm">Your palm</string>
+    <string name="scanner_tap_line_hint">Tap a line for details.</string>
+    <string name="scanner_lucky_number_label">LUCKY NUMBER</string>
+    <string name="scanner_lucky_color_label">LUCKY COLOUR</string>
+    <string name="cd_collapse">Collapse</string>
+    <string name="cd_expand">Expand</string>
+    <string name="scanner_confidence">%1$d%% sure</string>
+    <string name="action_scan_again">Scan again</string>
+
+    <!-- Tarot -->
+    <string name="tarot_title">Tarot</string>
+    <string name="tarot_shuffling">Shuffling the deck…</string>
+    <string name="tarot_revealing">Turning the cards…</string>
+    <string name="tarot_error_message">The sky is overcast and the cards wouldn\'t turn. Try again.</string>
+    <string name="tarot_already_drew">You\'ve had your reading today. Come back tomorrow for a new spread.</string>
+    <string name="tarot_pick_instruction">Clear your mind and choose three cards. The reading begins on its own.</string>
+    <string name="tarot_picked_count">%1$d / 3 chosen</string>
+    <string name="tarot_spread_label">THE SPREAD</string>
+    <string name="action_new_reading">New reading</string>
+    <string name="tarot_shuffle_disclaimer">Cards are shuffled and drawn on your device.</string>
+    <string name="tarot_card_upright">"  %1$s"</string>
+    <string name="tarot_card_reversed">"  %1$s (reversed)"</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title">About you</string>
+    <string name="onboarding_step_indicator">Step %1$d of %2$d</string>
+    <string name="onboarding_step_name_question">What should we call you?</string>
+    <string name="onboarding_name_label">Name</string>
+    <string name="onboarding_name_placeholder">Your name</string>
+    <string name="onboarding_name_char_count">%1$d/30</string>
+    <string name="onboarding_step_gender_question">How do you identify?</string>
+    <string name="onboarding_step_dob_question">When were you born?</string>
+    <string name="onboarding_dob_desc">Sets your zodiac sign and shapes every horoscope.</string>
+    <string name="onboarding_dob_label">Date of birth</string>
+    <string name="onboarding_age_error">You need to be at least 13 to use Palmlens.</string>
+    <string name="onboarding_step_time_question">Do you know your birth time?</string>
+    <string name="onboarding_time_known">Yes, I know it</string>
+    <string name="onboarding_time_unknown">Not sure, skip it</string>
+    <string name="onboarding_step_place_question">Where were you born?</string>
+    <string name="onboarding_place_desc">Optional. Adds a little context to your readings.</string>
+    <string name="onboarding_place_label">City, country</string>
+    <string name="onboarding_place_placeholder">e.g. Lisbon, Portugal</string>
+    <string name="action_back">Back</string>
+    <string name="action_finish">Finish</string>
+    <string name="action_next">Next</string>
+
+    <!-- Language -->
+    <string name="language_title">Choose your language</string>
+    <string name="language_subtitle">Every reading is written in the language you pick.</string>
+    <string name="language_continue">Continue</string>
+
+    <!-- Highlights -->
+    <string name="highlights_title">Daily Highlights</string>
+    <string name="highlights_loading">Reading the day…</string>
+    <string name="highlights_mood_label">MOOD</string>
+    <string name="highlights_lucky_number_label">Lucky number</string>
+    <string name="highlights_focus_label">FOCUS OF THE DAY</string>
+    <string name="highlights_advice_label">ADVICE</string>
+
+    <!-- Love -->
+    <string name="love_title">Love Test</string>
+    <string name="love_intro">How do you and someone match up?</string>
+    <string name="love_self_label">You</string>
+    <string name="love_partner_name_label">Their name</string>
+    <string name="love_partner_name_placeholder">First name</string>
+    <string name="love_partner_dob_label">Their date of birth (optional)</string>
+    <string name="action_check_compatibility">Check compatibility</string>
+    <string name="love_loading">Reading between you two…</string>
+    <string name="love_error_message">The sky is overcast and this pairing wouldn\'t read. Try again.</string>
+    <string name="love_pairing_names">"%1$s  and  %2$s"</string>
+    <string name="love_partner_fallback">them</string>
+    <string name="love_strengths_label">STRENGTHS</string>
+    <string name="love_challenges_label">WORTH WATCHING</string>
+    <string name="action_try_another_pairing">Try another pairing</string>
+    <string name="love_bullet">"•  "</string>
+    <string name="cd_compatibility_score">Compatibility score: %1$d percent</string>
+
+    <!-- Subscription -->
+    <string name="cd_close">Close</string>
+    <string name="subscription_title">Palmlens Premium</string>
+    <string name="subscription_subtitle">Unlimited scans, no ads, and the daily horoscope.</string>
+    <string name="subscription_plan_weekly">Weekly</string>
+    <string name="subscription_plan_monthly">Monthly</string>
+    <string name="subscription_plan_yearly">Yearly</string>
+    <string name="subscription_price_placeholder">placeholder</string>
+    <string name="subscription_trial_note">3-day free trial</string>
+    <string name="subscription_best_value_note">Best value</string>
+    <string name="subscription_price_disclaimer">Prices are placeholders in this build. The real ones come from Play Billing.</string>
+    <string name="action_start_trial">Start free trial</string>
+    <string name="action_maybe_later">Maybe later</string>
+    <string name="action_restore_purchases">Restore purchases</string>
+
+    <!-- Horoscope -->
+    <string name="horoscope_tab_daily">Daily</string>
+    <string name="horoscope_tab_weekly">Weekly</string>
+    <string name="horoscope_tab_monthly">Monthly</string>
+    <string name="horoscope_tab_yearly">Yearly</string>
+    <string name="horoscope_loading">Consulting the stars…</string>
+    <string name="cd_rating">Rating: %1$d out of 5</string>
+    <string name="horoscope_facet_love">Love</string>
+    <string name="horoscope_facet_career">Career</string>
+    <string name="horoscope_facet_health">Health</string>
+    <string-array name="yearly_overviews">
+        <item>A year of steady growth — trust the process and let momentum build.</item>
+        <item>Expect turning points. Lean into change instead of resisting it.</item>
+        <item>Relationships take center stage — old ties deepen, new ones form.</item>
+        <item>A year for bold moves. Calculated risks pay off more than caution does.</item>
+        <item>Rest and recalibration matter as much as ambition this year.</item>
+        <item>Your effort compounds — small consistent choices shape the bigger picture.</item>
+    </string-array>
+
+    <!-- Bottom nav / Today / Readings -->
+    <string name="nav_today">Today</string>
+    <string name="nav_readings">Readings</string>
+    <string name="nav_compatibility">Compatibility</string>
+    <string name="today_insights_title">Today\'s Insights</string>
+    <string name="today_matches_title">Today\'s Matches</string>
+    <string name="today_matches_friendship">Friendship</string>
+    <string name="today_lucky_time_label">Lucky time</string>
+
+    <!-- Today: Highlights period tiles -->
+
+    <!-- Auth -->
+    <string name="auth_signin_title">Welcome back</string>
+    <string name="auth_signup_title">Create your account</string>
+    <string name="auth_subtitle">Sign in to keep your free scans and readings tied to your account.</string>
+    <string name="auth_email_label">Email</string>
+    <string name="auth_password_label">Password</string>
+    <string name="auth_signin_button">Sign in</string>
+    <string name="auth_signup_button">Create account</string>
+    <string name="auth_toggle_to_signup">Don\'t have an account? Sign up</string>
+    <string name="auth_toggle_to_signin">Already have an account? Sign in</string>
+    <string name="auth_loading">Signing you in…</string>
 </resources>

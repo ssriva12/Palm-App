@@ -3,6 +3,7 @@ package com.palmlens.ui.components
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -51,6 +52,7 @@ fun ClayCard(
                 },
             )
             .padding(contentPadding),
+        horizontalAlignment = Alignment.CenterHorizontally,
         content = content,
     )
 }
@@ -71,11 +73,19 @@ fun FeatureTile(
             modifier = Modifier.size(28.dp),
         )
         Spacer(Modifier.height(Spacing.space12))
-        Text(title, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurface)
+        Text(
+            title,
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onSurface,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth(),
+        )
         Text(
             subtitle,
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth(),
         )
     }
 }
@@ -87,9 +97,17 @@ fun StatTile(label: String, value: String, modifier: Modifier = Modifier) {
             label.uppercase(),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth(),
         )
         Spacer(Modifier.height(Spacing.space4))
-        Text(value, style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.primary)
+        Text(
+            value,
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.primary,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth(),
+        )
     }
 }
 
@@ -101,6 +119,29 @@ fun SectionHeader(text: String, modifier: Modifier = Modifier) {
         color = MaterialTheme.colorScheme.onBackground,
         modifier = modifier,
     )
+}
+
+/** A labelled fact card — shows nothing when [text] is null (e.g. a facet the model skipped). */
+@Composable
+fun FacetCard(label: String, text: String?, modifier: Modifier = Modifier) {
+    if (text == null) return
+    ClayCard(modifier.fillMaxWidth(), contentPadding = Spacing.space14) {
+        Text(
+            label.uppercase(),
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.primary,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth(),
+        )
+        Spacer(Modifier.height(Spacing.space4))
+        Text(
+            text,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurface,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
 }
 
 /** Centered loading state with a mystic one-liner. */

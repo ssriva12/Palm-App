@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.palmlens.ads.AdManager
 import com.palmlens.core.coroutines.IoDispatcher
 import com.palmlens.data.local.PalmlensDatabase
+import com.palmlens.domain.repository.AuthRepository
 import com.palmlens.domain.repository.ProfileRepository
 import com.palmlens.domain.repository.ThemePreferenceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,6 +29,7 @@ class SettingsViewModel @Inject constructor(
     private val database: PalmlensDatabase,
     private val adManager: AdManager,
     private val themePreferenceRepository: ThemePreferenceRepository,
+    private val authRepository: AuthRepository,
     @IoDispatcher private val io: CoroutineDispatcher,
 ) : ViewModel() {
 
@@ -48,6 +50,19 @@ class SettingsViewModel @Inject constructor(
 
     fun consumeDeleted() {
         deleted = false
+    }
+
+    /** One-shot, same reasoning as [deleted]. */
+    var signedOut by mutableStateOf(false)
+        private set
+
+    fun consumeSignedOut() {
+        signedOut = false
+    }
+
+    fun signOut() {
+        authRepository.signOut()
+        signedOut = true
     }
 
     fun openPrivacyOptions(activity: Activity) = adManager.showPrivacyOptions(activity)

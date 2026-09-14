@@ -22,6 +22,10 @@ val InkTextSoft = Color(0xFF6B5643) // secondary text
 val Edge = Color(0xFFC9B78E)
 val EdgeSoft = Color(0xFFDFD1AC)
 val ShadowLight = Color(0xFF2C2015) // warm near-black; doubles as card ink (border)
+val Danger = Color(0xFFC1442E) // brick red — destructive actions only
+val OnDanger = Color(0xFFFBF3E4)
+val DangerSoft = Color(0xFFF3D0C6)
+val OnDangerSoft = Color(0xFF4A1F14)
 
 // --- Dark: not a dim mirror of light. Near-black ground, brighter accents, cream ink for
 // borders so card edges stay legible instead of vanishing into a muddy brown. ---
@@ -40,3 +44,7 @@ val InkOnDark = Color(0xFFF1E4CC) // body text; doubles as card ink (border)
 val InkOnDarkSoft = Color(0xFFC4B291)
 val EdgeDark = Color(0xFF5A4531)
 val EdgeSoftDark = Color(0xFF3D2E20)
+val DangerLift = Color(0xFFE8604A) // destructive actions only, lifted for contrast on dark
+val OnDangerLift = Color(0xFF3A150C)
+val DangerLiftSoft = Color(0xFF4A2418)
+val OnDangerLiftSoft = Color(0xFFF3C8B8)

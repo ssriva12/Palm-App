@@ -16,9 +16,11 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -59,6 +61,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -66,6 +70,7 @@ import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.palmlens.BuildConfig
+import com.palmlens.R
 import com.palmlens.ads.rememberAdManager
 import com.palmlens.domain.model.Hand
 import com.palmlens.domain.model.LineId
@@ -75,6 +80,7 @@ import com.palmlens.ui.components.ClayCard
 import com.palmlens.ui.components.MysticScaffold
 import com.palmlens.ui.components.PrimaryButton
 import com.palmlens.ui.components.SecondaryButton
+import com.palmlens.ui.components.StatTile
 import com.palmlens.ui.scanner.camera.CameraCapture
 import com.palmlens.ui.theme.ClayShape
 import com.palmlens.ui.theme.clay
@@ -118,12 +124,12 @@ fun ScannerScreen(onBack: () -> Unit, onPaywall: () -> Unit) {
     BackHandler(enabled = vm.phase == ScanPhase.RESULT) { leaveResult(back = true) }
 
     MysticScaffold(
-        title = "Palm Scanner",
+        title = stringResource(R.string.feature_palm_scanner_title),
         onBack = { if (vm.phase == ScanPhase.RESULT) leaveResult(back = true) else onBack() },
         actions = {
             if (vm.phase == ScanPhase.RESULT) {
                 SecondaryButton(
-                    text = "Scan again",
+                    text = stringResource(R.string.action_scan_again),
                     compact = true,
                     onClick = { leaveResult(back = false) },
                 )
@@ -200,13 +206,17 @@ private fun GuidePhase(
     ) { granted -> hasPermission = granted }
 
     Text(
-        "Hold your hand flat, palm to the camera, in even light.",
+        stringResource(R.string.scanner_guide_instruction),
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
     Spacer(Modifier.height(Spacing.space4))
     Text(
-        if (scansRemaining > 0) "$scansRemaining free scan${if (scansRemaining == 1) "" else "s"} left" else "No free scans left",
+        if (scansRemaining > 0) {
+            pluralStringResource(R.plurals.free_scans_remaining, scansRemaining, scansRemaining)
+        } else {
+            stringResource(R.string.scanner_no_scans_left)
+        },
         style = MaterialTheme.typography.labelSmall,
         color = MaterialTheme.colorScheme.primary,
     )
@@ -217,15 +227,15 @@ private fun GuidePhase(
             FilterChip(
                 selected = hand == h,
                 onClick = { onHand(h) },
-                label = { Text("${h.label} hand") },
+                label = { Text(stringResource(R.string.scanner_hand_label, h.label)) },
             )
         }
     }
     Text(
         if (hand == Hand.RIGHT) {
-            "Dominant hand. Your present and future."
+            stringResource(R.string.scanner_hand_dominant_desc)
         } else {
-            "Non-dominant hand. Inherited traits."
+            stringResource(R.string.scanner_hand_nondominant_desc)
         },
         style = MaterialTheme.typography.labelSmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -256,13 +266,13 @@ private fun GuidePhase(
                 )
                 Spacer(Modifier.height(Spacing.space12))
                 Text(
-                    "Palmlens needs the camera to scan your palm. The photo is sent for a reading and never saved.",
+                    stringResource(R.string.scanner_camera_permission_rationale),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
                 )
                 Spacer(Modifier.height(Spacing.space16))
-                PrimaryButton("Allow camera") {
+                PrimaryButton(stringResource(R.string.action_allow_camera)) {
                     permissionLauncher.launch(Manifest.permission.CAMERA)
                 }
             }
@@ -277,7 +287,7 @@ private fun ProcessingPhase() {
             CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
             Spacer(Modifier.height(Spacing.space16))
             Text(
-                "Tracing your lines…",
+                stringResource(R.string.scanner_processing_message),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -300,7 +310,7 @@ private fun ErrorPhase(onRetry: () -> Unit) {
             )
             Spacer(Modifier.height(Spacing.space12))
             Text(
-                "The sky is overcast. Try that scan again.",
+                stringResource(R.string.scanner_error_message),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
@@ -308,7 +318,7 @@ private fun ErrorPhase(onRetry: () -> Unit) {
         }
     }
     Spacer(Modifier.height(Spacing.space16))
-    PrimaryButton("Try again", Modifier.fillMaxWidth(), onClick = onRetry)
+    PrimaryButton(stringResource(R.string.action_try_again), Modifier.fillMaxWidth(), onClick = onRetry)
 }
 
 @Composable
@@ -331,7 +341,7 @@ private fun ResultPhase(
         if (image != null) {
             Image(
                 bitmap = image,
-                contentDescription = "Your palm",
+                contentDescription = stringResource(R.string.cd_your_palm),
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier.fillMaxSize(),
             )
@@ -352,7 +362,7 @@ private fun ResultPhase(
     )
     Spacer(Modifier.height(Spacing.space6))
     Text(
-        "Tap a line for details.",
+        stringResource(R.string.scanner_tap_line_hint),
         style = MaterialTheme.typography.labelSmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
@@ -369,31 +379,20 @@ private fun ResultPhase(
         Spacer(Modifier.height(Spacing.space12))
     }
 
-    Row(horizontalArrangement = Arrangement.spacedBy(Spacing.space12)) {
-        ClayCard(Modifier.weight(1f), contentPadding = Spacing.space14) {
-            Text(
-                "LUCKY NUMBER",
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-            Text(
-                reading.luckyNumber.toString(),
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-        }
-        ClayCard(Modifier.weight(1f), contentPadding = Spacing.space14) {
-            Text(
-                "LUCKY COLOUR",
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-            Text(
-                reading.luckyColor,
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-        }
+    Row(
+        Modifier.height(IntrinsicSize.Max),
+        horizontalArrangement = Arrangement.spacedBy(Spacing.space12),
+    ) {
+        StatTile(
+            stringResource(R.string.scanner_lucky_number_label),
+            reading.luckyNumber.toString(),
+            Modifier.weight(1f).fillMaxHeight(),
+        )
+        StatTile(
+            stringResource(R.string.scanner_lucky_color_label),
+            reading.luckyColor,
+            Modifier.weight(1f).fillMaxHeight(),
+        )
     }
 }
 
@@ -416,14 +415,14 @@ private fun LineCard(line: PalmLine, expanded: Boolean, onToggle: () -> Unit) {
                 modifier = Modifier.weight(1f),
             )
             Text(
-                "${(line.confidence * 100).roundToInt()}% sure",
+                stringResource(R.string.scanner_confidence, (line.confidence * 100).roundToInt()),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Spacer(Modifier.width(Spacing.space6))
             Icon(
                 if (expanded) Icons.Outlined.KeyboardArrowUp else Icons.Outlined.KeyboardArrowDown,
-                contentDescription = if (expanded) "Collapse" else "Expand",
+                contentDescription = stringResource(if (expanded) R.string.cd_collapse else R.string.cd_expand),
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.size(20.dp),
             )

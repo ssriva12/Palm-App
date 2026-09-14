@@ -25,10 +25,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.palmlens.R
 import com.palmlens.domain.model.Gender
 import com.palmlens.ui.components.ClayTextField
 import com.palmlens.ui.components.DobPickerButton
@@ -49,7 +51,7 @@ fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
     val vm: OnboardingViewModel = hiltViewModel()
     val ui = vm.ui
 
-    MysticScaffold(title = "About you", onBack = { vm.back(onExit) }) { pad ->
+    MysticScaffold(title = stringResource(R.string.onboarding_title), onBack = { vm.back(onExit) }) { pad ->
         Column(
             Modifier.padding(pad).fillMaxSize().padding(Spacing.space20),
         ) {
@@ -59,7 +61,7 @@ fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
             )
             Spacer(Modifier.height(Spacing.space4))
             Text(
-                "Step ${ui.step + 1} of $TOTAL_STEPS",
+                stringResource(R.string.onboarding_step_indicator, ui.step + 1, TOTAL_STEPS),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -77,13 +79,13 @@ fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
             ) { step ->
                 Column(Modifier.fillMaxWidth().padding(top = Spacing.space28)) {
                     when (step) {
-                        STEP_NAME -> StepShell("What should we call you?") {
+                        STEP_NAME -> StepShell(stringResource(R.string.onboarding_step_name_question)) {
                             ClayTextField(
                                 value = ui.name,
                                 onValueChange = vm::setName,
-                                label = "Name",
-                                placeholder = "Your name",
-                                supportingText = "${ui.name.length}/30",
+                                label = stringResource(R.string.onboarding_name_label),
+                                placeholder = stringResource(R.string.onboarding_name_placeholder),
+                                supportingText = stringResource(R.string.onboarding_name_char_count, ui.name.length),
                                 keyboardOptions = KeyboardOptions(
                                     capitalization = KeyboardCapitalization.Words,
                                     imeAction = ImeAction.Done,
@@ -92,7 +94,7 @@ fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
                             )
                         }
 
-                        STEP_GENDER -> StepShell("How do you identify?") {
+                        STEP_GENDER -> StepShell(stringResource(R.string.onboarding_step_gender_question)) {
                             Row(horizontalArrangement = Arrangement.spacedBy(Spacing.space10)) {
                                 Gender.entries.forEach { g ->
                                     FilterChip(
@@ -104,30 +106,30 @@ fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
                             }
                         }
 
-                        STEP_DOB -> StepShell("When were you born?") {
+                        STEP_DOB -> StepShell(stringResource(R.string.onboarding_step_dob_question)) {
                             Text(
-                                "Sets your zodiac sign and shapes every horoscope.",
+                                stringResource(R.string.onboarding_dob_desc),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
                             Spacer(Modifier.height(Spacing.space12))
                             DobPickerButton(
                                 value = ui.dob,
-                                label = "Date of birth",
+                                label = stringResource(R.string.onboarding_dob_label),
                                 onPicked = vm::setDob,
                                 modifier = Modifier.fillMaxWidth(),
                             )
                             if (ui.dob != null && !ui.dobValid) {
                                 Spacer(Modifier.height(Spacing.space8))
                                 Text(
-                                    "You need to be at least 13 to use Palmlens.",
+                                    stringResource(R.string.onboarding_age_error),
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = MaterialTheme.colorScheme.error,
                                 )
                             }
                         }
 
-                        STEP_TIME -> StepShell("Do you know your birth time?") {
+                        STEP_TIME -> StepShell(stringResource(R.string.onboarding_step_time_question)) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Switch(
                                     checked = ui.birthTimeKnown,
@@ -135,7 +137,9 @@ fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
                                 )
                                 Spacer(Modifier.width(Spacing.space12))
                                 Text(
-                                    if (ui.birthTimeKnown) "Yes, I know it" else "Not sure, skip it",
+                                    stringResource(
+                                        if (ui.birthTimeKnown) R.string.onboarding_time_known else R.string.onboarding_time_unknown,
+                                    ),
                                     style = MaterialTheme.typography.bodyLarge,
                                 )
                             }
@@ -143,16 +147,16 @@ fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
                                 Spacer(Modifier.height(Spacing.space12))
                                 TimePickerButton(
                                     value = ui.birthTime,
-                                    label = "Time of birth",
+                                    label = stringResource(R.string.time_of_birth_label),
                                     onPicked = vm::setBirthTime,
                                     modifier = Modifier.fillMaxWidth(),
                                 )
                             }
                         }
 
-                        STEP_PLACE -> StepShell("Where were you born?") {
+                        STEP_PLACE -> StepShell(stringResource(R.string.onboarding_step_place_question)) {
                             Text(
-                                "Optional. Adds a little context to your readings.",
+                                stringResource(R.string.onboarding_place_desc),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
@@ -160,8 +164,8 @@ fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
                             ClayTextField(
                                 value = ui.place,
                                 onValueChange = vm::setPlace,
-                                label = "City, country",
-                                placeholder = "e.g. Lisbon, Portugal",
+                                label = stringResource(R.string.onboarding_place_label),
+                                placeholder = stringResource(R.string.onboarding_place_placeholder),
                                 keyboardOptions = KeyboardOptions(
                                     capitalization = KeyboardCapitalization.Words,
                                     imeAction = ImeAction.Done,
@@ -175,12 +179,12 @@ fun OnboardingScreen(onExit: () -> Unit, onDone: () -> Unit) {
 
             Row(horizontalArrangement = Arrangement.spacedBy(Spacing.space12)) {
                 SecondaryButton(
-                    text = "Back",
+                    text = stringResource(R.string.action_back),
                     modifier = Modifier.weight(1f),
                     onClick = { vm.back(onExit) },
                 )
                 PrimaryButton(
-                    text = if (ui.isLastStep) "Finish" else "Next",
+                    text = stringResource(if (ui.isLastStep) R.string.action_finish else R.string.action_next),
                     modifier = Modifier.weight(1f),
                     enabled = ui.canAdvance,
                     onClick = { vm.next(onDone) },

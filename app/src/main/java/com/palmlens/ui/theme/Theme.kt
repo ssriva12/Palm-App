@@ -25,6 +25,10 @@ private val LightColors = lightColorScheme(
     onSurfaceVariant = InkTextSoft,
     outline = Edge,
     outlineVariant = EdgeSoft,
+    error = Danger,
+    onError = OnDanger,
+    errorContainer = DangerSoft,
+    onErrorContainer = OnDangerSoft,
 )
 
 private val DarkColors = darkColorScheme(
@@ -45,6 +49,10 @@ private val DarkColors = darkColorScheme(
     onSurfaceVariant = InkOnDarkSoft,
     outline = EdgeDark,
     outlineVariant = EdgeSoftDark,
+    error = DangerLift,
+    onError = OnDangerLift,
+    errorContainer = DangerLiftSoft,
+    onErrorContainer = OnDangerLiftSoft,
 )
 
 @Composable

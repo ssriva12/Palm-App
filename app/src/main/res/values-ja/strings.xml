@@ -1,0 +1,206 @@
+<resources>
+    <string name="app_name">Palmlens</string>
+
+    <string name="disclaimer">エンターテインメント目的のみです。</string>
+
+    <string name="settings">設定</string>
+    <string name="cd_open_settings">設定を開く</string>
+
+    <string name="settings_language">言語</string>
+    <string name="settings_language_desc">占いの結果を表示する言語</string>
+
+    <string name="settings_dark_mode">ダークモード</string>
+    <string name="settings_dark_mode_desc">端末のテーマ設定より優先されます</string>
+
+    <string name="settings_privacy">プライバシーと同意</string>
+    <string name="settings_privacy_desc">広告によるデータの利用方法を確認する</string>
+
+    <string name="settings_help">ヘルプとFAQ</string>
+    <string name="settings_help_desc">よくある質問への回答</string>
+
+    <string name="settings_terms">利用規約</string>
+    <string name="settings_terms_desc">Palmlensを利用する際のルール</string>
+
+    <string name="settings_privacy_policy">プライバシーポリシー</string>
+    <string name="settings_privacy_policy_desc">データの取り扱いについて</string>
+
+    <string name="settings_sign_out">サインアウト</string>
+    <string name="settings_sign_out_desc">同じメールアドレスでいつでも再ログインできます</string>
+
+    <string name="settings_delete">マイデータを削除</string>
+    <string name="settings_delete_desc">この端末からプロフィール、占い結果、スキャン回数を消去します</string>
+    <string name="settings_delete_dialog_title">すべて削除しますか?</string>
+    <string name="settings_delete_dialog_body">プロフィール、保存された占い結果、タロットと相性診断の結果、スキャン回数がこの端末から消去されます。この操作は取り消せません。</string>
+    <string name="settings_delete_confirm">削除</string>
+    <string name="cancel">キャンセル</string>
+
+    <string name="settings_version">バージョン %1$s</string>
+    <string name="action_save">保存</string>
+
+    <string name="action_try_again">もう一度試す</string>
+    <string name="action_ok">OK</string>
+    <string name="cd_navigate_back">戻る</string>
+    <string name="time_of_birth_label">生まれた時間</string>
+    <string name="error_default_message">現在、空が曇っています。少ししてからもう一度お試しください。</string>
+    <string name="pick_date_placeholder">日付を選択</string>
+    <string name="pick_time_placeholder">時間を選択</string>
+
+    <string name="feature_palm_scanner_title">手相スキャナー</string>
+    <string name="feature_love_title">相性診断</string>
+    <string name="feature_tarot_title">タロット</string>
+    <string name="stat_lucky_colour">ラッキーカラー</string>
+
+    <plurals name="free_scans_remaining">
+        <item quantity="other">無料スキャンの残り %1$d 回</item>
+    </plurals>
+
+    <string name="splash_tagline">あなたの手が覚えていることを読み解く</string>
+
+    <string name="home_greeting">%1$sさん、こんにちは</string>
+    <string name="home_default_name">ゲスト</string>
+    <string name="home_greeting_subtitle">%1$s、%2$s</string>
+    <string name="home_today_label">今日</string>
+    <string name="home_loading_highlights">今の空気を読み取っています…</string>
+    <string name="home_lucky_number_short">ラッキーナンバー</string>
+    <string name="home_scans_used_up">無料スキャンをすべて使い切りました</string>
+    <string name="feature_horoscope_title">星占い</string>
+    <string name="feature_horoscope_subtitle">日刊・週刊・月刊</string>
+    <string name="feature_highlights_subtitle">気分・運勢・フォーカス</string>
+    <string name="feature_love_subtitle">相性をチェック</string>
+    <string name="feature_tarot_subtitle">カードを3枚選ぶ</string>
+
+    <string name="scanner_no_scans_left">無料スキャンの残りがありません</string>
+    <string name="scanner_guide_instruction">手のひらをカメラに向け、まっすぐ広げて、均一な明るさの場所で撮影してください。</string>
+    <string name="scanner_hand_label">%1$sの手</string>
+    <string name="scanner_hand_dominant_desc">利き手。あなたの現在と未来を表します。</string>
+    <string name="scanner_hand_nondominant_desc">利き手ではない方の手。受け継いだ資質を表します。</string>
+    <string name="scanner_camera_permission_rationale">手相をスキャンするにはカメラへのアクセスが必要です。写真は占いのために送信され、保存されることはありません。</string>
+    <string name="action_allow_camera">カメラを許可</string>
+    <string name="scanner_processing_message">手相を読み取っています…</string>
+    <string name="scanner_error_message">空が曇っています。もう一度スキャンしてください。</string>
+    <string name="cd_your_palm">あなたの手のひら</string>
+    <string name="scanner_tap_line_hint">線をタップすると詳細が表示されます。</string>
+    <string name="scanner_lucky_number_label">ラッキーナンバー</string>
+    <string name="scanner_lucky_color_label">ラッキーカラー</string>
+    <string name="cd_collapse">折りたたむ</string>
+    <string name="cd_expand">展開する</string>
+    <string name="scanner_confidence">確信度 %1$d%%</string>
+    <string name="action_scan_again">もう一度スキャン</string>
+
+    <string name="tarot_title">タロット</string>
+    <string name="tarot_shuffling">カードをシャッフルしています…</string>
+    <string name="tarot_revealing">カードをめくっています…</string>
+    <string name="tarot_error_message">空が曇っていてカードがめくれませんでした。もう一度お試しください。</string>
+    <string name="tarot_already_drew">今日の占いはもう済んでいます。新しいスプレッドは明日また来てください。</string>
+    <string name="tarot_pick_instruction">心を静めて、カードを3枚選んでください。占いは自動的に始まります。</string>
+    <string name="tarot_picked_count">%1$d / 3 枚選択</string>
+    <string name="tarot_spread_label">スプレッド</string>
+    <string name="action_new_reading">新しく占う</string>
+    <string name="tarot_shuffle_disclaimer">カードはあなたの端末上でシャッフルされ、引かれます。</string>
+    <string name="tarot_card_upright">"  %1$s"</string>
+    <string name="tarot_card_reversed">"  %1$s(逆位置)"</string>
+
+    <string name="onboarding_title">あなたについて</string>
+    <string name="onboarding_step_indicator">ステップ %1$d / %2$d</string>
+    <string name="onboarding_step_name_question">お名前を教えてください</string>
+    <string name="onboarding_name_label">名前</string>
+    <string name="onboarding_name_placeholder">お名前</string>
+    <string name="onboarding_name_char_count">%1$d/30</string>
+    <string name="onboarding_step_gender_question">性自認を教えてください</string>
+    <string name="onboarding_step_dob_question">生年月日はいつですか?</string>
+    <string name="onboarding_dob_desc">星座が決まり、すべての星占いの内容が決まります。</string>
+    <string name="onboarding_dob_label">生年月日</string>
+    <string name="onboarding_age_error">Palmlensを利用するには13歳以上である必要があります。</string>
+    <string name="onboarding_step_time_question">生まれた時間はわかりますか?</string>
+    <string name="onboarding_time_known">はい、わかります</string>
+    <string name="onboarding_time_unknown">わからないのでスキップ</string>
+    <string name="onboarding_step_place_question">どこで生まれましたか?</string>
+    <string name="onboarding_place_desc">任意項目です。占いの内容に少し深みが加わります。</string>
+    <string name="onboarding_place_label">市区町村、国</string>
+    <string name="onboarding_place_placeholder">例: リスボン、ポルトガル</string>
+    <string name="action_back">戻る</string>
+    <string name="action_finish">完了</string>
+    <string name="action_next">次へ</string>
+
+    <string name="language_title">言語を選択</string>
+    <string name="language_subtitle">占いの結果は選んだ言語で表示されます。</string>
+    <string name="language_continue">続ける</string>
+
+    <string name="highlights_title">デイリーハイライト</string>
+    <string name="highlights_loading">今日の運勢を読み取っています…</string>
+    <string name="highlights_mood_label">気分</string>
+    <string name="highlights_lucky_number_label">ラッキーナンバー</string>
+    <string name="highlights_focus_label">今日のフォーカス</string>
+    <string name="highlights_advice_label">アドバイス</string>
+
+    <string name="love_title">相性診断</string>
+    <string name="love_intro">あなたとお相手の相性は?</string>
+    <string name="love_self_label">あなた</string>
+    <string name="love_partner_name_label">お相手の名前</string>
+    <string name="love_partner_name_placeholder">下の名前</string>
+    <string name="love_partner_dob_label">お相手の生年月日(任意)</string>
+    <string name="action_check_compatibility">相性をチェック</string>
+    <string name="love_loading">お二人の相性を読み取っています…</string>
+    <string name="love_error_message">空が曇っていてこの組み合わせを読み取れませんでした。もう一度お試しください。</string>
+    <string name="love_pairing_names">"%1$s  と  %2$s"</string>
+    <string name="love_partner_fallback">その人</string>
+    <string name="love_strengths_label">良い点</string>
+    <string name="love_challenges_label">気をつけたい点</string>
+    <string name="action_try_another_pairing">別の組み合わせを試す</string>
+    <string name="love_bullet">"•  "</string>
+    <string name="cd_compatibility_score">相性スコア: %1$dパーセント</string>
+
+    <string name="cd_close">閉じる</string>
+    <string name="subscription_title">Palmlens プレミアム</string>
+    <string name="subscription_subtitle">スキャン無制限、広告なし、デイリー星占いつき。</string>
+    <string name="subscription_plan_weekly">週間</string>
+    <string name="subscription_plan_monthly">月間</string>
+    <string name="subscription_plan_yearly">年間</string>
+    <string name="subscription_price_placeholder">仮の価格</string>
+    <string name="subscription_trial_note">3日間無料トライアル</string>
+    <string name="subscription_best_value_note">お得なプラン</string>
+    <string name="subscription_price_disclaimer">このビルドの価格は仮のものです。実際の価格はPlay Billingから取得されます。</string>
+    <string name="action_start_trial">無料トライアルを開始</string>
+    <string name="action_maybe_later">またあとで</string>
+    <string name="action_restore_purchases">購入を復元</string>
+
+    <string name="horoscope_tab_daily">日刊</string>
+    <string name="horoscope_tab_weekly">週刊</string>
+    <string name="horoscope_tab_monthly">月刊</string>
+    <string name="horoscope_loading">星に尋ねています…</string>
+    <string name="cd_rating">評価: 5段階中 %1$d</string>
+    <string name="horoscope_facet_love">恋愛</string>
+    <string name="horoscope_facet_career">仕事</string>
+    <string name="horoscope_facet_health">健康</string>
+
+    <!-- Bottom nav / Today / Readings -->
+    <string name="nav_today">今日</string>
+    <string name="nav_readings">リーディング</string>
+    <string name="nav_compatibility">相性</string>
+    <string name="today_insights_title">今日のインサイト</string>
+    <string name="today_matches_title">今日のマッチ度</string>
+    <string name="today_matches_friendship">友情</string>
+    <string name="today_lucky_time_label">ラッキータイム</string>
+
+    <string name="horoscope_tab_yearly">年間</string>
+    <string-array name="yearly_overviews">
+        <item>着実な成長の一年。プロセスを信じて、勢いを積み重ねましょう。</item>
+        <item>転機が訪れそうです。抵抗せず、変化を受け入れましょう。</item>
+        <item>人間関係が中心となる一年。古い絆は深まり、新しい出会いも生まれます。</item>
+        <item>大胆な行動の一年。慎重さより、計算されたリスクの方が実を結びます。</item>
+        <item>今年は野心と同じくらい、休息と調整も大切です。</item>
+        <item>積み重ねが力になります。小さな選択の継続が、大きな流れを形づくります。</item>
+    </string-array>
+
+    <!-- Auth -->
+    <string name="auth_signin_title">おかえりなさい</string>
+    <string name="auth_signup_title">アカウントを作成</string>
+    <string name="auth_subtitle">無料スキャンと診断結果をアカウントに紐づけるにはサインインしてください。</string>
+    <string name="auth_email_label">メールアドレス</string>
+    <string name="auth_password_label">パスワード</string>
+    <string name="auth_signin_button">サインイン</string>
+    <string name="auth_signup_button">アカウントを作成</string>
+    <string name="auth_toggle_to_signup">アカウントをお持ちでないですか？新規登録</string>
+    <string name="auth_toggle_to_signin">すでにアカウントをお持ちですか？サインイン</string>
+    <string name="auth_loading">サインイン中…</string>
+</resources>

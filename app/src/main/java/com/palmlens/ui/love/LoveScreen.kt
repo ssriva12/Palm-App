@@ -22,14 +22,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.palmlens.R
 import com.palmlens.ads.AdBanner
 import com.palmlens.domain.model.LoveResult
 import com.palmlens.ui.components.ClayCard
@@ -43,11 +46,11 @@ import com.palmlens.ui.components.SecondaryButton
 import com.palmlens.ui.theme.Spacing
 
 @Composable
-fun LoveScreen(onBack: () -> Unit) {
+fun LoveScreen(onBack: (() -> Unit)? = null) {
     val vm: LoveViewModel = hiltViewModel()
     val selfName by vm.selfName.collectAsStateWithLifecycle()
 
-    MysticScaffold(title = "Love Test", onBack = onBack, bottomBar = { AdBanner() }) { pad ->
+    MysticScaffold(title = stringResource(R.string.love_title), onBack = onBack, bottomBar = { AdBanner() }) { pad ->
         Column(
             Modifier
                 .padding(pad)
@@ -58,7 +61,7 @@ fun LoveScreen(onBack: () -> Unit) {
             when (vm.phase) {
                 LovePhase.FORM -> {
                     Text(
-                        "How do you and someone match up?",
+                        stringResource(R.string.love_intro),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -66,7 +69,7 @@ fun LoveScreen(onBack: () -> Unit) {
                     ClayTextField(
                         value = selfName,
                         onValueChange = {},
-                        label = "You",
+                        label = stringResource(R.string.love_self_label),
                         enabled = false,
                         modifier = Modifier.fillMaxWidth(),
                     )
@@ -74,8 +77,8 @@ fun LoveScreen(onBack: () -> Unit) {
                     ClayTextField(
                         value = vm.partnerName,
                         onValueChange = vm::updatePartnerName,
-                        label = "Their name",
-                        placeholder = "First name",
+                        label = stringResource(R.string.love_partner_name_label),
+                        placeholder = stringResource(R.string.love_partner_name_placeholder),
                         keyboardOptions = KeyboardOptions(
                             capitalization = KeyboardCapitalization.Words,
                             imeAction = ImeAction.Done,
@@ -85,20 +88,21 @@ fun LoveScreen(onBack: () -> Unit) {
                     Spacer(Modifier.height(Spacing.space14))
                     DobPickerButton(
                         value = vm.partnerDob,
-                        label = "Their date of birth (optional)",
+                        label = stringResource(R.string.love_partner_dob_label),
                         onPicked = vm::updatePartnerDob,
                         modifier = Modifier.fillMaxWidth(),
                     )
                     Spacer(Modifier.height(Spacing.space20))
                     PrimaryButton(
-                        "Check compatibility",
+                        stringResource(R.string.action_check_compatibility),
                         Modifier.fillMaxWidth(),
                         enabled = vm.canSubmit,
+                        bordered = false,
                         onClick = vm::calculate,
                     )
                 }
 
-                LovePhase.LOADING -> LoadingState("Reading between you two…")
+                LovePhase.LOADING -> LoadingState(stringResource(R.string.love_loading))
 
                 LovePhase.RESULT -> vm.result?.let { result ->
                     ResultBody(selfName, vm.partnerName, result, onReset = vm::reset)
@@ -106,7 +110,7 @@ fun LoveScreen(onBack: () -> Unit) {
 
                 LovePhase.ERROR -> ErrorState(
                     onRetry = vm::calculate,
-                    message = "The sky is overcast and this pairing wouldn't read. Try again.",
+                    message = stringResource(R.string.love_error_message),
                 )
             }
             Spacer(Modifier.height(Spacing.space24))
@@ -121,7 +125,7 @@ private fun ResultBody(selfName: String, partnerName: String, result: LoveResult
     }
     Spacer(Modifier.height(Spacing.space6))
     Text(
-        "$selfName  and  ${partnerName.ifBlank { "them" }}",
+        stringResource(R.string.love_pairing_names, selfName, partnerName.ifBlank { stringResource(R.string.love_partner_fallback) }),
         style = MaterialTheme.typography.titleMedium,
         color = MaterialTheme.colorScheme.onBackground,
         modifier = Modifier.fillMaxWidth(),
@@ -129,27 +133,33 @@ private fun ResultBody(selfName: String, partnerName: String, result: LoveResult
 
     Spacer(Modifier.height(Spacing.space16))
     ClayCard(Modifier.fillMaxWidth()) {
-        Text(result.verdict, style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurface)
+        Text(
+            result.verdict,
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurface,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth(),
+        )
     }
 
     Spacer(Modifier.height(Spacing.space16))
-    Text("STRENGTHS", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.primary)
+    Text(stringResource(R.string.love_strengths_label), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.primary)
     Spacer(Modifier.height(Spacing.space6))
     result.strengths.forEach { Bullet(it) }
 
     Spacer(Modifier.height(Spacing.space12))
-    Text("WORTH WATCHING", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.secondary)
+    Text(stringResource(R.string.love_challenges_label), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.secondary)
     Spacer(Modifier.height(Spacing.space6))
     result.challenges.forEach { Bullet(it) }
 
     Spacer(Modifier.height(Spacing.space20))
-    SecondaryButton("Try another pairing", Modifier.fillMaxWidth(), onClick = onReset)
+    SecondaryButton(stringResource(R.string.action_try_another_pairing), Modifier.fillMaxWidth(), onClick = onReset)
 }
 
 @Composable
 private fun Bullet(text: String) {
     Row(Modifier.padding(vertical = Spacing.space4)) {
-        Text("•  ", color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(stringResource(R.string.love_bullet), color = MaterialTheme.colorScheme.onSurfaceVariant)
         Text(text, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface)
     }
 }
@@ -157,10 +167,11 @@ private fun Bullet(text: String) {
 @Composable
 private fun ScoreRing(score: Int) {
     val cs = MaterialTheme.colorScheme
+    val compatibilityScoreDescription = stringResource(R.string.cd_compatibility_score, score)
     Box(
         Modifier
             .size(150.dp)
-            .clearAndSetSemantics { contentDescription = "Compatibility score: $score percent" },
+            .clearAndSetSemantics { contentDescription = compatibilityScoreDescription },
         contentAlignment = Alignment.Center,
     ) {
         Canvas(Modifier.fillMaxSize()) {

@@ -31,10 +31,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.palmlens.R
 import com.palmlens.ads.AdBanner
 import com.palmlens.domain.model.TarotPosition
 import com.palmlens.domain.model.TarotResult
@@ -61,7 +63,7 @@ fun TarotScreen(onBack: () -> Unit) {
         }
     }
 
-    MysticScaffold(title = "Tarot", onBack = onBack, bottomBar = { AdBanner() }) { pad ->
+    MysticScaffold(title = stringResource(R.string.tarot_title), onBack = onBack, bottomBar = { AdBanner() }) { pad ->
         val screen = Modifier
             .padding(pad)
             .fillMaxSize()
@@ -71,7 +73,7 @@ fun TarotScreen(onBack: () -> Unit) {
             TarotPhase.PICK ->
                 if (vm.deck.isEmpty()) {
                     Box(screen, contentAlignment = Alignment.Center) {
-                        LoadingState("Shuffling the deck…")
+                        LoadingState(stringResource(R.string.tarot_shuffling))
                     }
                 } else {
                     PickPhase(
@@ -84,7 +86,7 @@ fun TarotScreen(onBack: () -> Unit) {
                 }
 
             TarotPhase.REVEALING -> Box(screen, contentAlignment = Alignment.Center) {
-                LoadingState("Turning the cards…")
+                LoadingState(stringResource(R.string.tarot_revealing))
             }
 
             TarotPhase.RESULT -> Column(screen.verticalScroll(rememberScrollState())) {
@@ -95,7 +97,7 @@ fun TarotScreen(onBack: () -> Unit) {
             TarotPhase.ERROR -> Box(screen, contentAlignment = Alignment.Center) {
                 ErrorState(
                     onRetry = vm::reveal,
-                    message = "The sky is overcast and the cards wouldn't turn. Try again.",
+                    message = stringResource(R.string.tarot_error_message),
                 )
             }
         }
@@ -115,7 +117,7 @@ private fun PickPhase(
     if (alreadyDrewToday) {
         Box(modifier, contentAlignment = Alignment.Center) {
             Text(
-                "You've had your reading today. Come back tomorrow for a new spread.",
+                stringResource(R.string.tarot_already_drew),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
@@ -126,13 +128,13 @@ private fun PickPhase(
 
     Column(modifier) {
         Text(
-            "Clear your mind and choose three cards. The reading begins on its own.",
+            stringResource(R.string.tarot_pick_instruction),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         Spacer(Modifier.height(Spacing.space4))
         Text(
-            "${picked.size} / 3 chosen",
+            stringResource(R.string.tarot_picked_count, picked.size),
             style = MaterialTheme.typography.labelLarge,
             color = MaterialTheme.colorScheme.primary,
         )
@@ -205,13 +207,19 @@ private fun ResultPhase(result: TarotResult, onReset: () -> Unit) {
                 position.label.uppercase(),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.primary,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
             )
             Spacer(Modifier.height(Spacing.space6))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(card?.emoji ?: "✦", fontSize = 24.sp)
                 Spacer(Modifier.height(Spacing.none))
                 Text(
-                    "  ${card?.name ?: position.label}${if (card?.reversed == true) " (reversed)" else ""}",
+                    if (card?.reversed == true) {
+                        stringResource(R.string.tarot_card_reversed, card.name ?: position.label)
+                    } else {
+                        stringResource(R.string.tarot_card_upright, card?.name ?: position.label)
+                    },
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.onSurface,
                 )
@@ -221,28 +229,34 @@ private fun ResultPhase(result: TarotResult, onReset: () -> Unit) {
                 result.textFor(position),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
             )
         }
     }
 
     ClayCard(Modifier.fillMaxWidth()) {
         Text(
-            "THE SPREAD",
+            stringResource(R.string.tarot_spread_label),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.secondary,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth(),
         )
         Spacer(Modifier.height(Spacing.space6))
         Text(
             result.overall,
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurface,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth(),
         )
     }
 
     Spacer(Modifier.height(Spacing.space16))
-    SecondaryButton("New reading", Modifier.fillMaxWidth(), onClick = onReset)
+    SecondaryButton(stringResource(R.string.action_new_reading), Modifier.fillMaxWidth(), onClick = onReset)
     Text(
-        "Cards are shuffled and drawn on your device.",
+        stringResource(R.string.tarot_shuffle_disclaimer),
         style = MaterialTheme.typography.labelSmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = Modifier.fillMaxWidth().padding(top = Spacing.space8),

@@ -1,0 +1,206 @@
+<resources>
+    <string name="app_name">Palmlens</string>
+
+    <string name="disclaimer">仅供娱乐。</string>
+
+    <string name="settings">设置</string>
+    <string name="cd_open_settings">打开设置</string>
+
+    <string name="settings_language">语言</string>
+    <string name="settings_language_desc">你的解读所使用的语言</string>
+
+    <string name="settings_dark_mode">深色模式</string>
+    <string name="settings_dark_mode_desc">覆盖你设备的主题设置</string>
+
+    <string name="settings_privacy">隐私与同意</string>
+    <string name="settings_privacy_desc">查看广告可能如何使用你的数据</string>
+
+    <string name="settings_help">帮助与常见问题</string>
+    <string name="settings_help_desc">常见问题解答</string>
+
+    <string name="settings_terms">条款与条件</string>
+    <string name="settings_terms_desc">使用 Palmlens 的相关规则</string>
+
+    <string name="settings_privacy_policy">隐私政策</string>
+    <string name="settings_privacy_policy_desc">你的数据将如何被处理</string>
+
+    <string name="settings_sign_out">退出登录</string>
+    <string name="settings_sign_out_desc">可随时使用同一邮箱重新登录</string>
+
+    <string name="settings_delete">删除我的数据</string>
+    <string name="settings_delete_desc">从此设备清除你的资料、解读记录和扫描次数</string>
+    <string name="settings_delete_dialog_title">删除全部数据?</string>
+    <string name="settings_delete_dialog_body">你的资料、已保存的解读、塔罗与爱情测试结果,以及扫描次数都将从本机清除。此操作无法撤销。</string>
+    <string name="settings_delete_confirm">删除</string>
+    <string name="cancel">取消</string>
+
+    <string name="settings_version">版本 %1$s</string>
+    <string name="action_save">保存</string>
+
+    <string name="action_try_again">重试</string>
+    <string name="action_ok">确定</string>
+    <string name="cd_navigate_back">返回</string>
+    <string name="time_of_birth_label">出生时间</string>
+    <string name="error_default_message">此刻天空有些阴云。请稍后再试。</string>
+    <string name="pick_date_placeholder">选择日期</string>
+    <string name="pick_time_placeholder">选择时间</string>
+
+    <string name="feature_palm_scanner_title">掌纹扫描</string>
+    <string name="feature_love_title">爱情测试</string>
+    <string name="feature_tarot_title">塔罗</string>
+    <string name="stat_lucky_colour">幸运颜色</string>
+
+    <plurals name="free_scans_remaining">
+        <item quantity="other">还剩 %1$d 次免费扫描</item>
+    </plurals>
+
+    <string name="splash_tagline">读懂你双手记住的一切</string>
+
+    <string name="home_greeting">你好,%1$s</string>
+    <string name="home_default_name">朋友</string>
+    <string name="home_greeting_subtitle">%1$s,%2$s</string>
+    <string name="home_today_label">今日</string>
+    <string name="home_loading_highlights">正在解读此刻的氛围…</string>
+    <string name="home_lucky_number_short">幸运数字</string>
+    <string name="home_scans_used_up">你的免费扫描次数已用完</string>
+    <string name="feature_horoscope_title">星座运势</string>
+    <string name="feature_horoscope_subtitle">日运、周运、月运</string>
+    <string name="feature_highlights_subtitle">心情、运势、专注</string>
+    <string name="feature_love_subtitle">查看你们的契合度</string>
+    <string name="feature_tarot_subtitle">选择三张牌</string>
+
+    <string name="scanner_no_scans_left">没有剩余的免费扫描次数</string>
+    <string name="scanner_guide_instruction">请将手掌平展对准摄像头,并保持光线均匀。</string>
+    <string name="scanner_hand_label">%1$s手</string>
+    <string name="scanner_hand_dominant_desc">惯用手。代表你的现在与未来。</string>
+    <string name="scanner_hand_nondominant_desc">非惯用手。代表天生的特质。</string>
+    <string name="scanner_camera_permission_rationale">Palmlens 需要使用摄像头来扫描你的手掌。照片仅用于生成解读,绝不会被保存。</string>
+    <string name="action_allow_camera">允许使用摄像头</string>
+    <string name="scanner_processing_message">正在描摹你的掌纹…</string>
+    <string name="scanner_error_message">天空有些阴云。请重新扫描。</string>
+    <string name="cd_your_palm">你的手掌</string>
+    <string name="scanner_tap_line_hint">点按掌纹线查看详情。</string>
+    <string name="scanner_lucky_number_label">幸运数字</string>
+    <string name="scanner_lucky_color_label">幸运颜色</string>
+    <string name="cd_collapse">收起</string>
+    <string name="cd_expand">展开</string>
+    <string name="scanner_confidence">置信度 %1$d%%</string>
+    <string name="action_scan_again">再次扫描</string>
+
+    <string name="tarot_title">塔罗</string>
+    <string name="tarot_shuffling">正在洗牌…</string>
+    <string name="tarot_revealing">正在翻牌…</string>
+    <string name="tarot_error_message">天空有些阴云,牌无法翻开。请重试。</string>
+    <string name="tarot_already_drew">你今天已经占卜过了。请明天再来抽一次新牌阵。</string>
+    <string name="tarot_pick_instruction">静下心来,选择三张牌。解读将自动开始。</string>
+    <string name="tarot_picked_count">已选 %1$d / 3</string>
+    <string name="tarot_spread_label">牌阵</string>
+    <string name="action_new_reading">重新占卜</string>
+    <string name="tarot_shuffle_disclaimer">牌是在你的设备上洗牌并抽取的。</string>
+    <string name="tarot_card_upright">"  %1$s"</string>
+    <string name="tarot_card_reversed">"  %1$s(逆位)"</string>
+
+    <string name="onboarding_title">关于你</string>
+    <string name="onboarding_step_indicator">第 %1$d / %2$d 步</string>
+    <string name="onboarding_step_name_question">我们该怎么称呼你?</string>
+    <string name="onboarding_name_label">姓名</string>
+    <string name="onboarding_name_placeholder">你的姓名</string>
+    <string name="onboarding_name_char_count">%1$d/30</string>
+    <string name="onboarding_step_gender_question">你的性别认同是?</string>
+    <string name="onboarding_step_dob_question">你的出生日期是?</string>
+    <string name="onboarding_dob_desc">用于确定你的星座,并影响每一份星座运势。</string>
+    <string name="onboarding_dob_label">出生日期</string>
+    <string name="onboarding_age_error">你需要年满 13 岁才能使用 Palmlens。</string>
+    <string name="onboarding_step_time_question">你知道自己的出生时间吗?</string>
+    <string name="onboarding_time_known">是的,我知道</string>
+    <string name="onboarding_time_unknown">不确定,跳过</string>
+    <string name="onboarding_step_place_question">你的出生地是?</string>
+    <string name="onboarding_place_desc">可选填。为你的解读增添一些背景信息。</string>
+    <string name="onboarding_place_label">城市、国家</string>
+    <string name="onboarding_place_placeholder">例如:里斯本,葡萄牙</string>
+    <string name="action_back">返回</string>
+    <string name="action_finish">完成</string>
+    <string name="action_next">下一步</string>
+
+    <string name="language_title">选择你的语言</string>
+    <string name="language_subtitle">每份解读都将以你选择的语言呈现。</string>
+    <string name="language_continue">继续</string>
+
+    <string name="highlights_title">每日亮点</string>
+    <string name="highlights_loading">正在解读今日运势…</string>
+    <string name="highlights_mood_label">心情</string>
+    <string name="highlights_lucky_number_label">幸运数字</string>
+    <string name="highlights_focus_label">今日焦点</string>
+    <string name="highlights_advice_label">建议</string>
+
+    <string name="love_title">爱情测试</string>
+    <string name="love_intro">你和对方契合吗?</string>
+    <string name="love_self_label">你</string>
+    <string name="love_partner_name_label">对方姓名</string>
+    <string name="love_partner_name_placeholder">名字</string>
+    <string name="love_partner_dob_label">对方出生日期(可选)</string>
+    <string name="action_check_compatibility">查看契合度</string>
+    <string name="love_loading">正在解读你们二人之间的关系…</string>
+    <string name="love_error_message">天空有些阴云,无法解读这对组合。请重试。</string>
+    <string name="love_pairing_names">"%1$s  和  %2$s"</string>
+    <string name="love_partner_fallback">对方</string>
+    <string name="love_strengths_label">优势</string>
+    <string name="love_challenges_label">需要注意</string>
+    <string name="action_try_another_pairing">尝试另一对组合</string>
+    <string name="love_bullet">"•  "</string>
+    <string name="cd_compatibility_score">契合度评分:百分之 %1$d</string>
+
+    <string name="cd_close">关闭</string>
+    <string name="subscription_title">Palmlens 高级版</string>
+    <string name="subscription_subtitle">无限次扫描、无广告,并附带每日星座运势。</string>
+    <string name="subscription_plan_weekly">每周</string>
+    <string name="subscription_plan_monthly">每月</string>
+    <string name="subscription_plan_yearly">每年</string>
+    <string name="subscription_price_placeholder">价格待定</string>
+    <string name="subscription_trial_note">3 天免费试用</string>
+    <string name="subscription_best_value_note">超值之选</string>
+    <string name="subscription_price_disclaimer">此版本中的价格仅为占位信息,实际价格将由 Play Billing 提供。</string>
+    <string name="action_start_trial">开始免费试用</string>
+    <string name="action_maybe_later">以后再说</string>
+    <string name="action_restore_purchases">恢复购买</string>
+
+    <string name="horoscope_tab_daily">日运</string>
+    <string name="horoscope_tab_weekly">周运</string>
+    <string name="horoscope_tab_monthly">月运</string>
+    <string name="horoscope_loading">正在请示星辰…</string>
+    <string name="cd_rating">评分:5 分中的 %1$d 分</string>
+    <string name="horoscope_facet_love">爱情</string>
+    <string name="horoscope_facet_career">事业</string>
+    <string name="horoscope_facet_health">健康</string>
+
+    <!-- Bottom nav / Today / Readings -->
+    <string name="nav_today">今日</string>
+    <string name="nav_readings">解读</string>
+    <string name="nav_compatibility">缘分</string>
+    <string name="today_insights_title">今日洞察</string>
+    <string name="today_matches_title">今日缘分指数</string>
+    <string name="today_matches_friendship">友情</string>
+    <string name="today_lucky_time_label">幸运时刻</string>
+
+    <string name="horoscope_tab_yearly">年度</string>
+    <string-array name="yearly_overviews">
+        <item>稳步成长的一年——相信过程，让势头慢慢积累。</item>
+        <item>预计会出现转折点。与其抗拒变化，不如主动拥抱它。</item>
+        <item>人际关系成为焦点——旧的情谊加深，新的缘分出现。</item>
+        <item>大胆行动的一年。经过深思熟虑的冒险比一味谨慎更有收获。</item>
+        <item>今年，休息与调整和雄心一样重要。</item>
+        <item>你的努力会不断累积——持续的小选择将塑造更大的格局。</item>
+    </string-array>
+
+    <!-- Auth -->
+    <string name="auth_signin_title">欢迎回来</string>
+    <string name="auth_signup_title">创建账户</string>
+    <string name="auth_subtitle">登录以将你的免费扫描次数和解读结果与账户绑定。</string>
+    <string name="auth_email_label">邮箱</string>
+    <string name="auth_password_label">密码</string>
+    <string name="auth_signin_button">登录</string>
+    <string name="auth_signup_button">创建账户</string>
+    <string name="auth_toggle_to_signup">还没有账户？去注册</string>
+    <string name="auth_toggle_to_signin">已有账户？去登录</string>
+    <string name="auth_loading">正在登录…</string>
+</resources>

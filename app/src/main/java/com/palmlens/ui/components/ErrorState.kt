@@ -15,10 +15,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.palmlens.R
 import com.palmlens.ui.theme.Spacing
 
 /** Centered failure state with a retry action. The counterpart to [LoadingState]. */
@@ -26,7 +28,7 @@ import com.palmlens.ui.theme.Spacing
 fun ErrorState(
     onRetry: () -> Unit,
     modifier: Modifier = Modifier,
-    message: String = "The sky is overcast right now. Try again in a moment.",
+    message: String = stringResource(R.string.error_default_message),
 ) {
     Box(
         modifier
@@ -50,7 +52,7 @@ fun ErrorState(
                 textAlign = TextAlign.Center,
             )
             Spacer(Modifier.height(Spacing.space18))
-            PrimaryButton("Try again", onClick = onRetry)
+            PrimaryButton(stringResource(R.string.action_try_again), onClick = onRetry)
         }
     }
 }

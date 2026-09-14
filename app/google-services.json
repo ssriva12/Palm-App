@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "907138876812",
+    "project_id": "palmistry-app-d050a",
+    "storage_bucket": "palmistry-app-d050a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907138876812:android:db3f68926f1a7de5f682a9",
+        "android_client_info": {
+          "package_name": "com.palmlens"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHEXepvPW3iolDtJWOgwqvXzwCbmFHW5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

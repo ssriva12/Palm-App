@@ -24,20 +24,31 @@ class DailyBundleWorker @AssistedInject constructor(
     private val profileRepository: ProfileRepository,
     private val horoscopeRepository: HoroscopeRepository,
     private val notifier: HoroscopeNotifier,
+    private val scheduler: HoroscopeScheduler,
 ) : CoroutineWorker(appContext, params) {
 
     override suspend fun doWork(): Result {
         val profile = profileRepository.profile.first()
-        val zodiac = profile.zodiac ?: return Result.success() // not onboarded — nothing to say yet
+        val zodiac = profile.zodiac
+        if (zodiac == null) {
+            scheduler.scheduleNext() // not onboarded — nothing to say yet, but still queue tomorrow
+            return Result.success()
+        }
         return try {
             val bundle = horoscopeRepository.dailyBundle(zodiac, profile.languageCode)
             notifier.notifyDailyHoroscope(zodiac, bundle)
+            scheduler.scheduleNext()
             Result.success()
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
             Log.w("Palmlens", "daily horoscope worker failed (attempt $runAttemptCount)", e)
-            if (runAttemptCount < MAX_ATTEMPTS) Result.retry() else Result.success()
+            if (runAttemptCount < MAX_ATTEMPTS) {
+                Result.retry() // same chain link retries with its own backoff — no new one queued
+            } else {
+                scheduler.scheduleNext()
+                Result.success()
+            }
         }
     }
 

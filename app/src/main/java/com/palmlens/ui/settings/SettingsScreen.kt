@@ -1,5 +1,7 @@
 package com.palmlens.ui.settings
 
+import android.content.Intent
+import android.net.Uri
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
@@ -9,9 +11,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.OpenInNew
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -24,6 +31,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -34,21 +43,36 @@ import com.palmlens.ui.components.ClayCard
 import com.palmlens.ui.components.MysticScaffold
 import com.palmlens.ui.theme.Spacing
 
+// TODO: no live site yet — swap these for the real URLs once palmlens.app exists.
+private const val HELP_URL = "https://palmlens.app/faq"
+private const val TERMS_URL = "https://palmlens.app/terms"
+private const val PRIVACY_POLICY_URL = "https://palmlens.app/privacy"
+
 @Composable
 fun SettingsScreen(
-    onBack: () -> Unit,
     onChangeLanguage: () -> Unit,
     onDataDeleted: () -> Unit,
+    onSignedOut: () -> Unit,
+    onBack: (() -> Unit)? = null,
 ) {
     val vm: SettingsViewModel = hiltViewModel()
     val activity = LocalActivity.current
+    val context = LocalContext.current
     var confirmDelete by remember { mutableStateOf(false) }
     val darkOverride by vm.darkModeOverride.collectAsStateWithLifecycle()
+    fun openUrl(url: String) = context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
 
     LaunchedEffect(vm.deleted) {
         if (vm.deleted) {
             onDataDeleted()
             vm.consumeDeleted()
+        }
+    }
+
+    LaunchedEffect(vm.signedOut) {
+        if (vm.signedOut) {
+            onSignedOut()
+            vm.consumeSignedOut()
         }
     }
 
@@ -83,8 +107,40 @@ fun SettingsScreen(
 
             Spacer(Modifier.height(Spacing.space12))
             SettingRow(
+                title = stringResource(R.string.settings_help),
+                subtitle = stringResource(R.string.settings_help_desc),
+                external = true,
+                onClick = { openUrl(HELP_URL) },
+            )
+
+            Spacer(Modifier.height(Spacing.space12))
+            SettingRow(
+                title = stringResource(R.string.settings_terms),
+                subtitle = stringResource(R.string.settings_terms_desc),
+                external = true,
+                onClick = { openUrl(TERMS_URL) },
+            )
+
+            Spacer(Modifier.height(Spacing.space12))
+            SettingRow(
+                title = stringResource(R.string.settings_privacy_policy),
+                subtitle = stringResource(R.string.settings_privacy_policy_desc),
+                external = true,
+                onClick = { openUrl(PRIVACY_POLICY_URL) },
+            )
+
+            Spacer(Modifier.height(Spacing.space12))
+            SettingRow(
+                title = stringResource(R.string.settings_sign_out),
+                subtitle = stringResource(R.string.settings_sign_out_desc),
+                onClick = vm::signOut,
+            )
+
+            Spacer(Modifier.height(Spacing.space12))
+            SettingRow(
                 title = stringResource(R.string.settings_delete),
                 subtitle = stringResource(R.string.settings_delete_desc),
+                titleColor = MaterialTheme.colorScheme.error,
                 onClick = { confirmDelete = true },
             )
 
@@ -145,15 +201,38 @@ private fun ThemeSwitchRow(darkMode: Boolean, onToggle: (Boolean) -> Unit) {
     }
 }
 
+/**
+ * [external] adds a small "opens in browser" affordance for links that leave the app.
+ * [titleColor] lets a destructive row (delete data) tint its title without a bespoke variant.
+ */
 @Composable
-private fun SettingRow(title: String, subtitle: String, onClick: () -> Unit) {
+private fun SettingRow(
+    title: String,
+    subtitle: String,
+    onClick: () -> Unit,
+    external: Boolean = false,
+    titleColor: Color = MaterialTheme.colorScheme.onSurface,
+) {
     ClayCard(Modifier.fillMaxWidth(), onClick = onClick) {
-        Text(title, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurface)
-        Spacer(Modifier.height(Spacing.space2))
-        Text(
-            subtitle,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Column(Modifier.weight(1f)) {
+                Text(title, style = MaterialTheme.typography.titleMedium, color = titleColor)
+                Spacer(Modifier.height(Spacing.space2))
+                Text(
+                    subtitle,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+            if (external) {
+                Spacer(Modifier.width(Spacing.space8))
+                Icon(
+                    Icons.AutoMirrored.Outlined.OpenInNew,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(20.dp),
+                )
+            }
+        }
     }
 }

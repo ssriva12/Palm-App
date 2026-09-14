@@ -1,15 +1,15 @@
-package com.palmlens.ui.home
+package com.palmlens.ui.today
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.palmlens.domain.model.Highlights
+import com.palmlens.domain.model.DailyBundle
 import com.palmlens.domain.model.UserProfile
 import com.palmlens.domain.model.Zodiac
 import com.palmlens.domain.repository.DEFAULT_FREE_SCAN_CAP
 import com.palmlens.domain.repository.HoroscopeRepository
 import com.palmlens.domain.repository.ProfileRepository
 import com.palmlens.domain.repository.ScanQuotaRepository
-import android.util.Log
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.SharingStarted
@@ -24,7 +24,7 @@ import javax.inject.Inject
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class TodayViewModel @Inject constructor(
     profileRepository: ProfileRepository,
     horoscopeRepository: HoroscopeRepository,
     scanQuotaRepository: ScanQuotaRepository,
@@ -36,20 +36,18 @@ class HomeViewModel @Inject constructor(
     val scansRemaining: StateFlow<Int> = scanQuotaRepository.remaining
         .stateIn(viewModelScope, SharingStarted.Lazily, DEFAULT_FREE_SCAN_CAP)
 
-    /**
-     * null while the daily bundle loads. `Lazily` (not `WhileSubscribed`) because these
-     * ViewModels are Activity-scoped: the flow would otherwise restart and re-emit null on
-     * every screen revisit, flickering the UI. A profile change still re-triggers via
-     * `flatMapLatest`.
-     */
-    val highlights: StateFlow<Highlights?> = profileRepository.profile
+    /** null while the daily bundle loads. `Lazily` (not `WhileSubscribed`) because this
+     *  ViewModel is Activity-scoped: the flow would otherwise restart and re-emit null on
+     *  every tab revisit, flickering the UI. A profile change still re-triggers via
+     *  `flatMapLatest`. */
+    val bundle: StateFlow<DailyBundle?> = profileRepository.profile
         .map { (it.zodiac ?: Zodiac.CAPRICORN) to it.languageCode }
         .distinctUntilChanged()
         .flatMapLatest { (zodiac, locale) ->
             flow {
                 emit(null)
-                emit(horoscopeRepository.dailyBundle(zodiac, locale).highlights)
-            }.catch { e -> Log.w("Palmlens", "daily highlights failed", e); emit(null) }
+                emit(horoscopeRepository.dailyBundle(zodiac, locale))
+            }.catch { e -> Log.w("Palmlens", "daily bundle failed", e); emit(null) }
         }
         .stateIn(viewModelScope, SharingStarted.Lazily, null)
 }

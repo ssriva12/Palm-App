@@ -26,7 +26,7 @@ val LocalClayColors = staticCompositionLocalOf { ClayColors(ink = ShadowLight) }
 val ClayShape: Shape = RoundedCornerShape(14.dp)
 val ClayShapeSmall: Shape = RoundedCornerShape(10.dp)
 
-private val BorderWidth = 1.5.dp
+private val BorderWidth = .5.dp
 
 /**
  * Flat retro-poster surface: solid fill and a firm ink outline, no elevation shadow.
@@ -37,11 +37,12 @@ fun Modifier.clay(
     shape: Shape = ClayShape,
     fill: Color = MaterialTheme.colorScheme.surface,
     pressed: Boolean = false,
+    bordered: Boolean = true,
 ): Modifier {
     val ink = LocalClayColors.current.ink
     val pressAmount by animateFloatAsState(if (pressed) 0.12f else 0f, tween(100), label = "pressDim")
     return this
         .clip(shape)
         .background(lerp(fill, ink, pressAmount))
-        .border(BorderWidth, ink, shape)
+        .then(if (bordered) Modifier.border(BorderWidth, ink, shape) else Modifier)
 }
