@@ -43,10 +43,10 @@ import com.palmz.ui.components.ClayCard
 import com.palmz.ui.components.MysticScaffold
 import com.palmz.ui.theme.Spacing
 
-// TODO: no live site yet — swap these for the real URLs once palmlens.app exists.
-private const val HELP_URL = "https://palmlens.app/faq"
-private const val TERMS_URL = "https://palmlens.app/terms"
-private const val PRIVACY_POLICY_URL = "https://palmlens.app/privacy"
+private const val WEBSITE_URL = "https://palmz-app.com/"
+private const val HELP_URL = "https://palmz-app.com/faq"
+private const val TERMS_URL = "https://palmz-app.com/terms"
+private const val PRIVACY_POLICY_URL = "https://palmz-app.com/privacy"
 
 @Composable
 fun SettingsScreen(
@@ -104,6 +104,14 @@ fun SettingsScreen(
                     onClick = { vm.openPrivacyOptions(activity) },
                 )
             }
+
+            Spacer(Modifier.height(Spacing.space12))
+            SettingRow(
+                title = stringResource(R.string.settings_website),
+                subtitle = stringResource(R.string.settings_website_desc),
+                external = true,
+                onClick = { openUrl(WEBSITE_URL) },
+            )
 
             Spacer(Modifier.height(Spacing.space12))
             SettingRow(

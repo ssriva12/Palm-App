@@ -16,6 +16,9 @@
     <string name="settings_privacy">Privacy &amp; consent</string>
     <string name="settings_privacy_desc">Review how ads may use your data</string>
 
+    <string name="settings_website">Website</string>
+    <string name="settings_website_desc">Visit the Palmz website</string>
+
     <string name="settings_help">Help &amp; FAQ</string>
     <string name="settings_help_desc">Answers to common questions</string>
 

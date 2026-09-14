@@ -15,6 +15,9 @@
     <string name="settings_privacy">Datenschutz &amp; Einwilligung</string>
     <string name="settings_privacy_desc">Sieh dir an, wie Werbung deine Daten nutzen darf</string>
 
+    <string name="settings_website">Website</string>
+    <string name="settings_website_desc">Besuche die Palmz-Website</string>
+
     <string name="settings_help">Hilfe &amp; FAQ</string>
     <string name="settings_help_desc">Antworten auf häufige Fragen</string>
 

@@ -15,6 +15,9 @@
     <string name="settings_privacy">Confidentialité et consentement</string>
     <string name="settings_privacy_desc">Découvrez comment les publicités peuvent utiliser vos données</string>
 
+    <string name="settings_website">Site web</string>
+    <string name="settings_website_desc">Visitez le site de Palmz</string>
+
     <string name="settings_help">Aide et FAQ</string>
     <string name="settings_help_desc">Réponses aux questions courantes</string>
 

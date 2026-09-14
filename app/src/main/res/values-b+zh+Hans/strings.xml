@@ -15,6 +15,9 @@
     <string name="settings_privacy">隐私与同意</string>
     <string name="settings_privacy_desc">查看广告可能如何使用你的数据</string>
 
+    <string name="settings_website">官方网站</string>
+    <string name="settings_website_desc">访问 Palmz 官方网站</string>
+
     <string name="settings_help">帮助与常见问题</string>
     <string name="settings_help_desc">常见问题解答</string>
 

@@ -15,6 +15,9 @@
     <string name="settings_privacy">プライバシーと同意</string>
     <string name="settings_privacy_desc">広告によるデータの利用方法を確認する</string>
 
+    <string name="settings_website">ウェブサイト</string>
+    <string name="settings_website_desc">Palmzのウェブサイトを見る</string>
+
     <string name="settings_help">ヘルプとFAQ</string>
     <string name="settings_help_desc">よくある質問への回答</string>
 

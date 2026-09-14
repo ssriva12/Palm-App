@@ -15,6 +15,9 @@
     <string name="settings_privacy">गोपनीयता &amp; सहमति</string>
     <string name="settings_privacy_desc">विज्ञापन आपके डेटा का उपयोग कैसे कर सकते हैं, यह देखें</string>
 
+    <string name="settings_website">वेबसाइट</string>
+    <string name="settings_website_desc">Palmz की वेबसाइट देखें</string>
+
     <string name="settings_help">सहायता &amp; सामान्य प्रश्न</string>
     <string name="settings_help_desc">सामान्य सवालों के जवाब</string>
 
