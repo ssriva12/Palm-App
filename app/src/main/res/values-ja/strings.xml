@@ -80,6 +80,11 @@
     <string name="scanner_error_message">空が曇っています。もう一度スキャンしてください。</string>
     <string name="cd_your_palm">あなたの手のひら</string>
     <string name="scanner_tap_line_hint">線をタップすると詳細が表示されます。</string>
+    <string name="scanner_life_areas_title">人生の分野</string>
+    <string name="scanner_facet_money">お金</string>
+    <string name="scanner_facet_relationships">人間関係</string>
+    <string name="scanner_facet_marriage">結婚</string>
+    <string name="scanner_facet_family">家族</string>
     <string name="scanner_lucky_number_label">ラッキーナンバー</string>
     <string name="scanner_lucky_color_label">ラッキーカラー</string>
     <string name="cd_collapse">折りたたむ</string>

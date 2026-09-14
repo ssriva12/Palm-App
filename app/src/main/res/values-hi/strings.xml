@@ -81,6 +81,11 @@
     <string name="scanner_error_message">आसमान में बादल छाए हैं। वह स्कैन फिर से करें।</string>
     <string name="cd_your_palm">आपकी हथेली</string>
     <string name="scanner_tap_line_hint">विवरण के लिए किसी रेखा पर टैप करें।</string>
+    <string name="scanner_life_areas_title">जीवन के क्षेत्र</string>
+    <string name="scanner_facet_money">पैसा</string>
+    <string name="scanner_facet_relationships">रिश्ते</string>
+    <string name="scanner_facet_marriage">शादी</string>
+    <string name="scanner_facet_family">परिवार</string>
     <string name="scanner_lucky_number_label">भाग्यशाली नंबर</string>
     <string name="scanner_lucky_color_label">भाग्यशाली रंग</string>
     <string name="cd_collapse">संक्षिप्त करें</string>

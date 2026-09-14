@@ -81,6 +81,11 @@
     <string name="scanner_error_message">Il cielo è nuvoloso. Rifai quella scansione.</string>
     <string name="cd_your_palm">Il tuo palmo</string>
     <string name="scanner_tap_line_hint">Tocca una linea per i dettagli.</string>
+    <string name="scanner_life_areas_title">Aree della vita</string>
+    <string name="scanner_facet_money">Denaro</string>
+    <string name="scanner_facet_relationships">Relazioni</string>
+    <string name="scanner_facet_marriage">Matrimonio</string>
+    <string name="scanner_facet_family">Famiglia</string>
     <string name="scanner_lucky_number_label">NUMERO FORTUNATO</string>
     <string name="scanner_lucky_color_label">COLORE FORTUNATO</string>
     <string name="cd_collapse">Comprimi</string>

@@ -5,6 +5,7 @@ import com.palmz.domain.model.Hand
 import com.palmz.domain.model.Highlights
 import com.palmz.domain.model.HoroscopeEntry
 import com.palmz.domain.model.ImageQuality
+import com.palmz.domain.model.LifeAreaInsights
 import com.palmz.domain.model.LineAttributes
 import com.palmz.domain.model.LineId
 import com.palmz.domain.model.LoveResult
@@ -32,6 +33,17 @@ object DummyData {
         imageQuality = ImageQuality.GOOD,
         summary = "A steady, expressive hand. Your heart leads, your head keeps pace, " +
             "and a clear fate line says you have been pointed somewhere for a while.",
+        lifeAreas = LifeAreaInsights(
+            money = "You think before you spend, which keeps you steady — just don't let " +
+                "caution stop you from investing in something you've already researched well.",
+            career = "You work best with a clear direction. Write down the next concrete step " +
+                "instead of the whole five-year plan and momentum will follow.",
+            relationships = "You open up slowly but fully once you trust someone — let people " +
+                "earn that trust instead of testing them.",
+            marriage = "You want a partner who matches your pace, not one who rushes you — a " +
+                "steady, well-matched partnership looks like it's coming into view.",
+            family = "Home is where you recharge. Keep protecting that time even as work gets busier.",
+        ),
         luckyNumber = 7,
         luckyColor = "Indigo",
         lines = listOf(

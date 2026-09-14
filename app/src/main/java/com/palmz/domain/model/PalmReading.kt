@@ -57,6 +57,7 @@ data class PalmReading(
     val imageQuality: ImageQuality,
     val summary: String,
     val lines: List<PalmLine>,
+    val lifeAreas: LifeAreaInsights,
     val luckyNumber: Int,
     val luckyColor: String,
 )

@@ -87,6 +87,11 @@
     <string name="scanner_error_message">The sky is overcast. Try that scan again.</string>
     <string name="cd_your_palm">Your palm</string>
     <string name="scanner_tap_line_hint">Tap a line for details.</string>
+    <string name="scanner_life_areas_title">Life areas</string>
+    <string name="scanner_facet_money">Money</string>
+    <string name="scanner_facet_relationships">Relationships</string>
+    <string name="scanner_facet_marriage">Marriage</string>
+    <string name="scanner_facet_family">Family</string>
     <string name="scanner_lucky_number_label">LUCKY NUMBER</string>
     <string name="scanner_lucky_color_label">LUCKY COLOUR</string>
     <string name="cd_collapse">Collapse</string>

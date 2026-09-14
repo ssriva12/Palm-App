@@ -81,6 +81,11 @@
     <string name="scanner_error_message">Le ciel est couvert. Refaites ce scan.</string>
     <string name="cd_your_palm">Votre paume</string>
     <string name="scanner_tap_line_hint">Touchez une ligne pour voir les détails.</string>
+    <string name="scanner_life_areas_title">Domaines de vie</string>
+    <string name="scanner_facet_money">Argent</string>
+    <string name="scanner_facet_relationships">Relations</string>
+    <string name="scanner_facet_marriage">Mariage</string>
+    <string name="scanner_facet_family">Famille</string>
     <string name="scanner_lucky_number_label">NUMÉRO PORTE-BONHEUR</string>
     <string name="scanner_lucky_color_label">COULEUR PORTE-BONHEUR</string>
     <string name="cd_collapse">Réduire</string>

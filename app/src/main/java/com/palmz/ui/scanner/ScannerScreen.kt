@@ -31,15 +31,19 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.AttachMoney
 import androidx.compose.material.icons.outlined.BackHand
 import androidx.compose.material.icons.outlined.CloudOff
 import androidx.compose.material.icons.outlined.Explore
 import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.outlined.Groups
+import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.KeyboardArrowDown
 import androidx.compose.material.icons.outlined.KeyboardArrowUp
 import androidx.compose.material.icons.outlined.Lightbulb
 import androidx.compose.material.icons.outlined.PhotoCamera
 import androidx.compose.material.icons.outlined.Spa
+import androidx.compose.material.icons.outlined.Work
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
@@ -64,6 +68,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
@@ -80,6 +85,7 @@ import com.palmz.ui.components.ClayCard
 import com.palmz.ui.components.MysticScaffold
 import com.palmz.ui.components.PrimaryButton
 import com.palmz.ui.components.SecondaryButton
+import com.palmz.ui.components.SectionHeader
 import com.palmz.ui.components.StatTile
 import com.palmz.ui.scanner.camera.CameraCapture
 import com.palmz.ui.theme.ClayShape
@@ -328,6 +334,7 @@ private fun ResultPhase(
     onLongPress: () -> Unit,
 ) {
     var expanded by remember { mutableStateOf(emptySet<LineId>()) }
+    var expandedAreas by remember { mutableStateOf(emptySet<LifeAreaId>()) }
     val aspect = image?.let { it.width.toFloat() / it.height }?.coerceIn(0.5f, 1.6f) ?: 0.78f
 
     Box(
@@ -367,7 +374,28 @@ private fun ResultPhase(
         color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
 
-    Spacer(Modifier.height(Spacing.space16))
+    Spacer(Modifier.height(Spacing.space20))
+    SectionHeader(stringResource(R.string.scanner_life_areas_title))
+    Spacer(Modifier.height(Spacing.space10))
+    listOf(
+        LifeAreaId.MONEY to reading.lifeAreas.money,
+        LifeAreaId.CAREER to reading.lifeAreas.career,
+        LifeAreaId.RELATIONSHIPS to reading.lifeAreas.relationships,
+        LifeAreaId.MARRIAGE to reading.lifeAreas.marriage,
+        LifeAreaId.FAMILY to reading.lifeAreas.family,
+    ).forEach { (id, text) ->
+        LifeAreaCard(
+            id = id,
+            text = text,
+            expanded = id in expandedAreas,
+            onToggle = {
+                expandedAreas = if (id in expandedAreas) expandedAreas - id else expandedAreas + id
+            },
+        )
+        Spacer(Modifier.height(Spacing.space12))
+    }
+
+    Spacer(Modifier.height(Spacing.space8))
     reading.lines.forEach { line ->
         LineCard(
             line = line,
@@ -458,6 +486,74 @@ private fun lineIcon(id: LineId): ImageVector = when (id) {
     LineId.HEART -> Icons.Outlined.FavoriteBorder
     LineId.FATE -> Icons.Outlined.Explore
 }
+
+private enum class LifeAreaId { MONEY, CAREER, RELATIONSHIPS, MARRIAGE, FAMILY }
+
+@Composable
+private fun LifeAreaCard(id: LifeAreaId, text: String, expanded: Boolean, onToggle: () -> Unit) {
+    ClayCard(Modifier.fillMaxWidth(), onClick = onToggle) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(
+                lifeAreaIcon(id),
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.size(20.dp),
+            )
+            Spacer(Modifier.width(Spacing.space8))
+            Text(
+                lifeAreaLabel(id),
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.weight(1f),
+            )
+            Icon(
+                if (expanded) Icons.Outlined.KeyboardArrowUp else Icons.Outlined.KeyboardArrowDown,
+                contentDescription = stringResource(if (expanded) R.string.cd_collapse else R.string.cd_expand),
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.size(20.dp),
+            )
+        }
+        if (!expanded) {
+            Spacer(Modifier.height(Spacing.space6))
+            Text(
+                text,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        }
+        AnimatedVisibility(visible = expanded) {
+            Column {
+                Spacer(Modifier.height(Spacing.space10))
+                Text(
+                    text,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+    }
+}
+
+private fun lifeAreaIcon(id: LifeAreaId): ImageVector = when (id) {
+    LifeAreaId.MONEY -> Icons.Outlined.AttachMoney
+    LifeAreaId.CAREER -> Icons.Outlined.Work
+    LifeAreaId.RELATIONSHIPS -> Icons.Outlined.FavoriteBorder
+    LifeAreaId.MARRIAGE -> Icons.Outlined.Groups
+    LifeAreaId.FAMILY -> Icons.Outlined.Home
+}
+
+@Composable
+private fun lifeAreaLabel(id: LifeAreaId): String = stringResource(
+    when (id) {
+        LifeAreaId.MONEY -> R.string.scanner_facet_money
+        LifeAreaId.CAREER -> R.string.horoscope_facet_career
+        LifeAreaId.RELATIONSHIPS -> R.string.scanner_facet_relationships
+        LifeAreaId.MARRIAGE -> R.string.scanner_facet_marriage
+        LifeAreaId.FAMILY -> R.string.scanner_facet_family
+    },
+)
 
 @Composable
 private fun Pill(text: String) {

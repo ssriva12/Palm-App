@@ -81,6 +81,11 @@
     <string name="scanner_error_message">Der Himmel ist bewölkt. Führe diesen Scan noch einmal durch.</string>
     <string name="cd_your_palm">Deine Handfläche</string>
     <string name="scanner_tap_line_hint">Tippe auf eine Linie für Details.</string>
+    <string name="scanner_life_areas_title">Lebensbereiche</string>
+    <string name="scanner_facet_money">Geld</string>
+    <string name="scanner_facet_relationships">Beziehungen</string>
+    <string name="scanner_facet_marriage">Ehe</string>
+    <string name="scanner_facet_family">Familie</string>
     <string name="scanner_lucky_number_label">GLÜCKSZAHL</string>
     <string name="scanner_lucky_color_label">GLÜCKSFARBE</string>
     <string name="cd_collapse">Einklappen</string>

@@ -1,12 +1,24 @@
 {
   "type": "object",
   "additionalProperties": false,
-  "required": ["isPalm", "imageQuality", "hand", "summary", "lines", "luckyNumber", "luckyColor"],
+  "required": ["isPalm", "imageQuality", "hand", "summary", "lines", "lifeAreas", "luckyNumber", "luckyColor"],
   "properties": {
     "isPalm": { "type": "boolean" },
     "imageQuality": { "type": "string", "enum": ["GOOD", "USABLE", "POOR"] },
     "hand": { "type": "string", "enum": ["LEFT", "RIGHT"] },
     "summary": { "type": "string" },
+    "lifeAreas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["money", "career", "relationships", "marriage", "family"],
+      "properties": {
+        "money": { "type": "string" },
+        "career": { "type": "string" },
+        "relationships": { "type": "string" },
+        "marriage": { "type": "string" },
+        "family": { "type": "string" }
+      }
+    },
     "luckyNumber": { "type": "integer" },
     "luckyColor": { "type": "string" },
     "lines": {

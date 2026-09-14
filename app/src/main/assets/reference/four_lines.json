@@ -43,7 +43,7 @@
       "id": "heart",
       "label": "Heart line",
       "position": "Uppermost horizontal line, below the fingers, from one edge toward the index/middle finger.",
-      "governs": "Emotions, relationships, attachment style.",
+      "governs": "Emotions, relationships, attachment style, and marriage compatibility.",
       "variations": [
         { "match": "Long, reaching the index finger", "text": "Idealistic in love; high standards and a clear picture of the right partner." },
         { "match": "Ending under the middle finger", "text": "Follows attraction and instinct; can be self-focused in relationships." },
@@ -62,7 +62,7 @@
       "id": "fate",
       "label": "Fate line",
       "position": "Vertical line rising from near the wrist toward the middle finger (may be absent).",
-      "governs": "Career, life direction, external influences, purpose.",
+      "governs": "Career, life direction, money and earning style, external influences, purpose.",
       "variations": [
         { "match": "Deep and unbroken", "text": "A clear sense of direction; career path set early and followed steadily." },
         { "match": "Faint", "text": "Direction is still forming; you're free to define it yourself." },

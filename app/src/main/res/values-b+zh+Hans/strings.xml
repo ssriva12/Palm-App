@@ -80,6 +80,11 @@
     <string name="scanner_error_message">天空有些阴云。请重新扫描。</string>
     <string name="cd_your_palm">你的手掌</string>
     <string name="scanner_tap_line_hint">点按掌纹线查看详情。</string>
+    <string name="scanner_life_areas_title">生活领域</string>
+    <string name="scanner_facet_money">财运</string>
+    <string name="scanner_facet_relationships">感情</string>
+    <string name="scanner_facet_marriage">婚姻</string>
+    <string name="scanner_facet_family">家庭</string>
     <string name="scanner_lucky_number_label">幸运数字</string>
     <string name="scanner_lucky_color_label">幸运颜色</string>
     <string name="cd_collapse">收起</string>

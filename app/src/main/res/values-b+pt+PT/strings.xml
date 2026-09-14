@@ -81,6 +81,11 @@
     <string name="scanner_error_message">O céu está nublado. Faz essa digitalização outra vez.</string>
     <string name="cd_your_palm">A tua palma</string>
     <string name="scanner_tap_line_hint">Toca numa linha para veres os detalhes.</string>
+    <string name="scanner_life_areas_title">Áreas da vida</string>
+    <string name="scanner_facet_money">Dinheiro</string>
+    <string name="scanner_facet_relationships">Relações</string>
+    <string name="scanner_facet_marriage">Casamento</string>
+    <string name="scanner_facet_family">Família</string>
     <string name="scanner_lucky_number_label">NÚMERO DA SORTE</string>
     <string name="scanner_lucky_color_label">COR DA SORTE</string>
     <string name="cd_collapse">Recolher</string>
