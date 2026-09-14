@@ -203,4 +203,6 @@
     <string name="auth_toggle_to_signup">还没有账户？去注册</string>
     <string name="auth_toggle_to_signin">已有账户？去登录</string>
     <string name="auth_loading">正在登录…</string>
+    <string name="auth_or_divider">或</string>
+    <string name="auth_google_button">继续使用 Google 账号</string>
 </resources>

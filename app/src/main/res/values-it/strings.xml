@@ -204,4 +204,6 @@
     <string name="auth_toggle_to_signup">Non hai un account? Registrati</string>
     <string name="auth_toggle_to_signin">Hai già un account? Accedi</string>
     <string name="auth_loading">Accesso in corso…</string>
+    <string name="auth_or_divider">o</string>
+    <string name="auth_google_button">Continua con Google</string>
 </resources>

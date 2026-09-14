@@ -218,4 +218,6 @@
     <string name="auth_toggle_to_signup">Don\'t have an account? Sign up</string>
     <string name="auth_toggle_to_signin">Already have an account? Sign in</string>
     <string name="auth_loading">Signing you in…</string>
+    <string name="auth_or_divider">or</string>
+    <string name="auth_google_button">Continue with Google</string>
 </resources>

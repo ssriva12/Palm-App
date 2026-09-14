@@ -12,7 +12,12 @@
           "package_name": "com.palmlens"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "907138876812-ibcc0c07dtbmnjn7g03sf7kbbn0ht85o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDHEXepvPW3iolDtJWOgwqvXzwCbmFHW5Q"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907138876812-ibcc0c07dtbmnjn7g03sf7kbbn0ht85o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -31,7 +41,20 @@
           "package_name": "com.palmz"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "907138876812-hevm7o7o07nihqs90vdtahtdvmfv6tfl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.palmz",
+            "certificate_hash": "5fec02c3cdb2ea3db847ee2c1d936af8ff836f94"
+          }
+        },
+        {
+          "client_id": "907138876812-ibcc0c07dtbmnjn7g03sf7kbbn0ht85o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDHEXepvPW3iolDtJWOgwqvXzwCbmFHW5Q"
@@ -39,7 +62,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907138876812-ibcc0c07dtbmnjn7g03sf7kbbn0ht85o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

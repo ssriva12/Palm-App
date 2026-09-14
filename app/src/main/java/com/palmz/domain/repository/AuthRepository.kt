@@ -14,5 +14,8 @@ interface AuthRepository {
 
     suspend fun signUp(email: String, password: String): Result<Unit>
 
+    /** [idToken] comes from the in-app Credential Manager Google sign-in sheet. */
+    suspend fun signInWithGoogle(idToken: String): Result<Unit>
+
     fun signOut()
 }

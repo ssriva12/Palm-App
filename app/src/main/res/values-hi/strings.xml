@@ -204,4 +204,6 @@
     <string name="auth_toggle_to_signup">खाता नहीं है? साइन अप करें</string>
     <string name="auth_toggle_to_signin">पहले से खाता है? साइन इन करें</string>
     <string name="auth_loading">साइन इन किया जा रहा है…</string>
+    <string name="auth_or_divider">या</string>
+    <string name="auth_google_button">Google से जारी रखें</string>
 </resources>

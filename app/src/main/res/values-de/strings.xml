@@ -204,4 +204,6 @@
     <string name="auth_toggle_to_signup">Kein Konto? Registrieren</string>
     <string name="auth_toggle_to_signin">Schon ein Konto? Anmelden</string>
     <string name="auth_loading">Anmeldung läuft…</string>
+    <string name="auth_or_divider">oder</string>
+    <string name="auth_google_button">Weiter mit Google</string>
 </resources>

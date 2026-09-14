@@ -2,6 +2,7 @@ package com.palmz.data.auth
 
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import com.palmz.data.firebase.await
 import com.palmz.domain.repository.AuthRepository
@@ -31,6 +32,11 @@ class FirebaseAuthRepository @Inject constructor() : AuthRepository {
 
     override suspend fun signUp(email: String, password: String): Result<Unit> = runCatching {
         auth.createUserWithEmailAndPassword(email, password).await()
+        Unit
+    }
+
+    override suspend fun signInWithGoogle(idToken: String): Result<Unit> = runCatching {
+        auth.signInWithCredential(GoogleAuthProvider.getCredential(idToken, null)).await()
         Unit
     }
 

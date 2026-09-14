@@ -204,4 +204,6 @@
     <string name="auth_toggle_to_signup">Não tens conta? Regista-te</string>
     <string name="auth_toggle_to_signin">Já tens conta? Inicia sessão</string>
     <string name="auth_loading">A iniciar sessão…</string>
+    <string name="auth_or_divider">ou</string>
+    <string name="auth_google_button">Continuar com o Google</string>
 </resources>

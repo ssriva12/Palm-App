@@ -203,4 +203,6 @@
     <string name="auth_toggle_to_signup">アカウントをお持ちでないですか？新規登録</string>
     <string name="auth_toggle_to_signin">すでにアカウントをお持ちですか？サインイン</string>
     <string name="auth_loading">サインイン中…</string>
+    <string name="auth_or_divider">または</string>
+    <string name="auth_google_button">Googleで続ける</string>
 </resources>
