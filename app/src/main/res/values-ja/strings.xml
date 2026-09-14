@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Palmlens</string>
+    <string name="app_name">Palmz</string>
 
     <string name="disclaimer">エンターテインメント目的のみです。</string>
 
@@ -19,7 +19,7 @@
     <string name="settings_help_desc">よくある質問への回答</string>
 
     <string name="settings_terms">利用規約</string>
-    <string name="settings_terms_desc">Palmlensを利用する際のルール</string>
+    <string name="settings_terms_desc">Palmzを利用する際のルール</string>
 
     <string name="settings_privacy_policy">プライバシーポリシー</string>
     <string name="settings_privacy_policy_desc">データの取り扱いについて</string>
@@ -110,7 +110,7 @@
     <string name="onboarding_step_dob_question">生年月日はいつですか?</string>
     <string name="onboarding_dob_desc">星座が決まり、すべての星占いの内容が決まります。</string>
     <string name="onboarding_dob_label">生年月日</string>
-    <string name="onboarding_age_error">Palmlensを利用するには13歳以上である必要があります。</string>
+    <string name="onboarding_age_error">Palmzを利用するには13歳以上である必要があります。</string>
     <string name="onboarding_step_time_question">生まれた時間はわかりますか?</string>
     <string name="onboarding_time_known">はい、わかります</string>
     <string name="onboarding_time_unknown">わからないのでスキップ</string>
@@ -151,7 +151,7 @@
     <string name="cd_compatibility_score">相性スコア: %1$dパーセント</string>
 
     <string name="cd_close">閉じる</string>
-    <string name="subscription_title">Palmlens プレミアム</string>
+    <string name="subscription_title">Palmz プレミアム</string>
     <string name="subscription_subtitle">スキャン無制限、広告なし、デイリー星占いつき。</string>
     <string name="subscription_plan_weekly">週間</string>
     <string name="subscription_plan_monthly">月間</string>

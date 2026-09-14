@@ -23,13 +23,13 @@ val ADMOB_TEST_BANNER = "ca-app-pub-3940256099942544/9214589741"
 val ADMOB_TEST_INTERSTITIAL = "ca-app-pub-3940256099942544/1033173712"
 
 android {
-    namespace = "com.palmlens"
+    namespace = "com.palmz"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "com.palmlens"
+        applicationId = "com.palmz"
         minSdk = 24
         targetSdk = 37
         versionCode = 1

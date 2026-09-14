@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Palmlens</string>
+    <string name="app_name">Palmz</string>
 
     <string name="disclaimer">Nur zur Unterhaltung.</string>
 
@@ -19,7 +19,7 @@
     <string name="settings_help_desc">Antworten auf häufige Fragen</string>
 
     <string name="settings_terms">Allgemeine Geschäftsbedingungen</string>
-    <string name="settings_terms_desc">Die Regeln für die Nutzung von Palmlens</string>
+    <string name="settings_terms_desc">Die Regeln für die Nutzung von Palmz</string>
 
     <string name="settings_privacy_policy">Datenschutzerklärung</string>
     <string name="settings_privacy_policy_desc">Wie mit deinen Daten umgegangen wird</string>
@@ -75,7 +75,7 @@
     <string name="scanner_hand_label">%1$s Hand</string>
     <string name="scanner_hand_dominant_desc">Dominante Hand. Deine Gegenwart und Zukunft.</string>
     <string name="scanner_hand_nondominant_desc">Nicht dominante Hand. Ererbte Eigenschaften.</string>
-    <string name="scanner_camera_permission_rationale">Palmlens benötigt die Kamera, um deine Handfläche zu scannen. Das Foto wird für die Lesung gesendet und niemals gespeichert.</string>
+    <string name="scanner_camera_permission_rationale">Palmz benötigt die Kamera, um deine Handfläche zu scannen. Das Foto wird für die Lesung gesendet und niemals gespeichert.</string>
     <string name="action_allow_camera">Kamera erlauben</string>
     <string name="scanner_processing_message">Deine Linien werden nachgezeichnet…</string>
     <string name="scanner_error_message">Der Himmel ist bewölkt. Führe diesen Scan noch einmal durch.</string>
@@ -111,7 +111,7 @@
     <string name="onboarding_step_dob_question">Wann bist du geboren?</string>
     <string name="onboarding_dob_desc">Legt dein Sternzeichen fest und prägt jedes Horoskop.</string>
     <string name="onboarding_dob_label">Geburtsdatum</string>
-    <string name="onboarding_age_error">Du musst mindestens 13 Jahre alt sein, um Palmlens zu nutzen.</string>
+    <string name="onboarding_age_error">Du musst mindestens 13 Jahre alt sein, um Palmz zu nutzen.</string>
     <string name="onboarding_step_time_question">Kennst du deine Geburtszeit?</string>
     <string name="onboarding_time_known">Ja, ich kenne sie</string>
     <string name="onboarding_time_unknown">Nicht sicher, überspringen</string>
@@ -152,7 +152,7 @@
     <string name="cd_compatibility_score">Kompatibilitätswert: %1$d Prozent</string>
 
     <string name="cd_close">Schließen</string>
-    <string name="subscription_title">Palmlens Premium</string>
+    <string name="subscription_title">Palmz Premium</string>
     <string name="subscription_subtitle">Unbegrenzte Scans, keine Werbung und das tägliche Horoskop.</string>
     <string name="subscription_plan_weekly">Wöchentlich</string>
     <string name="subscription_plan_monthly">Monatlich</string>

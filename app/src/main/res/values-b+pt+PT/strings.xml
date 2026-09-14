@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Palmlens</string>
+    <string name="app_name">Palmz</string>
 
     <string name="disclaimer">Apenas para fins de entretenimento.</string>
 
@@ -19,7 +19,7 @@
     <string name="settings_help_desc">Respostas às perguntas mais comuns</string>
 
     <string name="settings_terms">Termos e Condições</string>
-    <string name="settings_terms_desc">As regras para usar a Palmlens</string>
+    <string name="settings_terms_desc">As regras para usar a Palmz</string>
 
     <string name="settings_privacy_policy">Política de Privacidade</string>
     <string name="settings_privacy_policy_desc">Como os teus dados são tratados</string>
@@ -75,7 +75,7 @@
     <string name="scanner_hand_label">Mão %1$s</string>
     <string name="scanner_hand_dominant_desc">Mão dominante. O teu presente e futuro.</string>
     <string name="scanner_hand_nondominant_desc">Mão não dominante. Traços herdados.</string>
-    <string name="scanner_camera_permission_rationale">A Palmlens precisa da câmara para digitalizar a tua palma. A foto é enviada para a leitura e nunca é guardada.</string>
+    <string name="scanner_camera_permission_rationale">A Palmz precisa da câmara para digitalizar a tua palma. A foto é enviada para a leitura e nunca é guardada.</string>
     <string name="action_allow_camera">Permitir câmara</string>
     <string name="scanner_processing_message">A traçar as tuas linhas…</string>
     <string name="scanner_error_message">O céu está nublado. Faz essa digitalização outra vez.</string>
@@ -111,7 +111,7 @@
     <string name="onboarding_step_dob_question">Quando nasceste?</string>
     <string name="onboarding_dob_desc">Define o teu signo e molda todos os horóscopos.</string>
     <string name="onboarding_dob_label">Data de nascimento</string>
-    <string name="onboarding_age_error">Precisas de ter pelo menos 13 anos para usar a Palmlens.</string>
+    <string name="onboarding_age_error">Precisas de ter pelo menos 13 anos para usar a Palmz.</string>
     <string name="onboarding_step_time_question">Sabes a tua hora de nascimento?</string>
     <string name="onboarding_time_known">Sim, sei</string>
     <string name="onboarding_time_unknown">Não tenho a certeza, saltar</string>
@@ -152,7 +152,7 @@
     <string name="cd_compatibility_score">Pontuação de compatibilidade: %1$d por cento</string>
 
     <string name="cd_close">Fechar</string>
-    <string name="subscription_title">Palmlens Premium</string>
+    <string name="subscription_title">Palmz Premium</string>
     <string name="subscription_subtitle">Digitalizações ilimitadas, sem anúncios, e o horóscopo diário.</string>
     <string name="subscription_plan_weekly">Semanal</string>
     <string name="subscription_plan_monthly">Mensal</string>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Palmlens</string>
+    <string name="app_name">Palmz</string>
 
     <string name="disclaimer">仅供娱乐。</string>
 
@@ -19,7 +19,7 @@
     <string name="settings_help_desc">常见问题解答</string>
 
     <string name="settings_terms">条款与条件</string>
-    <string name="settings_terms_desc">使用 Palmlens 的相关规则</string>
+    <string name="settings_terms_desc">使用 Palmz 的相关规则</string>
 
     <string name="settings_privacy_policy">隐私政策</string>
     <string name="settings_privacy_policy_desc">你的数据将如何被处理</string>
@@ -74,7 +74,7 @@
     <string name="scanner_hand_label">%1$s手</string>
     <string name="scanner_hand_dominant_desc">惯用手。代表你的现在与未来。</string>
     <string name="scanner_hand_nondominant_desc">非惯用手。代表天生的特质。</string>
-    <string name="scanner_camera_permission_rationale">Palmlens 需要使用摄像头来扫描你的手掌。照片仅用于生成解读,绝不会被保存。</string>
+    <string name="scanner_camera_permission_rationale">Palmz 需要使用摄像头来扫描你的手掌。照片仅用于生成解读,绝不会被保存。</string>
     <string name="action_allow_camera">允许使用摄像头</string>
     <string name="scanner_processing_message">正在描摹你的掌纹…</string>
     <string name="scanner_error_message">天空有些阴云。请重新扫描。</string>
@@ -110,7 +110,7 @@
     <string name="onboarding_step_dob_question">你的出生日期是?</string>
     <string name="onboarding_dob_desc">用于确定你的星座,并影响每一份星座运势。</string>
     <string name="onboarding_dob_label">出生日期</string>
-    <string name="onboarding_age_error">你需要年满 13 岁才能使用 Palmlens。</string>
+    <string name="onboarding_age_error">你需要年满 13 岁才能使用 Palmz。</string>
     <string name="onboarding_step_time_question">你知道自己的出生时间吗?</string>
     <string name="onboarding_time_known">是的,我知道</string>
     <string name="onboarding_time_unknown">不确定,跳过</string>
@@ -151,7 +151,7 @@
     <string name="cd_compatibility_score">契合度评分:百分之 %1$d</string>
 
     <string name="cd_close">关闭</string>
-    <string name="subscription_title">Palmlens 高级版</string>
+    <string name="subscription_title">Palmz 高级版</string>
     <string name="subscription_subtitle">无限次扫描、无广告,并附带每日星座运势。</string>
     <string name="subscription_plan_weekly">每周</string>
     <string name="subscription_plan_monthly">每月</string>

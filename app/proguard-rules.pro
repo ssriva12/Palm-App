@@ -8,11 +8,11 @@
 -keepclasseswithmembers class * {
     @kotlinx.serialization.Serializable <methods>;
 }
--keep,includedescriptorclasses class com.palmlens.**$$serializer { *; }
--keepclassmembers class com.palmlens.** {
+-keep,includedescriptorclasses class com.palmz.**$$serializer { *; }
+-keepclassmembers class com.palmz.** {
     *** Companion;
 }
--keepclasseswithmembers class com.palmlens.** {
+-keepclasseswithmembers class com.palmz.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
 

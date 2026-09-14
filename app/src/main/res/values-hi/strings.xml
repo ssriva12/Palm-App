@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Palmlens</string>
+    <string name="app_name">Palmz</string>
 
     <string name="disclaimer">केवल मनोरंजन के लिए।</string>
 
@@ -19,7 +19,7 @@
     <string name="settings_help_desc">सामान्य सवालों के जवाब</string>
 
     <string name="settings_terms">नियम &amp; शर्तें</string>
-    <string name="settings_terms_desc">Palmlens का उपयोग करने के नियम</string>
+    <string name="settings_terms_desc">Palmz का उपयोग करने के नियम</string>
 
     <string name="settings_privacy_policy">गोपनीयता नीति</string>
     <string name="settings_privacy_policy_desc">आपके डेटा को कैसे संभाला जाता है</string>
@@ -75,7 +75,7 @@
     <string name="scanner_hand_label">%1$s हाथ</string>
     <string name="scanner_hand_dominant_desc">प्रमुख हाथ। आपका वर्तमान और भविष्य।</string>
     <string name="scanner_hand_nondominant_desc">गैर-प्रमुख हाथ। विरासत में मिले गुण।</string>
-    <string name="scanner_camera_permission_rationale">Palmlens को आपकी हथेली स्कैन करने के लिए कैमरे की आवश्यकता है। फोटो रीडिंग के लिए भेजी जाती है और कभी सहेजी नहीं जाती।</string>
+    <string name="scanner_camera_permission_rationale">Palmz को आपकी हथेली स्कैन करने के लिए कैमरे की आवश्यकता है। फोटो रीडिंग के लिए भेजी जाती है और कभी सहेजी नहीं जाती।</string>
     <string name="action_allow_camera">कैमरे की अनुमति दें</string>
     <string name="scanner_processing_message">आपकी रेखाओं का पता लगाया जा रहा है…</string>
     <string name="scanner_error_message">आसमान में बादल छाए हैं। वह स्कैन फिर से करें।</string>
@@ -111,7 +111,7 @@
     <string name="onboarding_step_dob_question">आपका जन्म कब हुआ था?</string>
     <string name="onboarding_dob_desc">यह आपकी राशि तय करता है और हर राशिफल को आकार देता है।</string>
     <string name="onboarding_dob_label">जन्म तिथि</string>
-    <string name="onboarding_age_error">Palmlens का उपयोग करने के लिए आपकी उम्र कम से कम 13 वर्ष होनी चाहिए।</string>
+    <string name="onboarding_age_error">Palmz का उपयोग करने के लिए आपकी उम्र कम से कम 13 वर्ष होनी चाहिए।</string>
     <string name="onboarding_step_time_question">क्या आपको अपने जन्म का समय पता है?</string>
     <string name="onboarding_time_known">हां, मुझे पता है</string>
     <string name="onboarding_time_unknown">पक्का नहीं, छोड़ दें</string>
@@ -152,7 +152,7 @@
     <string name="cd_compatibility_score">अनुकूलता स्कोर: %1$d प्रतिशत</string>
 
     <string name="cd_close">बंद करें</string>
-    <string name="subscription_title">Palmlens प्रीमियम</string>
+    <string name="subscription_title">Palmz प्रीमियम</string>
     <string name="subscription_subtitle">असीमित स्कैन, कोई विज्ञापन नहीं, और दैनिक राशिफल।</string>
     <string name="subscription_plan_weekly">साप्ताहिक</string>
     <string name="subscription_plan_monthly">मासिक</string>

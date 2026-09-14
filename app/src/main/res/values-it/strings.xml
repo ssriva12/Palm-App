@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Palmlens</string>
+    <string name="app_name">Palmz</string>
 
     <string name="disclaimer">Solo a scopo di intrattenimento.</string>
 
@@ -19,7 +19,7 @@
     <string name="settings_help_desc">Risposte alle domande più comuni</string>
 
     <string name="settings_terms">Termini e condizioni</string>
-    <string name="settings_terms_desc">Le regole per usare Palmlens</string>
+    <string name="settings_terms_desc">Le regole per usare Palmz</string>
 
     <string name="settings_privacy_policy">Informativa sulla privacy</string>
     <string name="settings_privacy_policy_desc">Come vengono gestiti i tuoi dati</string>
@@ -75,7 +75,7 @@
     <string name="scanner_hand_label">Mano %1$s</string>
     <string name="scanner_hand_dominant_desc">Mano dominante. Il tuo presente e futuro.</string>
     <string name="scanner_hand_nondominant_desc">Mano non dominante. Tratti ereditati.</string>
-    <string name="scanner_camera_permission_rationale">Palmlens ha bisogno della fotocamera per scansionare il tuo palmo. La foto viene inviata per la lettura e non viene mai salvata.</string>
+    <string name="scanner_camera_permission_rationale">Palmz ha bisogno della fotocamera per scansionare il tuo palmo. La foto viene inviata per la lettura e non viene mai salvata.</string>
     <string name="action_allow_camera">Consenti fotocamera</string>
     <string name="scanner_processing_message">Sto tracciando le tue linee…</string>
     <string name="scanner_error_message">Il cielo è nuvoloso. Rifai quella scansione.</string>
@@ -111,7 +111,7 @@
     <string name="onboarding_step_dob_question">Quando sei nato/a?</string>
     <string name="onboarding_dob_desc">Determina il tuo segno zodiacale e influisce su ogni oroscopo.</string>
     <string name="onboarding_dob_label">Data di nascita</string>
-    <string name="onboarding_age_error">Devi avere almeno 13 anni per usare Palmlens.</string>
+    <string name="onboarding_age_error">Devi avere almeno 13 anni per usare Palmz.</string>
     <string name="onboarding_step_time_question">Conosci la tua ora di nascita?</string>
     <string name="onboarding_time_known">Sì, la conosco</string>
     <string name="onboarding_time_unknown">Non sono sicuro/a, salta</string>
@@ -152,7 +152,7 @@
     <string name="cd_compatibility_score">Punteggio di compatibilità: %1$d per cento</string>
 
     <string name="cd_close">Chiudi</string>
-    <string name="subscription_title">Palmlens Premium</string>
+    <string name="subscription_title">Palmz Premium</string>
     <string name="subscription_subtitle">Scansioni illimitate, niente pubblicità e l\'oroscopo giornaliero.</string>
     <string name="subscription_plan_weekly">Settimanale</string>
     <string name="subscription_plan_monthly">Mensile</string>
