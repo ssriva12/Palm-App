@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Palmz</string>
 
-    <string name="disclaimer">Nur zur Unterhaltung.</string>
-
     <string name="settings">Einstellungen</string>
     <string name="cd_open_settings">Einstellungen öffnen</string>
 

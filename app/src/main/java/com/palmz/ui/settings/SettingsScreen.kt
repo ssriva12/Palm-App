@@ -154,12 +154,6 @@ fun SettingsScreen(
 
             Spacer(Modifier.height(Spacing.space28))
             Text(
-                stringResource(R.string.disclaimer),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-            Spacer(Modifier.height(Spacing.space6))
-            Text(
                 stringResource(R.string.settings_version, BuildConfig.VERSION_NAME),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,

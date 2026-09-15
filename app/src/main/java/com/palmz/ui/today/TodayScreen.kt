@@ -216,13 +216,7 @@ fun TodayScreen(onOpenHighlights: () -> Unit, onOpenHoroscope: (Int) -> Unit, on
                 )
             }
 
-            Spacer(Modifier.height(Spacing.space28))
-            Text(
-                stringResource(R.string.disclaimer),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(horizontal = Spacing.space20),
-            )
+            Spacer(Modifier.height(Spacing.space20))
         }
     }
 }
